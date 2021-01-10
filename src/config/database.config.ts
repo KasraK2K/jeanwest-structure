@@ -1,9 +1,29 @@
 import { join } from 'path';
 
 const TypeormConfig: Record<string, unknown> = {
-  entities: [
-    // join(__dirname, '..', 'module', '**', 'entity', '*.entity.{ts,js}'),
-    join(__dirname, '..', 'section', '**', 'entity', '*.entity.{ts,js}'),
+  jwEntities: [
+    join(
+      __dirname,
+      '..',
+      'section',
+      '**',
+      'module',
+      '**',
+      'entity',
+      '*.entity.jw.{ts,js}',
+    ),
+  ],
+  erpEntities: [
+    join(
+      __dirname,
+      '..',
+      'section',
+      '**',
+      'module',
+      '**',
+      'entity',
+      '*.entity.erp.{ts,js}',
+    ),
   ],
   migrations: [join(__dirname, '..', 'database', 'migration', '*.{ts,js}')],
   cli: {
@@ -21,7 +41,7 @@ export default () => ({
     database: process.env.DATABASE_JW_DBNAME,
     synchronize: process.env.TYPEORM_SYNC === 'true',
     migrationsRun: process.env.TYPEORM_RUN_MIGRATIONS === 'true',
-    entities: TypeormConfig.entities,
+    entities: TypeormConfig.jwEntities,
     migrations: TypeormConfig.migrations,
     cli: TypeormConfig.cli,
   },
@@ -35,7 +55,7 @@ export default () => ({
     database: process.env.DATABASE_ERP_DBNAME,
     synchronize: process.env.TYPEORM_SYNC === 'true',
     migrationsRun: process.env.TYPEORM_RUN_MIGRATIONS === 'true',
-    entities: TypeormConfig.entities,
+    entities: TypeormConfig.erpEntities,
     migrations: TypeormConfig.migrations,
     cli: TypeormConfig.cli,
     options: {
