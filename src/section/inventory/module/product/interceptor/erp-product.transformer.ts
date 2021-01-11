@@ -1,5 +1,5 @@
 import { ErpProductDto } from '../dto/erp/erp.dto';
-import { IErpDetails } from '../interface/erpDetails.interface';
+import { IErpDetails } from '../interface/erp-details.interface';
 
 export const erpProductTransformer = (context) => {
   const finalData = [];

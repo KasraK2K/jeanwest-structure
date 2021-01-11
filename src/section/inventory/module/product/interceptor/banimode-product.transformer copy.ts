@@ -1,5 +1,5 @@
 import { BanimodeProductDto } from '../dto/banimode/banimode.dto';
-import { IBanimodeDetails } from '../interface/banimodeDetails.interface';
+import { IBanimodeDetails } from '../interface/banimode-details.interface';
 
 export const banimodeProductTransformer = (context) => {
   const finalData = [];

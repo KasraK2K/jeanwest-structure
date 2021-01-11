@@ -1,10 +1,11 @@
 import { Expose } from 'class-transformer';
 import { IsDefined, IsNumber, IsString, ValidateNested } from 'class-validator';
-import { IBarcodeList } from '../../interface/barcodeList.interface';
-import { IErpDetails } from '../../interface/erpDetails.interface';
+import { IBarcodeList } from '../../interface/barcode-list.interface';
+import { IErpDetails } from '../../interface/erp-details.interface';
 
 @Expose()
-export class ErpProductDto {
+export class 
+ErpProductDto {
   @IsString()
   @IsDefined()
   barcode: string;

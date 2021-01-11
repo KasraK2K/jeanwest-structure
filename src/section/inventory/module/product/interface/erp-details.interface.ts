@@ -9,10 +9,10 @@ export interface IErpDetails {
   colorCode: string;
   size: string;
   category: string;
-  material: string;
+  material: string | null;
   gender: string;
   seasonCode1: string;
   seasonCode2: string;
   ageGroup: string;
-  cutting: string;
+  cutting: string | null;
 }

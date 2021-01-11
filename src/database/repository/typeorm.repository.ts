@@ -11,7 +11,6 @@ export class TypeormRepository<T> implements IRepo<T> {
   async create(model: new () => T, data: Record<string, unknown>): Promise<T> {
     const baseModel: T = new model();
     Object.assign(baseModel, data);
-    console.log(baseModel);
     const result = await this.manager.save(baseModel);
     return plainToClass(model, result);
   }

@@ -1,8 +1,8 @@
 import { IsDefined, IsNumber, IsString } from 'class-validator';
 import { ERP_INDEX } from 'src/section/inventory/common/constant/database-index.const';
 import { Column, Index } from 'typeorm';
-import { IBarcodeList } from '../../interface/barcodeList.interface';
-import { IErpDetails } from '../../interface/erpDetails.interface';
+import { IBarcodeList } from '../../interface/barcode-list.interface';
+import { IErpDetails } from '../../interface/erp-details.interface';
 
 export class ErpProduct {
   @Column({ unique: true })

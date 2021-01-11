@@ -1,5 +1,5 @@
 import { Expose } from 'class-transformer';
-import { IsArray, IsDefined, IsString } from 'class-validator';
+import { IsArray, IsDefined, IsNumber, IsOptional, IsString } from 'class-validator';
 
 @Expose()
 export class RawErpProductDto {
@@ -43,8 +43,8 @@ export class RawErpProductDto {
   @IsDefined()
   ProductStyleTitleEN: string;
   @IsString()
-  @IsDefined()
-  MaterialTitle: string;
+  @IsOptional()
+  MaterialTitle: string | null;
   @IsString()
   @IsDefined()
   SexTitle: string;
@@ -58,14 +58,14 @@ export class RawErpProductDto {
   @IsDefined()
   ProductAge: string;
   @IsString()
+  @IsOptional()
+  ProductCutting: string | null;
+  @IsNumber()
   @IsDefined()
-  ProductCutting: string;
-  @IsString()
+  OrgPrice: number;
+  @IsNumber()
   @IsDefined()
-  OrgPrice: string;
-  @IsString()
-  @IsDefined()
-  SalePrice: string;
+  SalePrice: number;
   @IsString()
   @IsDefined()
   Brand: string;
