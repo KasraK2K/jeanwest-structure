@@ -14,4 +14,7 @@ export class TypeormRepository implements IRepo {
   findOne(schema: any, data: Record<string, unknown>): any {
     return this.manager.findOne(schema, data);
   }
+  runQuery(query: string): Promise<Array<Record<string, unknown>>> {
+    return this.manager.query(query);
+  }
 }

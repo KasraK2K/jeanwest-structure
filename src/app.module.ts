@@ -7,12 +7,14 @@ import { winstonOptions } from './common/log/winston/winston.config';
 import { ValidationPipe } from './common/pipe/validation.pipe';
 import { ExceptionFilter } from './common/exception/rpc-exception.filter';
 import { InventoryModule } from './section/inventory/inventory.module';
+import { ERPModule } from './section/erp/erp.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot(configOptions),
     WinstonModule.forRoot(winstonOptions),
     InventoryModule,
+    ERPModule,
   ],
   providers: [
     {
