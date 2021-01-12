@@ -1,7 +1,11 @@
-import { PipeTransform, Injectable, ArgumentMetadata } from '@nestjs/common';
+import {
+  PipeTransform,
+  Injectable,
+  ArgumentMetadata,
+  HttpException,
+} from '@nestjs/common';
 import { validate } from 'class-validator';
 import { plainToClass } from 'class-transformer';
-import { RpcException } from '@nestjs/microservices';
 
 @Injectable()
 export class ValidationPipe implements PipeTransform<any> {
@@ -12,7 +16,15 @@ export class ValidationPipe implements PipeTransform<any> {
     const object = plainToClass(metatype, value);
     const errors = await validate(object);
     if (errors.length > 0) {
-      console.log(errors);
+      // console.log(errors);
+      throw new HttpException(
+        {
+          status: 400,
+          error: 'Validation Error',
+          data: errors.toString(),
+        },
+        400,
+      );
     }
     return value;
   }
