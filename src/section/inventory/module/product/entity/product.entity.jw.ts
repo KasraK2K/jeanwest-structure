@@ -1,7 +1,5 @@
 import { Entity, Column, Index } from 'typeorm';
 import { IsDefined, IsNumber, IsOptional, IsString } from 'class-validator';
-import { ErpProduct } from './erp/erp.entity';
-import { BanimodeProduct } from './banimode/banimode.entity';
 import { AbstractEntity } from 'src/section/inventory/common/entity/abstract.entity';
 import {
   BANIMODE_INDEX,
@@ -72,12 +70,4 @@ export class Product extends AbstractEntity {
   @Index(BANIMODE_INDEX, { synchronize: false })
   @IsOptional()
   banimodeDetails: IBanimodeDetails;
-
-  // @Column(() => ErpProduct, { prefix: '' })
-  // erpProduct: ErpProduct;
-
-  //   @IsOptional()
-  //   @Column(() => BanimodeProduct, { prefix: '' })
-  //   banimodeProduct: BanimodeProduct;
-  // }
 }
