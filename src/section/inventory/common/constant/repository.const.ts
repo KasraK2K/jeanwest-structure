@@ -1,2 +1,2 @@
 export const BASE_REPO = 'BASE_REPOSITORY';
-export const DOG_REPO = 'DOG_REPOSITORY';
+export const PRODUCT_REPO = 'PRODUCT_REPOSITORY';

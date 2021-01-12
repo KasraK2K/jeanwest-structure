@@ -1,15 +1,17 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { JW_TYPEORM_REPO } from 'src/common/constant/database.const';
 import { IRepo } from 'src/common/interface/repository.interface';
-import { Dog } from '../entity/dog.entity';
+import { Product } from '../entity/product.entity.jw';
 
 @Injectable()
-export class DogRepository {
-  constructor(@Inject(JW_TYPEORM_REPO) private baseRepository: IRepo) {}
+export class ProductRepository {
+  constructor(
+    @Inject(JW_TYPEORM_REPO) private baseRepository: IRepo<Product>,
+  ) {}
   create(data: Record<string, unknown>) {
-    return this.baseRepository.create(Dog, data);
+    return this.baseRepository.create(Product, data);
   }
   findOne(data: Record<string, unknown>) {
-    return this.baseRepository.findOne(Dog, data);
+    return this.baseRepository.findOne(Product, data);
   }
 }

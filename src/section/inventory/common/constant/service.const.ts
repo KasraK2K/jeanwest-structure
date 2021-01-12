@@ -1,1 +1,1 @@
-export const DOG_SERVICE = 'DOG_SERVICE';
+export const PRODUCT_SERVICE = 'PRODUCT_SERVICE';
