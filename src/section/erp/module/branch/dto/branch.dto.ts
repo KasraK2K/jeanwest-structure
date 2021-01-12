@@ -1,9 +1,24 @@
-// import { IsNumber, IsString } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
 
-// export class DogDto {
-//   @IsString()
-//   name: string;
+export class GetBranchesResponseDto {
+  @ApiProperty()
+  readonly DepartmentInfo_ID: string;
 
-//   @IsNumber()
-//   age: number;
-// }
+  @ApiProperty()
+  readonly DepName: string;
+
+  @ApiProperty()
+  readonly LocationPoint: string[];
+
+  @ApiProperty()
+  readonly DepTel: string;
+
+  @ApiProperty()
+  readonly DepAddress: string;
+
+  @ApiProperty()
+  readonly long: string;
+
+  @ApiProperty()
+  readonly lat: string;
+}

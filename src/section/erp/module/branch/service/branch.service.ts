@@ -11,6 +11,13 @@ export class ERP_BranchService implements ERP_BranchSrevice {
   ) {}
 
   public async getBranches(): Promise<Array<Record<string, unknown>>> {
-    return this.repository.runQuery(getBranchesQuery());
+    const branches = await this.repository.runQuery(getBranchesQuery());
+    branches.map((branch) => {
+      branch.LocationPoint = branch.LocationPoint.split(',');
+      branch.long = branch.LocationPoint[0];
+      branch.lat = branch.LocationPoint[1];
+      return branch;
+    });
+    return branches;
   }
 }

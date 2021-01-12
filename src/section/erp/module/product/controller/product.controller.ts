@@ -1,4 +1,10 @@
-import { Body, Controller, Get, Inject, Post } from '@nestjs/common';
+import {
+  BadRequestException,
+  Body,
+  Controller,
+  Inject,
+  Post,
+} from '@nestjs/common';
 import { ERP_PRODUCT_SERVICE } from 'src/section/erp/common/constant/service.const';
 import { ERP_ProductService } from '../service/product.service';
 
@@ -8,36 +14,72 @@ import {
   GetProductsDto,
   GetProductsResponseDto,
   GetProductsWithPaginationDto,
+  GetProductsWithtsCodeIdDto,
 } from '../dto/product.dto';
+import { isNumber } from 'class-validator';
 
 @ApiTags('ERP-PRODUCT')
-@Controller('erp-product')
+@Controller('erp/product')
 export class ERP_ProductController {
   constructor(
     @Inject(ERP_PRODUCT_SERVICE)
     private readonly erp_ProductService: ERP_ProductService,
   ) {}
 
-  @Post('getProductsWithROwNumber')
+  @Post('productsWithTSCodeID')
+  @ApiResponse({ type: [GetProductsResponseDto] })
+  public async getProductsWithtsCodeId(
+    @Body() body: GetProductsWithtsCodeIdDto,
+  ): Promise<GetProductsResponseDto[]> {
+    try {
+      if (body.TopNum < 0)
+        throw new BadRequestException('Invalid TopNum value');
+      return this.erp_ProductService.getProductsWithtsCodeId(body);
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  @Post('productsWithROwNumber')
   @ApiResponse({ type: [GetProductsResponseDto] })
   public async getProductsWithRowNumber(
     @Body() body: GetProductsDto,
   ): Promise<GetProductsResponseDto[]> {
-    return this.erp_ProductService.getProductsWithRowNumber(body);
+    try {
+      if (body.TopNum < 0)
+        throw new BadRequestException('Invalid TopNum value');
+      if (body.RowNumber < 0)
+        throw new BadRequestException('Invalid RowNumber value');
+      return this.erp_ProductService.getProductsWithRowNumber(body);
+    } catch (err) {
+      throw err;
+    }
   }
 
-  @Post('getProductsWithPageNumber')
+  @Post('productsWithPageNumber')
   @ApiResponse({ type: [GetProductsResponseDto] })
   public async getProductsWithPageNumber(
     @Body() body: GetProductsWithPaginationDto,
   ): Promise<GetProductsResponseDto[]> {
-    return this.erp_ProductService.getProductsWithPageNumber(body);
+    try {
+      if (body.Page < 0 || body.PerPage < 0)
+        throw new BadRequestException('Invalid input');
+
+      return this.erp_ProductService.getProductsWithPageNumber(body);
+    } catch (err) {
+      throw err;
+    }
   }
 
-  @Post('getProductByBarcode')
+  @Post('productByBarcode')
+  @ApiResponse({ type: [GetProductsResponseDto] })
   public async getProductByBarcode(
     @Body() body: GetProductByBarcodeDto,
   ): Promise<GetProductsResponseDto[]> {
-    return this.erp_ProductService.getProductByBarcode(body);
+    try {
+      return this.erp_ProductService.getProductByBarcode(body);
+    } catch (err) {
+      throw err;
+    }
   }
 }

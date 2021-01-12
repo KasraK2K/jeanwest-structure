@@ -1,11 +1,19 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-export class GetProductsDto {
+export class GetProductsWithtsCodeIdDto {
   @ApiProperty()
-  readonly TopNum: string;
+  readonly TsCodeId: string;
 
   @ApiProperty()
-  readonly RowNumber: string;
+  readonly TopNum: number;
+}
+
+export class GetProductsDto {
+  @ApiProperty()
+  readonly TopNum: number;
+
+  @ApiProperty()
+  readonly RowNumber: number;
 }
 
 export class GetProductsWithPaginationDto {
@@ -25,7 +33,7 @@ export class GetProductsResponseDto {
   readonly TotalCount: number;
 
   @ApiProperty()
-  readonly RowNumber: string;
+  readonly RowNumber: number;
 
   @ApiProperty()
   readonly BarcodeMain_ID: string;
@@ -104,27 +112,4 @@ export class GetProductsResponseDto {
 
   @ApiProperty()
   readonly SearchCode: string[];
-}
-
-export class GetBranchesResponseDto {
-  @ApiProperty()
-  readonly DepartmentInfo_ID: string;
-
-  @ApiProperty()
-  readonly DepName: string;
-
-  @ApiProperty()
-  readonly LocationPoint: string[];
-
-  @ApiProperty()
-  readonly DepTel: string;
-
-  @ApiProperty()
-  readonly DepAddress: string;
-
-  @ApiProperty()
-  readonly long: string;
-
-  @ApiProperty()
-  readonly lat: string;
 }
