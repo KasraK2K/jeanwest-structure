@@ -19,7 +19,7 @@ import {
 import { isNumber } from 'class-validator';
 
 @ApiTags('ERP-PRODUCT')
-@Controller('erp/product')
+@Controller('api/v1/erp/product')
 export class ERP_ProductController {
   constructor(
     @Inject(ERP_PRODUCT_SERVICE)
@@ -34,6 +34,8 @@ export class ERP_ProductController {
     try {
       if (body.TopNum < 0)
         throw new BadRequestException('Invalid TopNum value');
+      if (isNaN(Number(body.TsCodeId)))
+        throw new BadRequestException('Invalid tsCodeId value');
       return this.erp_ProductService.getProductsWithtsCodeId(body);
     } catch (err) {
       throw err;

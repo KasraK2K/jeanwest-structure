@@ -6,7 +6,7 @@ import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { GetBranchesResponseDto } from '../../branch/dto/branch.dto';
 
 @ApiTags('ERP-BRANCH')
-@Controller('erp/branch')
+@Controller('api/v1/erp/branch')
 export class ERP_BranchController {
   constructor(
     @Inject(ERP_BRANCH_SERVICE)

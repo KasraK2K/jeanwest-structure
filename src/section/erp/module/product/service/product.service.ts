@@ -26,25 +26,33 @@ export class ERP_ProductService implements ERP_ProductSrevice {
     body: GetProductsWithtsCodeIdDto,
   ): Promise<GetProductsResponseDto[]> {
     const { TopNum, TsCodeId } = body;
-    return this.repository.runQuery(
+    let products = await this.repository.runQuery(
       getProductsWithtsCodeIdQuery(TopNum, TsCodeId),
     );
+    products = this.productMapper(products);
+    return products;
   }
 
   public async getProductsWithRowNumber(
     body: GetProductsDto,
   ): Promise<GetProductsResponseDto[]> {
     const { TopNum, RowNumber } = body;
-    return this.repository.runQuery(productQuery(TopNum, RowNumber));
+    let products = await this.repository.runQuery(
+      productQuery(TopNum, RowNumber),
+    );
+    products = this.productMapper(products);
+    return products;
   }
 
   public async getProductsWithPageNumber(
     body: GetProductsWithPaginationDto,
   ): Promise<GetProductsResponseDto[]> {
     const { Page, PerPage } = body;
-    return this.repository.runQuery(
+    let products = await this.repository.runQuery(
       getProductsWithPaginationQuery(Page, PerPage),
     );
+    products = this.productMapper(products);
+    return products;
   }
 
   public async getProductByBarcode(
@@ -52,5 +60,15 @@ export class ERP_ProductService implements ERP_ProductSrevice {
   ): Promise<GetProductsResponseDto[]> {
     const { Barcode } = body;
     return this.repository.runQuery(getProductByBarcodeQuery(Barcode));
+  }
+
+  private productMapper(products) {
+    products.map((product) => {
+      product.SearchCode = product.SearchCode
+        ? product.SearchCode.split(',')
+        : [];
+      return product;
+    });
+    return products;
   }
 }

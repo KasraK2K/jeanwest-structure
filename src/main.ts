@@ -21,6 +21,7 @@ async function bootstrap() {
     .setVersion('1.0')
     .addTag('ERP-BRANCH')
     .addTag('ERP-PRODUCT')
+    .addTag('ERP-USER')
     .addTag('default')
     .addBearerAuth()
     .build();
