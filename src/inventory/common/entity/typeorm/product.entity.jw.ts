@@ -1,13 +1,11 @@
 import { Entity, Column, Index } from 'typeorm';
 import { IsDefined, IsNumber, IsOptional, IsString } from 'class-validator';
-import { AbstractEntity } from 'src/section/inventory/common/entity/abstract.entity';
-import {
-  BANIMODE_INDEX,
-  ERP_INDEX,
-} from 'src/section/inventory/common/constant/database-index.const';
-import { IErpDetails } from '../interface/erp-details.interface';
-import { IBarcodeList } from '../interface/barcode-list.interface';
-import { IBanimodeDetails } from '../interface/banimode-details.interface';
+
+import { IErpDetails } from '../../../product/interface/erp-details.interface';
+import { IBarcodeList } from '../../../product/interface/barcode-list.interface';
+import { IBanimodeDetails } from '../../../product/interface/banimode-details.interface';
+import { AbstractEntity } from './abstract.entity';
+import { BANIMODE_INDEX, ERP_INDEX } from '../../constant/database-index.const';
 
 @Entity()
 export class Product extends AbstractEntity {
