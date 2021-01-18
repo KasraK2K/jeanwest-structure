@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { JW_TYPEORM_REPO } from 'src/common/constant/database.const';
 import { IRepo } from 'src/common/interface/repository.interface';
-import { Product } from '../entity/product.entity.jw';
+import { Product } from '../../common/entity/typeorm/product.entity.jw';
 
 @Injectable()
 export class ProductRepository {

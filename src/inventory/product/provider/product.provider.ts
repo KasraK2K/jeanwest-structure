@@ -1,6 +1,6 @@
 import { JW_TYPEORM_REPO } from 'src/common/constant/database.const';
-import { PRODUCT_SERVICE } from 'src/section/inventory/common/constant/service.const';
-import { PRODUCT_REPO } from '../../../common/constant/repository.const';
+import { PRODUCT_SERVICE } from 'src/inventory/common/constant/service.const';
+import { PRODUCT_REPO } from '../../common/constant/repository.const';
 import { ProductRepository } from '../repository/product.repository';
 import { ProductService } from '../service/product.service';
 export const productProviders = [

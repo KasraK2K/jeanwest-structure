@@ -5,7 +5,7 @@ import { configOptions } from './config/config.option';
 import { WinstonModule } from 'nest-winston';
 import { winstonOptions } from './common/log/winston/winston.config';
 import { ValidationPipe } from './common/pipe/validation.pipe';
-import { InventoryModule } from './section/inventory/inventory.module';
+import { InventoryModule } from './inventory/inventory.module';
 
 @Module({
   imports: [
