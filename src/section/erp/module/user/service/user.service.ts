@@ -1,11 +1,12 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { ERP_USER_REPO } from 'src/section/erp/common/constant/repository.const';
 import {
   CreateUserDto,
   CreateUserResponseDto,
   GetCustomersResponseDto,
-  getInvoiceDetailsResponseDto,
-  getUserGiftcardsResponseDto,
+  GetInvoiceDetailsResponseDto,
+  GetUserDto,
+  GetUserGiftcardsResponseDto,
   GetUserResponseDto,
   GetUserTransactionsListResponseDto,
   UpdateUserDto,
@@ -29,8 +30,12 @@ export class ERP_UserService implements ERP_UserSrevice {
     private readonly repository,
   ) {}
 
-  async getUser(mobile: string): Promise<GetUserResponseDto[]> {
+  async getUser(body: GetUserDto): Promise<GetUserResponseDto[]> {
     try {
+      const mobile = `0${body.mobile.slice(-10)}`;
+      const checkMobileInput = this.checkMobile(mobile);
+      if (checkMobileInput.length === 0)
+        throw new BadRequestException('Invalid phone Number');
       return this.repository.runQuery(userQuery(mobile));
     } catch (err) {
       throw err;
@@ -76,7 +81,7 @@ export class ERP_UserService implements ERP_UserSrevice {
 
   async getInvoiceDetails(
     tblPosTransactions_ID: string,
-  ): Promise<getInvoiceDetailsResponseDto[]> {
+  ): Promise<GetInvoiceDetailsResponseDto[]> {
     try {
       const invoiceDetails = await this.repository.runQuery(
         getInvoiceDetailsQuery(tblPosTransactions_ID),
@@ -96,7 +101,7 @@ export class ERP_UserService implements ERP_UserSrevice {
 
   async getUserGiftcards(
     tblPosTransactions_ID: string,
-  ): Promise<getUserGiftcardsResponseDto[]> {
+  ): Promise<GetUserGiftcardsResponseDto[]> {
     try {
       const invoiceDetails = await this.repository.runQuery(
         getUserGiftcardsQuery(tblPosTransactions_ID),
@@ -106,4 +111,33 @@ export class ERP_UserService implements ERP_UserSrevice {
       throw err;
     }
   }
+
+  checkMobile = function (str: string) {
+    const mobileReg = /(0|\+98)?([ ]|-|[()]){0,2}9[1|2|3|4]([ ]|-|[()]){0,2}(?:[0-9]([ ]|-|[()]){0,2}){8}/gi,
+      junkReg = /[^\d]/gi,
+      persinNum = [
+        /۰/gi,
+        /۱/gi,
+        /۲/gi,
+        /۳/gi,
+        /۴/gi,
+        /۵/gi,
+        /۶/gi,
+        /۷/gi,
+        /۸/gi,
+        /۹/gi,
+      ],
+      num2en = function (str) {
+        for (let i = 0; i < 10; i++) {
+          str = str.replace(persinNum[i], i);
+        }
+        return str;
+      };
+    const mobiles = num2en(str + '').match(mobileReg) || [];
+    mobiles.forEach(function (value, index, arr) {
+      arr[index] = value.replace(junkReg, '');
+      arr[index][0] === '0' || (arr[index] = '0' + arr[index]);
+    });
+    return mobiles;
+  };
 }

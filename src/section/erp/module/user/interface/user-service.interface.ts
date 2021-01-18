@@ -2,8 +2,9 @@ import {
   CreateUserDto,
   CreateUserResponseDto,
   GetCustomersResponseDto,
-  getInvoiceDetailsResponseDto,
-  getUserGiftcardsResponseDto,
+  GetInvoiceDetailsResponseDto,
+  GetUserDto,
+  GetUserGiftcardsResponseDto,
   GetUserResponseDto,
   GetUserTransactionsListResponseDto,
   UpdateUserDto,
@@ -11,7 +12,7 @@ import {
 } from '../dto/user.dto';
 
 export interface ERP_UserSrevice {
-  getUser(mobile: string): Promise<GetUserResponseDto[]>;
+  getUser(body: GetUserDto): Promise<GetUserResponseDto[]>;
 
   updateUser(body: UpdateUserDto): Promise<UpdateUserResponseDto[]>;
 
@@ -25,9 +26,9 @@ export interface ERP_UserSrevice {
 
   getInvoiceDetails(
     tblPosTransactions_ID: string,
-  ): Promise<getInvoiceDetailsResponseDto[]>;
+  ): Promise<GetInvoiceDetailsResponseDto[]>;
 
   getUserGiftcards(
     tblPosTransactions_ID: string,
-  ): Promise<getUserGiftcardsResponseDto[]>;
+  ): Promise<GetUserGiftcardsResponseDto[]>;
 }

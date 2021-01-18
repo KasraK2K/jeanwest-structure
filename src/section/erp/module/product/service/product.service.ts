@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { ERP_PRODUCT_REPO } from 'src/section/erp/common/constant/repository.const';
 import {
   GetProductByBarcodeDto,
@@ -25,6 +25,9 @@ export class ERP_ProductService implements ERP_ProductSrevice {
   public async getProductsWithtsCodeId(
     body: GetProductsWithtsCodeIdDto,
   ): Promise<GetProductsResponseDto[]> {
+    if (body.TopNum < 0) throw new BadRequestException('Invalid TopNum value');
+    if (isNaN(Number(body.TsCodeId)))
+      throw new BadRequestException('Invalid tsCodeId value');
     const { TopNum, TsCodeId } = body;
     let products = await this.repository.runQuery(
       getProductsWithtsCodeIdQuery(TopNum, TsCodeId),
@@ -36,6 +39,9 @@ export class ERP_ProductService implements ERP_ProductSrevice {
   public async getProductsWithRowNumber(
     body: GetProductsDto,
   ): Promise<GetProductsResponseDto[]> {
+    if (body.TopNum < 0) throw new BadRequestException('Invalid TopNum value');
+    if (body.RowNumber < 0)
+      throw new BadRequestException('Invalid RowNumber value');
     const { TopNum, RowNumber } = body;
     let products = await this.repository.runQuery(
       productQuery(TopNum, RowNumber),
@@ -47,6 +53,9 @@ export class ERP_ProductService implements ERP_ProductSrevice {
   public async getProductsWithPageNumber(
     body: GetProductsWithPaginationDto,
   ): Promise<GetProductsResponseDto[]> {
+    if (body.Page < 0 || body.PerPage < 0)
+      throw new BadRequestException('Invalid input');
+
     const { Page, PerPage } = body;
     let products = await this.repository.runQuery(
       getProductsWithPaginationQuery(Page, PerPage),
