@@ -1,3 +1,5 @@
+import { CreateUserDto, UpdateUserDto } from '../dto/user.dto';
+
 export const userQuery = (mobile: string) => `
   -- Get General User Data from mobile
   Declare @mobile varchar(20) =  '${mobile}'
@@ -32,7 +34,7 @@ export const updateUserQuery = ({
   Email,
   Gender,
   BirthDate,
-}) => `
+}: UpdateUserDto) => `
   -- Update Customers Data from ERPCustomers_ID
   Declare @ERPCustomers_ID bigint = '${ERPCustomers_ID}'
   Declare @Name Nvarchar(50) = '${Name}'
@@ -60,7 +62,12 @@ export const updateUserQuery = ({
   FROM tblPosCustomers where IsDeleted=0 and tblPosCustomers_ID=@ERPCustomers_ID
   `;
 
-export const createUserQuery = ({ Mobile, Comment, CusType, CusID }) => `
+export const createUserQuery = ({
+  Mobile,
+  Comment,
+  CusType,
+  CusID,
+}: CreateUserDto) => `
   Declare
   @Mobile varchar(11) = '${Mobile}',
   @Comment nvarchar(100) = '${Comment}',
@@ -79,7 +86,7 @@ export const getCustomersQuery = () => `
   from tblPosCustomerTypes
 `;
 
-export const getUserTransactionsListQuery = (tblPosCustomers_ID) => `
+export const getUserTransactionsListQuery = (tblPosCustomers_ID: string) => `
   Declare @tblPosCustomers_ID as bigint = ${tblPosCustomers_ID}
   select 
   T.tblPosTransactions_ID,
@@ -105,7 +112,7 @@ export const getUserTransactionsListQuery = (tblPosCustomers_ID) => `
   Where T.Status=2 and T.PosCustomers_ID=@tblPosCustomers_ID
 `;
 
-export const getInvoiceDetailsQuery = (tblPosTransactions_ID) => `
+export const getInvoiceDetailsQuery = (tblPosTransactions_ID: string) => `
   Declare @tblPosTransactions_ID AS Bigint = '${tblPosTransactions_ID}'
 
   select 
@@ -138,7 +145,7 @@ export const getInvoiceDetailsQuery = (tblPosTransactions_ID) => `
   where T.tblPosTransactions_ID=@tblPosTransactions_ID
 `;
 
-export const getUserGiftcardsQuery = (tblPosCustomers_ID) => `
+export const getUserGiftcardsQuery = (tblPosCustomers_ID: string) => `
   Declare @tblPosCustomers_ID as bigint = '${tblPosCustomers_ID}'
   
   select 
