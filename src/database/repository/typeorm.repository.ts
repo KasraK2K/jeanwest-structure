@@ -1,18 +1,23 @@
 import { Injectable } from '@nestjs/common';
 import { IRepo } from '../../common/interface/repository.interface';
 import { EntityManager, EntityRepository } from 'typeorm';
+import { plainToClass } from 'class-transformer';
 
 @Injectable()
 @EntityRepository()
-export class TypeormRepository implements IRepo {
+export class TypeormRepository<T> implements IRepo<T> {
   constructor(private manager: EntityManager) {}
-  create(schema: any, data: Record<string, unknown>): any {
-    const ref_schema = new schema();
-    Object.assign(ref_schema, data);
-    return this.manager.save(ref_schema);
+
+  async create(model: new () => T, data: Record<string, unknown>): Promise<T> {
+    const baseModel: T = new model();
+    Object.assign(baseModel, data);
+    const result = await this.manager.save(baseModel);
+    return plainToClass(model, result);
   }
-  findOne(schema: any, data: Record<string, unknown>): any {
-    return this.manager.findOne(schema, data);
+
+  async findOne(model: new () => T, data: Record<string, unknown>): Promise<T> {
+    const result = await this.manager.findOne(model, data);
+    return plainToClass(model, result);
   }
   runQuery(query: string): Promise<Array<Record<string, unknown>>> {
     return this.manager.query(query);

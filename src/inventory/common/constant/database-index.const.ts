@@ -1,0 +1,2 @@
+export const ERP_INDEX = 'ERP_DETAILS_INDEX';
+export const BANIMODE_INDEX = 'BANIMODE_DETAILS_INDEX';
