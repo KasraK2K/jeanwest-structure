@@ -68,6 +68,7 @@ export default () => ({
     host: process.env.DATABASE_JW_HOSTNAME,
     user: process.env.DATABASE_JW_USERNAME,
     password: process.env.DATABASE_JW_PASSWORD,
+    database: process.env.DATABASE_JW_DBNAME,
     max: 20,
     idleTimeoutMillis: 30000,
     connectionTimeoutMillis: 2000,

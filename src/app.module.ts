@@ -6,12 +6,14 @@ import { WinstonModule } from 'nest-winston';
 import { winstonOptions } from './common/log/winston/winston.config';
 import { ValidationPipe } from './common/pipe/validation.pipe';
 import { InventoryModule } from './inventory/inventory.module';
+import { GatewayModule } from './gateway/gateway.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot(configOptions),
     WinstonModule.forRoot(winstonOptions),
     InventoryModule,
+    GatewayModule,
   ],
   providers: [
     {

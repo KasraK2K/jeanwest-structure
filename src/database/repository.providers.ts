@@ -12,7 +12,6 @@ import { PgRepository } from './repository/pg.reposirtoy';
 import { TypeormRepository } from './repository/typeorm.repository';
 import { Pool } from 'pg';
 
-
 export const repositoryProviders = [
   {
     provide: JW_TYPEORM_REPO,
