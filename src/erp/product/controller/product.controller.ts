@@ -6,6 +6,7 @@ import {
   GetProductByBarcodeDto,
   GetProductsDto,
   GetProductsResponseDto,
+  GetProductsWithFilterDto,
   GetProductsWithPaginationDto,
   GetProductsWithtsCodeIdDto,
 } from '../dto/product.dto';
@@ -16,6 +17,17 @@ export class ERP_ProductController {
     @Inject(ERP_PRODUCT_SERVICE)
     private readonly erp_ProductService: ERP_ProductService,
   ) {}
+
+  @Post('getProductsWithFilters')
+  public async getProductsWithtfilter(
+    @Body() body: GetProductsWithFilterDto,
+  ): Promise<GetProductsResponseDto[]> {
+    try {
+      return this.erp_ProductService.getProductsWithtfilter(body);
+    } catch (err) {
+      throw err;
+    }
+  }
 
   @Post('productsWithTSCodeID')
   public async getProductsWithtsCodeId(

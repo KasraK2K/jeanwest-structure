@@ -1,3 +1,47 @@
+export class GetProductsWithFilterDto {
+  readonly FiltersArr?: FiltersDto[];
+
+  readonly PerPage: number;
+
+  readonly PageNumber: number;
+
+  OrderBy: number;
+}
+
+export interface FilterKey {
+  BarcodeMain_ID?: string;
+  Style?: string;
+  SKU?: string;
+  Barcode?: string;
+  Color?: string;
+  ColorFamily?: string;
+  ColorEnTitle?: string;
+  Size?: string;
+  CategoriesTitle?: string;
+  ProductName?: string;
+  ProductStyletitle?: string;
+  ProductStyleTitleEN?: string;
+  MaterialTitle?: string;
+  SexTitle?: string;
+  SeasonCode?: string;
+  SeasonCode2?: string;
+  ProductAge?: string;
+  ProductCutting?: string;
+  OrgPrice?: string;
+  SalePrice?: string;
+  Brand?: string;
+  ProductGroup?: string;
+  ProductCategory?: string;
+}
+
+export type FilterIndex = keyof FilterKey;
+
+export class FiltersDto {
+  readonly key: FilterIndex;
+  readonly value?: string;
+  readonly operator?: { type: string; start: string; end: string };
+}
+
 export class GetProductsWithtsCodeIdDto {
   readonly TsCodeId: string;
 
