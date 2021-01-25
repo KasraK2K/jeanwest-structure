@@ -38,8 +38,7 @@ export class ERP_ProductService implements ERP_ProductSrevice {
 
     const { OrderBy = 'Cast(B.TSCode AS bigint)' } = body;
 
-    // eslint-disable-next-line prefer-const
-    let Filters: FilterKey = {
+    const Filters = {
       BarcodeMain_ID: `= null`,
       Style: `= null`,
       SKU: `= null`,
@@ -69,65 +68,16 @@ export class ERP_ProductService implements ERP_ProductSrevice {
       (filter) => (Filters[filter.key] = ` = '${filter.value}'`),
     );
 
-    const {
-      BarcodeMain_ID = ` = null`,
-      Style = `= null`,
-      SKU = `= null`,
-      Barcode = `= null`,
-      Color = `= null`,
-      ColorFamily = `= null`,
-      ColorEnTitle = `= null`,
-      Size = `= null`,
-      CategoriesTitle = `= null`,
-      ProductName = `= null`,
-      ProductStyletitle = `= null`,
-      ProductStyleTitleEN = `= null`,
-      MaterialTitle = `= null`,
-      SexTitle = `= null`,
-      SeasonCode = `= null`,
-      SeasonCode2 = `= null`,
-      ProductAge = `= null`,
-      ProductCutting = `= null`,
-      OrgPrice = `= null`,
-      SalePrice = `= null`,
-      Brand = `= null`,
-      ProductGroup = `= null`,
-      ProductCategory = `= null`,
-    } = Filters || {};
-
     const query = getProductsWithtfilterQuery({
       PageNumber,
       PerPage,
       OrderBy,
-      BarcodeMain_ID,
-      Style,
-      SKU,
-      Barcode,
-      Color,
-      ColorFamily,
-      ColorEnTitle,
-      Size,
-      CategoriesTitle,
-      ProductName,
-      ProductStyletitle,
-      ProductStyleTitleEN,
-      MaterialTitle,
-      SexTitle,
-      SeasonCode,
-      SeasonCode2,
-      ProductAge,
-      ProductCutting,
-      OrgPrice,
-      SalePrice,
-      Brand,
-      ProductGroup,
-      ProductCategory,
+      Filters,
     });
-
-    console.log({ query });
 
     let products = await this.repository.runQuery(query);
     products = this.productMapper(products);
+
     return products;
   }
 
