@@ -19,4 +19,7 @@ export class TypeormRepository<T> implements IRepo<T> {
     const result = await this.manager.findOne(model, data);
     return plainToClass(model, result);
   }
+  runQuery(query: string): Promise<Array<Record<string, unknown>>> {
+    return this.manager.query(query);
+  }
 }
