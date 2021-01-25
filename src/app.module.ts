@@ -6,6 +6,7 @@ import { WinstonModule } from 'nest-winston';
 import { winstonOptions } from './common/log/winston/winston.config';
 import { ValidationPipe } from './common/pipe/validation.pipe';
 import { InventoryModule } from './inventory/inventory.module';
+import { GatewayModule } from './gateway/gateway.module';
 import { ERPModule } from './erp/erp.module';
 
 @Module({
@@ -14,6 +15,7 @@ import { ERPModule } from './erp/erp.module';
     WinstonModule.forRoot(winstonOptions),
     InventoryModule,
     ERPModule,
+    GatewayModule,
   ],
   providers: [
     {
