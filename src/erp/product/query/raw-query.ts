@@ -28,29 +28,29 @@ export const getProductsWithtfilterQuery = ({
 }) => `
 Declare @Page int = ${PageNumber}
 Declare @PerPage int = ${PerPage}
-Declare @BarcodeMain_ID nvarchar(30) = ${BarcodeMain_ID} --951
-DECLARE @Style nvarchar(30) = ${Style} --'61173101'
-DECLARE @SKU nvarchar(30) = ${SKU} --'61173101-2730'
-DECLARE @Barcode nvarchar(30) = ${Barcode} -- '61173101J-2730-XXXL'
-DECLARE @Color nvarchar(10) = ${Color} -- '2730'
-DECLARE @ColorFamily nvarchar(100) = ${ColorFamily} -- 'سبز و شكاري نظامي'
-DECLARE @ColorEnTitle nvarchar(40) = ${ColorEnTitle} -- DK.ROYAL
-DECLARE @Size nvarchar(10) = ${Size} -- XXXL
-DECLARE @CategoriesTitle nvarchar(20) = ${CategoriesTitle} -- Core
-DECLARE @ProductName nvarchar(20) = ${ProductName} -- Tee
-DECLARE @ProductStyletitle nvarchar(20) = ${ProductStyletitle} --ساده و تك رنگ
-DECLARE @ProductStyleTitleEN nvarchar(20) = ${ProductStyleTitleEN} -- Solid
-DECLARE @MaterialTitle nvarchar(20) = ${MaterialTitle}
-DECLARE @SexTitle nvarchar(20) = ${SexTitle} -- Men
-DECLARE @SeasonCode nvarchar(20) = ${SeasonCode} -- SS
-DECLARE @SeasonCode2 nvarchar(20) = ${SeasonCode2} -- SS
-DECLARE @ProductAge nvarchar(20) = ${ProductAge} -- Adult
-DECLARE @ProductCutting nvarchar(20) = ${ProductCutting} 
-DECLARE @OrgPrice nvarchar(20) = ${OrgPrice} -- '690000.000'
-DECLARE @SalePrice nvarchar(30) = ${SalePrice} -- '690000.000'
-DECLARE @Brand nvarchar(20) = ${Brand} -- 'Jooti'
-DECLARE @ProductGroup nvarchar(20) = ${ProductGroup} -- 'پوشاك'
-DECLARE @ProductCategory nvarchar(20) = ${ProductCategory} -- 'تي شرت'
+Declare @BarcodeMain_ID nvarchar(30)  ${BarcodeMain_ID} --951
+DECLARE @Style nvarchar(30)  ${Style} --'61173101'
+DECLARE @SKU nvarchar(30)  ${SKU} --'61173101-2730'
+DECLARE @Barcode nvarchar(30)  ${Barcode} -- '61173101J-2730-XXXL'
+DECLARE @Color nvarchar(10)  ${Color} -- '2730'
+DECLARE @ColorFamily nvarchar(100)  ${ColorFamily} -- 'سبز و شكاري نظامي'
+DECLARE @ColorEnTitle nvarchar(40)  ${ColorEnTitle} -- DK.ROYAL
+DECLARE @Size nvarchar(10)  ${Size} -- XXXL
+DECLARE @CategoriesTitle nvarchar(20)  ${CategoriesTitle} -- Core
+DECLARE @ProductName nvarchar(20)  ${ProductName} -- Tee
+DECLARE @ProductStyletitle nvarchar(20)  ${ProductStyletitle} --ساده و تك رنگ
+DECLARE @ProductStyleTitleEN nvarchar(20)  ${ProductStyleTitleEN} -- Solid
+DECLARE @MaterialTitle nvarchar(20)  ${MaterialTitle}
+DECLARE @SexTitle nvarchar(20)  ${SexTitle} -- Men
+DECLARE @SeasonCode nvarchar(20)  ${SeasonCode} -- SS
+DECLARE @SeasonCode2 nvarchar(20)  ${SeasonCode2} -- SS
+DECLARE @ProductAge nvarchar(20)  ${ProductAge} -- Adult
+DECLARE @ProductCutting nvarchar(20)  ${ProductCutting} 
+DECLARE @OrgPrice nvarchar(20)  ${OrgPrice} -- '690000.000'
+DECLARE @SalePrice nvarchar(30)  ${SalePrice} -- '690000.000'
+DECLARE @Brand nvarchar(20)  ${Brand} -- 'Jooti'
+DECLARE @ProductGroup nvarchar(20)  ${ProductGroup} -- 'پوشاك'
+DECLARE @ProductCategory nvarchar(20)  ${ProductCategory} -- 'تي شرت'
 
 ;With MyCte AS 
 (
