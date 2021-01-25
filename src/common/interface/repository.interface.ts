@@ -7,4 +7,5 @@ export interface IRepo<T> {
     model: new () => T,
     data: Record<string, unknown> | string,
   ): Promise<T>;
+  runQuery(query: string): Promise<Array<Record<string, unknown>>>;
 }
