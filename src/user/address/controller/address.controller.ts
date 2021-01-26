@@ -1,11 +1,7 @@
 import { Body, Controller, Get, Inject, Post } from '@nestjs/common';
-
 import { PERSON_ADDRESS_SERVICE } from 'src/user/common/constant/service.const';
-
 import { AddressService } from '../service/address.service';
-
-import { CreateAddressDto } from '../dto/address.dto';
-import { Person } from 'src/user/common/entity/person.entity.jw';
+import { AddressResponseDto, CreateAddressDto } from '../dto/address.dto';
 
 @Controller('api/v1/address')
 export class AddressController {
@@ -21,7 +17,16 @@ export class AddressController {
     try {
       return this.addressService.createAddress(body);
     } catch (err) {
-      return err;
+      throw err;
+    }
+  }
+
+  @Get('/addresses')
+  async getAddresses(): Promise<AddressResponseDto[]> {
+    try {
+      return this.addressService.getAddresses();
+    } catch (err) {
+      throw err;
     }
   }
 }

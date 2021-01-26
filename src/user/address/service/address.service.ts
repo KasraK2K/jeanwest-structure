@@ -1,6 +1,6 @@
 import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { ADDRESS_REPO } from 'src/user/common/constant/repository.const';
-import { Address } from 'src/user/common/entity/address.entuty.jw';
+import { Address } from 'src/user/common/entity/typeorm/address.entity.jw';
 import {
   CreateAddressDto,
   CreateAddressResponseDto,

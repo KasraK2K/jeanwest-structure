@@ -1,6 +1,6 @@
 import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { PERSON_REPO } from 'src/user/common/constant/repository.const';
-import { Person } from 'src/user/common/entity/person.entity.jw';
+import { Person } from 'src/user/common/entity/typeorm/person.entity.jw';
 import {
   CreatePersonDto,
   CreatePersonResponseDto,
