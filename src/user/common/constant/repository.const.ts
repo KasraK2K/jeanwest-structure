@@ -1,0 +1,3 @@
+export const BASE_REPO = 'BASE_REPOSITORY';
+export const PERSON_REPO = 'PERSON_REPOSITORY';
+export const ADDRESS_REPO = 'ADDRESS_REPOSITORY';
