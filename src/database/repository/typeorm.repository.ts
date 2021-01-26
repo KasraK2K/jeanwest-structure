@@ -8,7 +8,7 @@ import { plainToClass } from 'class-transformer';
 export class TypeormRepository<T> implements IRepo<T> {
   constructor(private manager: EntityManager) {}
 
-  async save(data: T): Promise<T> {
+  async save(model: new () => T, data: T): Promise<T> {
     return this.manager.save(data);
   }
 
@@ -19,11 +19,8 @@ export class TypeormRepository<T> implements IRepo<T> {
     return plainToClass(model, result);
   }
 
-  async findMany(
-    model: new () => T,
-    data: Record<string, unknown>,
-  ): Promise<Array<T>> {
-    const result = await this.manager.find(model, data);
+  async findMany(model: new () => T): Promise<Array<T>> {
+    const result = await this.manager.find(model);
     return plainToClass(model, result);
   }
 
@@ -32,11 +29,14 @@ export class TypeormRepository<T> implements IRepo<T> {
     return plainToClass(model, result);
   }
 
-  findById(model: new () => T, data: string | number): Promise<T> {
-    return this.manager.findOneOrFail(model, data);
+  async findById(model: new () => T, data: string | number): Promise<T> {
+    return this.manager.findOne(model, { where: { id: data } });
   }
 
-  deleteById(model: new () => T, data: string | number): Promise<DeleteResult> {
+  async deleteById(
+    model: new () => T,
+    data: string | number,
+  ): Promise<DeleteResult> {
     return this.manager.delete(model, data);
   }
 

@@ -4,7 +4,7 @@ import { Address } from './address.entity.jw';
 
 @Entity()
 export class Person extends AbstractEntity {
-  @Column({ type: 'text', array: true })
+  @Column({ type: 'text', array: true, default: {} })
   addressId: string[];
 
   @OneToMany(() => Address, (address) => address.person)

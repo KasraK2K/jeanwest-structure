@@ -10,8 +10,8 @@ export class PersonRepository {
     return this.baseRepository.create(Person, data);
   }
 
-  findMany(data: Record<string, unknown>): Promise<Array<Person>> {
-    return this.baseRepository.findMany(Person, data);
+  findMany(): Promise<Array<Person>> {
+    return this.baseRepository.findMany(Person);
   }
 
   findOne(data: Record<string, unknown>): Promise<Person> {

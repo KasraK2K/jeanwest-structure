@@ -1,4 +1,4 @@
-import { IsString, IsNumber, IsObject } from 'class-validator';
+import { IsString, IsNumber, IsObject, IsOptional } from 'class-validator';
 
 export class GetByIdDto {
   readonly id: string | number;
@@ -74,7 +74,6 @@ export class CreateAddressResponseDto {
 }
 
 export class UpdateAddressDto {
-  @IsString()
   readonly id: number;
 
   @IsString()
@@ -94,10 +93,4 @@ export class UpdateAddressDto {
 
   @IsNumber()
   latitude: number;
-
-  @IsString()
-  personId?: string;
-
-  @IsObject()
-  person: Record<string, unknown>;
 }

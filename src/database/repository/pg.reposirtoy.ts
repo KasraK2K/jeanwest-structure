@@ -18,13 +18,11 @@ export class PgRepository<T> implements IRepo<T> {
     return plainToClass(model, preResult.rows[0]);
   }
 
-  async save(data: T): Promise<T> {
+  async save(model: new () => T, data: T): Promise<T> {
     throw new Error('Method not implemented.');
   }
-  async findMany(
-    model: new () => T,
-    data: Record<string, unknown>,
-  ): Promise<T[]> {
+
+  async findMany(model: new () => T): Promise<T[]> {
     throw new Error('Method not implemented.');
   }
   async findById(model: new () => T, data: string | number): Promise<T> {

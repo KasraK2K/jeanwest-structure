@@ -1,3 +1,4 @@
+import { DeleteResult } from 'typeorm';
 import {
   AddressResponseDto,
   CreateAddressDto,
@@ -15,5 +16,5 @@ export interface AddressSrevice {
 
   updateAddress(body: UpdateAddressDto): Promise<AddressResponseDto>;
 
-  deleteAddress(body: GetByIdDto): Promise<AddressResponseDto>;
+  deleteAddress(body: GetByIdDto): Promise<DeleteResult>;
 }
