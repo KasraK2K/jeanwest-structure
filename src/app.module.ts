@@ -6,6 +6,7 @@ import { WinstonModule } from 'nest-winston';
 import { winstonOptions } from './common/log/winston/winston.config';
 import { ValidationPipe } from './common/pipe/validation.pipe';
 import { InventoryModule } from './inventory/inventory.module';
+import { GatewayModule } from './gateway/gateway.module';
 import { ERPModule } from './erp/erp.module';
 import { UserModule } from './user/user.module';
 
@@ -16,6 +17,7 @@ import { UserModule } from './user/user.module';
     InventoryModule,
     ERPModule,
     UserModule,
+    GatewayModule,
   ],
   providers: [
     {

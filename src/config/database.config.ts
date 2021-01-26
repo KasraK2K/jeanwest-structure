@@ -29,7 +29,7 @@ const TypeormConfig: Record<string, unknown> = {
   },
 };
 export default () => ({
-  database_jeanswest: {
+  typeorm_database_jeanswest: {
     name: process.env.DATABASE_JW_CNAME,
     type: process.env.DATABASE_JW_TYPE,
     host: process.env.DATABASE_JW_HOSTNAME,
@@ -43,7 +43,7 @@ export default () => ({
     migrations: TypeormConfig.migrations,
     cli: TypeormConfig.cli,
   },
-  database_erp: {
+  typeorm_database_erp: {
     name: process.env.DATABASE_ERP_CNAME,
     type: process.env.DATABASE_ERP_TYPE,
     host: process.env.DATABASE_ERP_HOSTNAME,
@@ -60,5 +60,17 @@ export default () => ({
       encrypt: true,
       enableArithAbort: true,
     },
+  },
+  pg_database_jeanswest: {
+    // max: 20,
+    // connectionString: `postgres://${process.env.DATABASE_JW_USERNAME}:${process.env.DATABASE_JW_PASSWORD}@${process.env.DATABASE_JW_HOSTNAME}:${process.env.DATABASE_JW_PORT}/${process.env.DATABASE_JW_DBNAME}`,
+    // idleTimeoutMillis: 30000,
+    host: process.env.DATABASE_JW_HOSTNAME,
+    user: process.env.DATABASE_JW_USERNAME,
+    password: process.env.DATABASE_JW_PASSWORD,
+    database: process.env.DATABASE_JW_DBNAME,
+    max: 20,
+    idleTimeoutMillis: 30000,
+    connectionTimeoutMillis: 2000,
   },
 });
