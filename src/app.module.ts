@@ -8,7 +8,6 @@ import { ValidationPipe } from './common/pipe/validation.pipe';
 import { InventoryModule } from './inventory/inventory.module';
 import { GatewayModule } from './gateway/gateway.module';
 import { ERPModule } from './erp/erp.module';
-import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -16,7 +15,6 @@ import { UserModule } from './user/user.module';
     WinstonModule.forRoot(winstonOptions),
     InventoryModule,
     ERPModule,
-    UserModule,
     GatewayModule,
   ],
   providers: [

@@ -1,12 +1,12 @@
 import { Body, Controller, Delete, Get, Inject, Post } from '@nestjs/common';
 import { PERSON_ADDRESS_SERVICE } from 'src/user/common/constant/service.const';
-import { AddressService } from '../service/address.service';
+import { AddressService } from 'src/user/address/service/address.service';
 import {
-  AddressResponseDto,
   CreateAddressDto,
   GetByIdDto,
+  AddressResponseDto,
   UpdateAddressDto,
-} from '../dto/address.dto';
+} from 'src/user/address/dto/address.dto';
 import { DeleteResult } from 'typeorm';
 
 @Controller('api/v1/address')
