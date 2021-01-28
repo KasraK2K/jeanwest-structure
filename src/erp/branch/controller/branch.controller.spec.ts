@@ -1,20 +1,20 @@
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { Test, TestingModule } from '@nestjs/testing';
-import { ERP_BranchController } from './branch.controller';
+import { ErpBranchController } from './branch.controller';
 import { ERP_BranchService } from '../service/branch.service';
 import { ERP_BranchSrevice } from '../interface/branch-service.interface';
 import { ERP_BRANCH_SERVICE } from 'src/erp/common/constant/service.const';
 
 class MockERPBranchService {}
 
-describe('ERP_BranchController', () => {
-  let erpController; //: ERP_BranchController;
+describe('ErpBranchController', () => {
+  let erpController; //: ErpBranchController;
   let erpService; //: ERP_BranchSrevice;
 
   beforeAll(async () => {
     const moduleRef: TestingModule = await Test.createTestingModule({
       imports: [],
-      controllers: [ERP_BranchController],
+      controllers: [ErpBranchController],
       providers: [
         {
           provide: ERP_BRANCH_SERVICE,
@@ -22,7 +22,7 @@ describe('ERP_BranchController', () => {
         },
       ],
     }).compile();
-    erpController = moduleRef.get<ERP_BranchController>(ERP_BranchController);
+    erpController = moduleRef.get<ErpBranchController>(ErpBranchController);
     erpService = moduleRef.get<ERP_BranchService>(ERP_BranchService);
   });
   it('should be defined', () => {

@@ -7,7 +7,7 @@ import {
   Post,
 } from '@nestjs/common';
 import { ERP_USER_SERVICE } from 'src/erp/common/constant/service.const';
-import { ERP_UserService } from '../service/user.service';
+import { ErpUserService } from '../service/user.service';
 
 import {
   GetCustomersResponseDto,
@@ -20,10 +20,10 @@ import {
 } from '../dto/user.dto';
 
 @Controller('api/v1/erp/user')
-export class ERP_UserController {
+export class ErpUserController {
   constructor(
     @Inject(ERP_USER_SERVICE)
-    private readonly erpUserService: ERP_UserService,
+    private readonly erpUserService: ErpUserService,
   ) {}
 
   @Post('/user')

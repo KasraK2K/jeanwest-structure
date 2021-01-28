@@ -19,7 +19,7 @@ import {
 } from '../query/raw-query';
 
 @Injectable()
-export class ERP_ProductService implements ERP_ProductSrevice {
+export class ErpProductService implements ERP_ProductSrevice {
   constructor(
     @Inject(ERP_PRODUCT_REPO)
     private readonly repository,

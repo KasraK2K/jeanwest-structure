@@ -24,7 +24,7 @@ import {
 } from '../query/raw-query';
 
 @Injectable()
-export class ERP_UserService implements ERP_UserSrevice {
+export class ErpUserService implements ERP_UserSrevice {
   constructor(
     @Inject(ERP_USER_REPO)
     private readonly repository,

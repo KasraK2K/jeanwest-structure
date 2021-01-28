@@ -5,7 +5,7 @@ import { ERP_BranchService } from '../service/branch.service';
 import { GetBranchesResponseDto } from '../../branch/dto/branch.dto';
 
 @Controller('api/v1/erp/branch')
-export class ERP_BranchController {
+export class ErpBranchController {
   constructor(
     @Inject(ERP_BRANCH_SERVICE)
     private readonly erp_BranchService: ERP_BranchService,
