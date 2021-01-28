@@ -1,15 +1,14 @@
 import { Body, Controller, Inject, Post } from '@nestjs/common';
 import { ERP_PRODUCT_SERVICE } from 'src/erp/common/constant/service.const';
-import { ErpProductService } from '../service/product.service';
-
 import {
-  GetProductByBarcodeDto,
-  GetProductsDto,
-  GetProductsResponseDto,
   GetProductsWithFilterDto,
-  GetProductsWithPaginationDto,
+  GetProductsResponseDto,
   GetProductsWithtsCodeIdDto,
-} from '../dto/product.dto';
+  GetProductsDto,
+  GetProductsWithPaginationDto,
+  GetProductByBarcodeDto,
+} from 'src/erp/product/dto/product.dto';
+import { ErpProductService } from 'src/erp/product/service/product.service';
 
 @Controller('api/v1/erp/product')
 export class ErpProductController {
