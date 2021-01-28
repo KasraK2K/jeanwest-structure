@@ -4,7 +4,7 @@ import { ERP_BranchSrevice } from '../interface/branch-service.interface';
 import { getBranchesQuery } from '../query/raw-query';
 
 @Injectable()
-export class ERP_BranchService implements ERP_BranchSrevice {
+export class ErpBranchService implements ERP_BranchSrevice {
   constructor(
     @Inject(ERP_BRANCH_REPO)
     private readonly repository,

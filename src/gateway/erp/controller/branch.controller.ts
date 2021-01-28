@@ -1,14 +1,12 @@
 import { Controller, Get, Inject } from '@nestjs/common';
+import { ErpBranchService } from 'src/erp/branch/service/branch.service';
 import { ERP_BRANCH_SERVICE } from 'src/erp/common/constant/service.const';
-import { ERP_BranchService } from '../service/branch.service';
-
-import { GetBranchesResponseDto } from '../../branch/dto/branch.dto';
 
 @Controller('api/v1/erp/branch')
 export class ErpBranchController {
   constructor(
     @Inject(ERP_BRANCH_SERVICE)
-    private readonly erp_BranchService: ERP_BranchService,
+    private readonly erp_BranchService: ErpBranchService,
   ) {}
 
   @Get('branches')
