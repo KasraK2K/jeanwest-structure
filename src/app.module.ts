@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { CacheModule, Module } from '@nestjs/common';
 import { APP_PIPE } from '@nestjs/core';
 import { ConfigModule } from '@nestjs/config';
 import { configOptions } from './config/config.option';
@@ -13,6 +13,7 @@ import { ERPModule } from './erp/erp.module';
   imports: [
     ConfigModule.forRoot(configOptions),
     WinstonModule.forRoot(winstonOptions),
+    CacheModule.register(),
     InventoryModule,
     ERPModule,
     GatewayModule,
