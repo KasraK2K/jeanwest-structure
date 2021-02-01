@@ -1,7 +1,11 @@
-import { Module } from '@nestjs/common';
+import { CacheModule, HttpModule, Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+import { SmsModule } from 'src/sms/sms.module';
+import { otpProviders } from './provider/otp.provider';
 
 @Module({
-  providers: [...productProviders],
-  exports: [...productProviders],
+  imports: [ConfigModule, CacheModule.register(), SmsModule],
+  providers: [...otpProviders],
+  exports: [...otpProviders, ConfigModule, CacheModule.register()],
 })
 export class OtpModule {}
