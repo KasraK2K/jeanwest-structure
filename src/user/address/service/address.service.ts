@@ -70,7 +70,7 @@ export class AddressService implements AddressSrevice {
     const checkAddress = await this.repository.findById(id);
     if (!checkAddress)
       throw new BadRequestException('No such address was found!');
-    const address = this.repository.deleteById(id);
+    const address = await this.repository.deleteById(id);
     return address;
   }
 }

@@ -5,7 +5,6 @@ import { PERSON_PERSON_SERVICE } from 'src/user/common/constant/service.const';
 import { PersonService } from '../service/person.service';
 
 import { CreatePersonDto, PersonResponseDto } from '../dto/person.dto';
-import { Person } from 'src/user/common/entity/typeorm/person.entity.jw';
 
 @Controller('api/v1/person')
 export class PersonController {

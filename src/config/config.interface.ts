@@ -63,4 +63,8 @@ export class EnvironmentVariables {
 
   @IsBoolean()
   TYPEORM_RUN_MIGRATIONS: boolean;
+
+  //Token
+  @IsString()
+  TOKEN_SECRET: string;
 }
