@@ -63,4 +63,8 @@ export class EnvironmentVariables {
 
   @IsBoolean()
   TYPEORM_RUN_MIGRATIONS: boolean;
+
+  // Sms
+  @IsString()
+  SMS_API_KEY: string;
 }
