@@ -1,15 +1,15 @@
 import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { ADDRESS_REPO } from 'src/user/common/constant/repository.const';
-import { Address } from 'src/user/common/entity/typeorm/address.entity.jw';
 import { DeleteResult } from 'typeorm';
 import {
   CreateAddressDto,
-  CreateAddressResponseDto,
   AddressResponseDto,
   GetByIdDto,
   UpdateAddressDto,
+  StaticGiftCardRsponseDto,
 } from '../dto/address.dto';
 import { AddressSrevice } from '../interface/address-service.interface';
+import { cardsInfo } from './statics';
 
 @Injectable()
 export class AddressService implements AddressSrevice {
@@ -18,9 +18,7 @@ export class AddressService implements AddressSrevice {
     private readonly repository,
   ) {}
 
-  async createAddress(
-    body: CreateAddressDto,
-  ): Promise<CreateAddressResponseDto> {
+  async createAddress(body: CreateAddressDto): Promise<AddressResponseDto> {
     try {
       return this.repository.create(body);
     } catch (err) {
@@ -42,7 +40,25 @@ export class AddressService implements AddressSrevice {
   }
 
   async updateAddress(body: UpdateAddressDto): Promise<AddressResponseDto> {
-    const { id, country, province, city, address, longtitude, latitude } = body;
+    const {
+      id,
+      title,
+      recieverFirstName,
+      recieverLastName,
+      recieverMobile,
+      country,
+      province,
+      city,
+      district,
+      address,
+      houseNumber,
+      unitNumber,
+      postalCode,
+      longtitude,
+      latitude,
+      active,
+      isUser,
+    } = body;
 
     if (!id)
       throw new BadRequestException(
@@ -53,12 +69,22 @@ export class AddressService implements AddressSrevice {
 
     if (!foundAddress) throw new BadRequestException('Address does not exist!');
 
+    if (title) foundAddress.title = title;
+    if (recieverFirstName) foundAddress.recieverFirstName = recieverFirstName;
+    if (recieverLastName) foundAddress.recieverLastName = recieverLastName;
+    if (recieverMobile) foundAddress.recieverMobile = recieverMobile;
     if (country) foundAddress.country = country;
     if (province) foundAddress.province = province;
     if (city) foundAddress.city = city;
+    if (district) foundAddress.district = district;
     if (address) foundAddress.address = address;
+    if (houseNumber) foundAddress.houseNumber = houseNumber;
+    if (unitNumber) foundAddress.unitNumber = unitNumber;
+    if (postalCode) foundAddress.postalCode = postalCode;
     if (longtitude) foundAddress.longtitude = longtitude;
     if (latitude) foundAddress.latitude = latitude;
+    if (active) foundAddress.active = active;
+    if (isUser) foundAddress.isUser = isUser;
 
     const savedAddress = await this.repository.save(foundAddress);
 
@@ -72,5 +98,9 @@ export class AddressService implements AddressSrevice {
       throw new BadRequestException('No such address was found!');
     const address = await this.repository.deleteById(id);
     return address;
+  }
+
+  async getCardsInfo(): Promise<StaticGiftCardRsponseDto> {
+    return cardsInfo;
   }
 }

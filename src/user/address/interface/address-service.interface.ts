@@ -2,13 +2,12 @@ import { DeleteResult } from 'typeorm';
 import {
   AddressResponseDto,
   CreateAddressDto,
-  CreateAddressResponseDto,
   GetByIdDto,
   UpdateAddressDto,
 } from '../dto/address.dto';
 
 export interface AddressSrevice {
-  createAddress(body: CreateAddressDto): Promise<CreateAddressResponseDto>;
+  createAddress(body: CreateAddressDto): Promise<AddressResponseDto>;
 
   getAddress(body: GetByIdDto): Promise<AddressResponseDto>;
 
