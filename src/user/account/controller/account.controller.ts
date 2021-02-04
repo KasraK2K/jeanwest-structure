@@ -1,7 +1,11 @@
-import { Body, Controller, Delete, Get, Inject, Post } from '@nestjs/common';
+import { Body, Controller, Get, Inject, Post } from '@nestjs/common';
 import { PERSON_ACCOUNT_SERVICE } from 'src/user/common/constant/service.const';
 import { AccountService } from 'src/user/account/service/account.service';
-import { Account, LoginDto, LoginResponseDto } from '../dto/account.dto';
+import {
+  Account,
+  authenticateDto,
+  authenticateResponseDto,
+} from '../dto/account.dto';
 
 @Controller('api/v1/account')
 export class AccountController {
@@ -35,10 +39,12 @@ export class AccountController {
     } catch (err) {}
   }
 
-  @Post('/login')
-  async login(@Body() body: LoginDto): Promise<LoginResponseDto> {
+  @Post('/authenticate')
+  async authenticate(
+    @Body() body: authenticateDto,
+  ): Promise<authenticateResponseDto> {
     try {
-      const account = await this.accountService.login(body);
+      const account = await this.accountService.authenticate(body);
       return account;
     } catch (err) {}
   }

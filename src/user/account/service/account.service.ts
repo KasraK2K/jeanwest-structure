@@ -1,7 +1,11 @@
 import { BadRequestException } from '@nestjs/common';
 import { Inject, Injectable } from '@nestjs/common';
 import { ACCOUNT_REPO } from 'src/user/common/constant/repository.const';
-import { Account, LoginDto, LoginResponseDto } from '../dto/account.dto';
+import {
+  Account,
+  authenticateDto,
+  authenticateResponseDto,
+} from '../dto/account.dto';
 import { AccountSrevice } from '../interface/address-service.interface';
 
 import { sign } from 'jsonwebtoken';
@@ -31,7 +35,7 @@ export class AccountService implements AccountSrevice {
     }
   }
 
-  async getAccountByMobile(body: LoginDto): Promise<Account> {
+  async getAccountByMobile(body: authenticateDto): Promise<Account> {
     try {
       const account = await this.repository.findOne({ mobile: body.mobile });
       return account;
@@ -40,7 +44,7 @@ export class AccountService implements AccountSrevice {
     }
   }
 
-  async createAccount(body: LoginDto): Promise<Account> {
+  async createAccount(body: authenticateDto): Promise<Account> {
     try {
       return this.repository.create({ mobile: body.mobile });
     } catch (err) {
@@ -48,7 +52,8 @@ export class AccountService implements AccountSrevice {
     }
   }
 
-  async login(body: LoginDto): Promise<LoginResponseDto> {
+  // Authentication
+  async authenticate(body: authenticateDto): Promise<authenticateResponseDto> {
     try {
       const mobile = `0${body.mobile.slice(-10)}`;
       const checkMobileInput = this.checkMobile(mobile);

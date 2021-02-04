@@ -1,11 +1,11 @@
-import { IsString, IsNumber, IsObject, IsOptional } from 'class-validator';
+import { IsString } from 'class-validator';
 
-export class LoginDto {
+export class authenticateDto {
   @IsString()
   mobile: string;
 }
 
-export class LoginResponseDto {
+export class authenticateResponseDto {
   account: Account;
   readonly token: string;
 }

@@ -12,7 +12,7 @@ import { Datetime } from './timestamp.entity';
 
 @Entity()
 export class Account extends BaseEntity {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: number;
 
   @Column({ nullable: true })
