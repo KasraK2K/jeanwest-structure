@@ -8,16 +8,21 @@ export interface IRepo<T> {
     data: Record<string, unknown> | string,
   ): Promise<T>;
 
-  findMany(model: new () => T): Promise<Array<T>>;
+  findMany?(model: new () => T): Promise<Array<T>>;
 
-  findById(model: new () => T, data: string | number): Promise<T>;
+  findById?(model: new () => T, data: string | number): Promise<T>;
 
   findOne(
     model: new () => T,
     data: Record<string, unknown> | string,
   ): Promise<T>;
 
-  deleteById(model: new () => T, data: string | number): Promise<DeleteResult>;
+  deleteById?(model: new () => T, data: string | number): Promise<DeleteResult>;
 
   runQuery(query: string): Promise<Array<Record<string, unknown>>>;
+
+  findAll?(
+    model: new () => T,
+    data: Record<string, unknown> | string,
+  ): Promise<T[]>;
 }

@@ -6,7 +6,7 @@ import { PersonService } from '../service/person.service';
 
 import { CreatePersonDto, PersonResponseDto } from '../dto/person.dto';
 
-@Controller('api/v1/person')
+@Controller('person')
 export class PersonController {
   constructor(
     @Inject(PERSON_PERSON_SERVICE)

@@ -10,7 +10,7 @@ import {
 } from 'src/user/address/dto/address.dto';
 import { DeleteResult } from 'typeorm';
 
-@Controller('api/v1/address')
+@Controller('address')
 export class AddressController {
   constructor(
     @Inject(PERSON_ADDRESS_SERVICE)

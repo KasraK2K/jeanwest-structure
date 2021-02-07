@@ -11,7 +11,7 @@ import {
 } from 'src/erp/user/dto/user.dto';
 import { ErpUserService } from 'src/erp/user/service/user.service';
 
-@Controller('api/v1/erp/user')
+@Controller('erp/user')
 export class ErpUserController {
   constructor(
     @Inject(ERP_USER_SERVICE)

@@ -7,7 +7,7 @@ import {
   authenticateResponseDto,
 } from '../dto/account.dto';
 
-@Controller('api/v1/account')
+@Controller('account')
 export class AccountController {
   constructor(
     @Inject(PERSON_ACCOUNT_SERVICE)
