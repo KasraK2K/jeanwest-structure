@@ -19,7 +19,7 @@ import {
 } from '../query/raw-query';
 
 @Injectable()
-export class ERP_ProductService implements ERP_ProductSrevice {
+export class ErpProductService implements ERP_ProductSrevice {
   constructor(
     @Inject(ERP_PRODUCT_REPO)
     private readonly repository,
@@ -28,13 +28,14 @@ export class ERP_ProductService implements ERP_ProductSrevice {
   public async getProductsWithtfilter(
     body: GetProductsWithFilterDto,
   ): Promise<GetProductsResponseDto[]> {
+    const { FiltersArr = [], PerPage = 20, PageNumber = 1 } = body;
+
     if (
       (body.PageNumber < 1,
       body.PerPage < 0,
       isNaN(Number(body.PerPage)) || isNaN(Number(body.PageNumber)))
     )
       throw new BadRequestException('Invalid pageNumber or pageNumber number');
-    const { FiltersArr = [], PerPage, PageNumber } = body;
 
     const { OrderBy = 'Cast(B.TSCode AS bigint)' } = body;
 

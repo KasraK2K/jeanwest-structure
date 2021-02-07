@@ -12,9 +12,4 @@ export class OtpController {
   async requestPin(@Body() input: any): Promise<any> {
     return this.otp.requestPin(input.phoneNumber);
   }
-
-  @Post('verify')
-  async verifyPin(@Body() input: any): Promise<any> {
-    return this.otp.verifyPin(input.phoneNumber, input.pin);
-  }
 }

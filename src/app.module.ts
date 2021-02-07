@@ -7,7 +7,6 @@ import { winstonOptions } from './common/log/winston/winston.config';
 import { ValidationPipe } from './common/pipe/validation.pipe';
 import { GatewayModule } from './gateway/gateway.module';
 import { ERPModule } from './erp/erp.module';
-import { OtpModule } from './otp/otp.module';
 
 @Module({
   imports: [

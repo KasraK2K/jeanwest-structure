@@ -64,7 +64,7 @@ export class Product extends AbstractEntity {
   @IsDefined()
   searchList: string[];
 
-  @Column({ unique: true, nullable: true })
+  @Column({ nullable: true })
   @IsNumber()
   @IsOptional()
   banimodeCode: number;

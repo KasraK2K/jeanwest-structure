@@ -1,29 +1,21 @@
-import {
-  BadRequestException,
-  Body,
-  Controller,
-  Get,
-  Inject,
-  Post,
-} from '@nestjs/common';
+import { Body, Controller, Get, Inject, Post } from '@nestjs/common';
 import { ERP_USER_SERVICE } from 'src/erp/common/constant/service.const';
-import { ERP_UserService } from '../service/user.service';
-
 import {
-  GetCustomersResponseDto,
-  GetInvoiceDetailsResponseDto,
   GetUserDto,
-  GetUserGiftcardsResponseDto,
   GetUserResponseDto,
+  GetCustomersResponseDto,
   GetUserTransactionsListDto,
   GetUserTransactionsListResponseDto,
-} from '../dto/user.dto';
+  GetInvoiceDetailsResponseDto,
+  GetUserGiftcardsResponseDto,
+} from 'src/erp/user/dto/user.dto';
+import { ErpUserService } from 'src/erp/user/service/user.service';
 
 @Controller('api/v1/erp/user')
-export class ERP_UserController {
+export class ErpUserController {
   constructor(
     @Inject(ERP_USER_SERVICE)
-    private readonly erpUserService: ERP_UserService,
+    private readonly erpUserService: ErpUserService,
   ) {}
 
   @Post('/user')
