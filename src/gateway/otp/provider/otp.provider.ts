@@ -1,5 +1,5 @@
-import { OtpService } from "src/otp/service/otp.service";
-import { OTP_SERVICE } from "../common/constant/otp.const";
+import { OtpService } from 'src/otp/service/otp.service';
+import { OTP_SERVICE } from '../common/constant/otp.const';
 
 export const otpProviders = [
   {

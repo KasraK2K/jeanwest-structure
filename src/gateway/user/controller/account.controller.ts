@@ -8,7 +8,9 @@ export class AccountController {
     private readonly accountService,
   ) {}
   @Post('authentication')
-  async authentication(@Body() body: {mobile:string;pin:string;}): Promise<any> {
+  async authentication(
+    @Body() body: { mobile: string; pin: string },
+  ): Promise<any> {
     return this.accountService.authentication(body);
   }
 }

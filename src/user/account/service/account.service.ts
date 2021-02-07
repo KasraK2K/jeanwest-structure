@@ -56,8 +56,7 @@ export class AccountService implements IAccountSrevice {
       if (checkMobileInput.length === 0)
         throw new BadRequestException('Invalid phone Number');
       const currectPin: string = await this.cache.get(checkMobileInput[0]);
-      if (currectPin === body.pin){
-        console.log()
+      if (currectPin === body.pin) {
         let account = await this.getAccountByMobile(body);
         if (!account) account = await this.createAccount(body);
         const token = sign({ id: account.id }, process.env.TOKEN_SECRET);

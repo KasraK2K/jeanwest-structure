@@ -7,7 +7,7 @@ export abstract class AbstractEntity {
   id: number;
 
   @Column({ default: true })
-  active:boolean;
+  active: boolean;
 
   @Column(() => Datetime, { prefix: '' })
   datetime: Datetime;

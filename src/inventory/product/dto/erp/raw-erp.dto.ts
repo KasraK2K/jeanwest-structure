@@ -1,5 +1,11 @@
 import { Expose } from 'class-transformer';
-import { IsArray, IsDefined, IsNumber, IsOptional, IsString } from 'class-validator';
+import {
+  IsArray,
+  IsDefined,
+  IsNumber,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 
 @Expose()
 export class RawErpProductDto {

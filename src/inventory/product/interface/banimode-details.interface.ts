@@ -1,5 +1,5 @@
 export interface IBanimodeDetails {
-  id_product_attribute:number;
+  id_product_attribute: number;
   product_name: string;
   id_color: number;
   product_manufacturer_name: string;

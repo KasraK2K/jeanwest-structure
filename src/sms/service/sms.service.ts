@@ -30,11 +30,11 @@ export class SmsService implements ISmsSrevice {
     token: string[],
   ): Promise<any> {
     const tokens: string[] = [];
-    for (const key of Array(10).keys()) tokens[key] = `%token${key+1}`;
+    for (const key of Array(10).keys()) tokens[key] = `%token${key + 1}`;
     const sms: SmsPattern = await this.repository.findOne({ name: pattern });
     let context: string = sms.context;
     for (const [key, value] of token.entries())
-    context = context.replace(tokens[key], value);
+      context = context.replace(tokens[key], value);
     let url = `https://api.kavenegar.com/v1/${this.apiKey}/sms/send.json?receptor=${phoneNumber}&message=${context}`;
     url = encodeURI(url);
     await this.httpService.get(url).toPromise();

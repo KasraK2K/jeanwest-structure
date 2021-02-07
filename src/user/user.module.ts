@@ -8,11 +8,13 @@ import { PersonModule } from './person/person.module';
 import { personProviders } from './person/provider/person.provider';
 
 @Module({
-  imports: [
-    DatabaseModule,
+  imports: [DatabaseModule, CacheModule.register()],
+  providers: [...accountProviders, ...addressProviders, ...personProviders],
+  exports: [
+    ...accountProviders,
+    ...addressProviders,
+    ...personProviders,
     CacheModule.register(),
   ],
-  providers:[...accountProviders,...addressProviders,...personProviders],
-  exports: [...accountProviders,...addressProviders,...personProviders, CacheModule.register()],
 })
 export class UserModule {}

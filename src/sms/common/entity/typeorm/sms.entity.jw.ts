@@ -1,8 +1,5 @@
 import { Entity, Column } from 'typeorm';
-import {
-  IsDefined,
-  IsString,
-} from 'class-validator';
+import { IsDefined, IsString } from 'class-validator';
 import { AbstractEntity } from './abstract.entity';
 
 @Entity()

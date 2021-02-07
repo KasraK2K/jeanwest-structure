@@ -1,11 +1,15 @@
-import { IsString, IsNumber, IsObject, IsOptional, IsDefined } from 'class-validator';
+import {
+  IsString,
+  IsNumber,
+  IsObject,
+  IsOptional,
+  IsDefined,
+} from 'class-validator';
 
 export class LoginDto {
-  @IsDefined()
   @IsString()
   mobile: string;
 
-  @IsDefined()
   @IsString()
   pin: string;
 }
