@@ -1,7 +1,9 @@
-import { Body, Controller, Inject, Post } from '@nestjs/common';
+import { Body, Controller, Inject, Post, UseGuards } from '@nestjs/common';
+import { AuthGuard } from 'src/gateway/common/guard/auth.guard';
 import { OTP_SERVICE } from '../common/constant/otp.const';
 
 @Controller('otp')
+@UseGuards(AuthGuard)
 export class OtpController {
   constructor(
     @Inject(OTP_SERVICE)
