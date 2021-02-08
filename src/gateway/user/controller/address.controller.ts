@@ -17,7 +17,7 @@ export class AddressController {
     private readonly addressService: AddressService,
   ) {}
 
-  @Post('/createAddress')
+  @Post('createAddress')
   async createAddress(
     @Body() body: CreateAddressDto,
   ): Promise<AddressResponseDto> {
@@ -28,7 +28,7 @@ export class AddressController {
     }
   }
 
-  @Post('/address')
+  @Post('address')
   async getAddress(@Body() body: GetByIdDto): Promise<AddressResponseDto> {
     try {
       return this.addressService.getAddress(body);
@@ -37,7 +37,7 @@ export class AddressController {
     }
   }
 
-  @Get('/addresses')
+  @Get('addresses')
   async getAddresses(): Promise<AddressResponseDto[]> {
     try {
       return this.addressService.getAddresses();
@@ -46,7 +46,7 @@ export class AddressController {
     }
   }
 
-  @Post('/updateAddress')
+  @Post('updateAddress')
   async updateAddress(
     @Body() body: UpdateAddressDto,
   ): Promise<AddressResponseDto> {
@@ -57,7 +57,7 @@ export class AddressController {
     }
   }
 
-  @Delete('/deleteAddress')
+  @Delete('deleteAddress')
   async deleteAddress(@Body() body: GetByIdDto): Promise<DeleteResult> {
     try {
       return this.addressService.deleteAddress(body);
@@ -66,7 +66,7 @@ export class AddressController {
     }
   }
 
-  @Get('/giftCardsInfo')
+  @Get('giftCardsInfo')
   async getCardsInfo(): Promise<StaticGiftCardRsponseDto> {
     try {
       return this.addressService.getCardsInfo();

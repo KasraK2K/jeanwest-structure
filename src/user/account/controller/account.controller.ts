@@ -14,14 +14,14 @@ export class AccountController {
     private readonly accountService: AccountService,
   ) {}
 
-  @Get('/accounts')
+  @Get('accounts')
   async getAccounts(): Promise<Account[]> {
     try {
       return this.accountService.getAccounts();
     } catch (err) {}
   }
 
-  @Post('/account')
+  @Post('account')
   async getAccount(@Body() body: { id: string | number }): Promise<Account> {
     try {
       const account = await this.accountService.getAccountById(body);
@@ -31,7 +31,7 @@ export class AccountController {
     } catch (err) {}
   }
 
-  @Post('/accountByMobile')
+  @Post('accountByMobile')
   async getAccountByMobile(@Body() body: { mobile: string }): Promise<Account> {
     try {
       const account = await this.accountService.getAccountByMobile(body);
@@ -39,7 +39,7 @@ export class AccountController {
     } catch (err) {}
   }
 
-  @Post('/authenticate')
+  @Post('authenticate')
   async authenticate(
     @Body() body: authenticateDto,
   ): Promise<authenticateResponseDto> {

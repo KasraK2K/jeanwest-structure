@@ -1,19 +1,5 @@
-import { IsString } from 'class-validator';
-
-export class authenticateDto {
-  @IsString()
-  mobile: string;
-}
-
-export class authenticateResponseDto {
-  account: Account;
-  readonly token: string;
-}
-export class Account {
-  id: number;
-  mobile: string;
-  email?: string;
-}
+import { IsNumber, IsObject, IsString } from 'class-validator';
+import { Datetime } from 'src/branch/common/entity/typeorm/timestamp.entity';
 
 export class getBranchesDto {
   @IsString()
@@ -23,8 +9,36 @@ export class getBranchesDto {
   lat: string;
 }
 
-export class GetBranchesResponseDto {
-  static findMany() {
-    throw new Error('Method not implemented.');
-  }
+export class CreateBranchDto {
+  @IsString()
+  DepartmentInfo_ID: string;
+
+  @IsString()
+  isActive: number;
+
+  @IsString()
+  DepName: string;
+
+  @IsString()
+  DepTel: string;
+
+  @IsString()
+  DepAddress: string;
+
+  @IsString()
+  long: number;
+
+  @IsString()
+  lat: number;
+}
+
+export class GetBranchesResponseDto extends CreateBranchDto {
+  @IsNumber()
+  id: number;
+
+  @IsNumber()
+  distance?: number;
+
+  @IsObject()
+  datetime: Datetime;
 }

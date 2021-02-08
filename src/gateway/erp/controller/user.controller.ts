@@ -18,7 +18,7 @@ export class ErpUserController {
     private readonly erpUserService: ErpUserService,
   ) {}
 
-  @Post('/user')
+  @Post('user')
   async getUser(@Body() body: GetUserDto): Promise<GetUserResponseDto[]> {
     try {
       return this.erpUserService.getUser(body);
@@ -27,7 +27,7 @@ export class ErpUserController {
     }
   }
 
-  @Get('/customers')
+  @Get('customers')
   async getCustomer(): Promise<GetCustomersResponseDto[]> {
     try {
       return this.erpUserService.getCustomers();
@@ -36,7 +36,7 @@ export class ErpUserController {
     }
   }
 
-  @Post('/userTransactionsList')
+  @Post('userTransactionsList')
   async getUserTransactionsList(
     @Body() body: GetUserTransactionsListDto,
   ): Promise<GetUserTransactionsListResponseDto[]> {
@@ -49,7 +49,7 @@ export class ErpUserController {
     }
   }
 
-  @Post('/invoiceDetails')
+  @Post('invoiceDetails')
   async restGetInvoiceDetail(
     @Body() body: GetUserTransactionsListDto,
   ): Promise<GetInvoiceDetailsResponseDto[]> {
@@ -60,7 +60,7 @@ export class ErpUserController {
     }
   }
 
-  @Post('/userGiftcards')
+  @Post('userGiftcards')
   async getUserGiftcards(
     @Body() body: GetUserTransactionsListDto,
   ): Promise<GetUserGiftcardsResponseDto[]> {

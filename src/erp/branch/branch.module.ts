@@ -7,4 +7,4 @@ import { erpBranchProviders } from './provider/branch.provider';
   providers: [...erpBranchProviders],
   exports: [...erpBranchProviders],
 })
-export class ERP_BranchModule {}
+export class ErpBranchModule {}

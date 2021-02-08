@@ -10,28 +10,36 @@ export class BranchController {
     private readonly branchService: BranchService,
   ) {}
 
-  @Get('/branches')
-  async getLocalBranchs(): Promise<GetBranchesResponseDto[]> {
+  @Get('setBranches')
+  async setBranches(): Promise<void> {
+    try {
+      return this.branchService.setBranches();
+    } catch (err) {}
+  }
+
+  @Get('allBranches')
+  async getLocalBranches(): Promise<GetBranchesResponseDto[]> {
     try {
       return this.branchService.getLocalBranches();
     } catch (err) {}
   }
 
-  @Post('/branch')
-  async getBranch(
-    @Body() body: { id: string | number },
-  ): Promise<GetBranchesResponseDto> {
+  @Post('nearBranches')
+  async getNearBranch(
+    @Body() body: { long: number; lat: number },
+  ): Promise<GetBranchesResponseDto[]> {
     try {
-      return [];
+      return this.branchService.getNearBranches(body.long, body.lat);
     } catch (err) {}
   }
 
-  @Post('/branchByMobile')
-  async getBranchByMobile(
-    @Body() body: { mobile: string },
+  @Post('singleBranch')
+  async getSingleBranchById(
+    @Body() body: { id: string | number },
   ): Promise<GetBranchesResponseDto> {
     try {
-      return [];
+      const branch = await this.branchService.getBranchById(body.id);
+      return branch;
     } catch (err) {}
   }
 }

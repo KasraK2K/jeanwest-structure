@@ -13,7 +13,7 @@ export class PersonController {
     private readonly personService: PersonService,
   ) {}
 
-  @Post('/createPerson')
+  @Post('createPerson')
   async createPerson(@Body() body: CreatePersonDto): Promise<CreatePersonDto> {
     try {
       return this.personService.getPerson(body);
@@ -22,7 +22,7 @@ export class PersonController {
     }
   }
 
-  @Get('/persons')
+  @Get('persons')
   async getPersons(
     @Body() body: CreatePersonDto,
   ): Promise<Array<PersonResponseDto>> {
@@ -33,7 +33,7 @@ export class PersonController {
     }
   }
 
-  @Post('/person')
+  @Post('person')
   async getPerson(@Body() body: CreatePersonDto): Promise<PersonResponseDto> {
     try {
       return this.personService.createPerson(body);
