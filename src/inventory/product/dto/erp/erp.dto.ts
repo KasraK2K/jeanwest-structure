@@ -4,8 +4,7 @@ import { IBarcodeList } from '../../interface/barcode-list.interface';
 import { IErpDetails } from '../../interface/erp-details.interface';
 
 @Expose()
-export class 
-ErpProductDto {
+export class ErpProductDto {
   @IsString()
   @IsDefined()
   barcode: string;

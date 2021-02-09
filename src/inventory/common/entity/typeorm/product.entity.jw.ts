@@ -1,8 +1,12 @@
 import { Entity, Column, Index } from 'typeorm';
-import { IsDefined, IsNumber, IsOptional, IsString } from 'class-validator';
-
+import {
+  IsArray,
+  IsDefined,
+  IsNumber,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 import { IErpDetails } from '../../../product/interface/erp-details.interface';
-import { IBarcodeList } from '../../../product/interface/barcode-list.interface';
 import { IBanimodeDetails } from '../../../product/interface/banimode-details.interface';
 import { AbstractEntity } from './abstract.entity';
 import { BANIMODE_INDEX, ERP_INDEX } from '../../constant/database-index.const';
@@ -27,7 +31,7 @@ export class Product extends AbstractEntity {
   @Index()
   @IsString()
   @IsDefined()
-  SKU: string;
+  sku: string;
 
   @Column()
   @Index()
@@ -56,13 +60,14 @@ export class Product extends AbstractEntity {
   erpDetails: IErpDetails;
 
   @Column({ type: 'jsonb' })
+  @IsArray()
   @IsDefined()
-  barcodeList: IBarcodeList;
+  searchList: string[];
 
-  @Column({ unique: true, nullable: true })
+  @Column({ nullable: true })
   @IsNumber()
   @IsOptional()
-  BM_productCode: number;
+  banimodeCode: number;
 
   @Column({ type: 'jsonb', nullable: true })
   @Index(BANIMODE_INDEX, { synchronize: false })

@@ -9,7 +9,6 @@ import {
 } from 'src/common/constant/database.const';
 import { createConnection } from 'typeorm';
 
-
 export const databaseProviders = [
   {
     provide: JW_TYPEORM_CNN,

@@ -1,21 +1,20 @@
 import { Body, Controller, Inject, Post } from '@nestjs/common';
 import { ERP_PRODUCT_SERVICE } from 'src/erp/common/constant/service.const';
-import { ERP_ProductService } from '../service/product.service';
-
 import {
-  GetProductByBarcodeDto,
-  GetProductsDto,
-  GetProductsResponseDto,
   GetProductsWithFilterDto,
-  GetProductsWithPaginationDto,
+  GetProductsResponseDto,
   GetProductsWithtsCodeIdDto,
-} from '../dto/product.dto';
+  GetProductsDto,
+  GetProductsWithPaginationDto,
+  GetProductByBarcodeDto,
+} from 'src/erp/product/dto/product.dto';
+import { ErpProductService } from 'src/erp/product/service/product.service';
 
 @Controller('api/v1/erp/product')
-export class ERP_ProductController {
+export class ErpProductController {
   constructor(
     @Inject(ERP_PRODUCT_SERVICE)
-    private readonly erp_ProductService: ERP_ProductService,
+    private readonly erpProductService: ErpProductService,
   ) {}
 
   @Post('getProductsWithFilters')
@@ -23,7 +22,7 @@ export class ERP_ProductController {
     @Body() body: GetProductsWithFilterDto,
   ): Promise<GetProductsResponseDto[]> {
     try {
-      return this.erp_ProductService.getProductsWithtfilter(body);
+      return this.erpProductService.getProductsWithtfilter(body);
     } catch (err) {
       throw err;
     }
@@ -34,7 +33,7 @@ export class ERP_ProductController {
     @Body() body: GetProductsWithtsCodeIdDto,
   ): Promise<GetProductsResponseDto[]> {
     try {
-      return this.erp_ProductService.getProductsWithtsCodeId(body);
+      return this.erpProductService.getProductsWithtsCodeId(body);
     } catch (err) {
       throw err;
     }
@@ -45,7 +44,7 @@ export class ERP_ProductController {
     @Body() body: GetProductsDto,
   ): Promise<GetProductsResponseDto[]> {
     try {
-      return this.erp_ProductService.getProductsWithRowNumber(body);
+      return this.erpProductService.getProductsWithRowNumber(body);
     } catch (err) {
       throw err;
     }
@@ -56,7 +55,7 @@ export class ERP_ProductController {
     @Body() body: GetProductsWithPaginationDto,
   ): Promise<GetProductsResponseDto[]> {
     try {
-      return this.erp_ProductService.getProductsWithPageNumber(body);
+      return this.erpProductService.getProductsWithPageNumber(body);
     } catch (err) {
       throw err;
     }
@@ -67,7 +66,7 @@ export class ERP_ProductController {
     @Body() body: GetProductByBarcodeDto,
   ): Promise<GetProductsResponseDto[]> {
     try {
-      return this.erp_ProductService.getProductByBarcode(body);
+      return this.erpProductService.getProductByBarcode(body);
     } catch (err) {
       throw err;
     }

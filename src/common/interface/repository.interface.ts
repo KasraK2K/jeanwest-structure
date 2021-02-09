@@ -1,11 +1,22 @@
+import { DeleteResult } from 'typeorm';
+
 export interface IRepo<T> {
-  create(
+  save?(model: new () => T, data: T): Promise<T>;
+
+  create?(
     model: new () => T,
     data: Record<string, unknown> | string,
   ): Promise<T>;
-  findOne(
+
+  findMany?(model: new () => T): Promise<Array<T>>;
+
+  findById?(model: new () => T, data: string | number): Promise<T>;
+
+  findOne?(
     model: new () => T,
     data: Record<string, unknown> | string,
   ): Promise<T>;
-  runQuery(query: string): Promise<Array<Record<string, unknown>>>;
+  deleteById?(model: new () => T, data: string | number): Promise<DeleteResult>;
+
+  runQuery?(query: string): Promise<Array<Record<string, unknown>>>;
 }

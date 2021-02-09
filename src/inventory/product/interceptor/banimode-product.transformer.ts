@@ -5,6 +5,7 @@ export const banimodeProductTransformer = (context) => {
   const finalData = [];
   context.map((itm: Record<string, any>) => {
     const banimodeDatails: IBanimodeDetails = {
+      id_product_attribute: itm['product_name'],
       product_name: itm['product_name'],
       id_color: itm['id_color'],
       product_manufacturer_name: itm['product_manufacturer_name'],
