@@ -6,25 +6,36 @@ import {
   Timestamp,
 } from 'typeorm';
 import { Entity, Column, OneToMany } from 'typeorm';
-import { Address } from './address.entity.jw';
-import { Person } from './person.entity.jw';
 import { Datetime } from './timestamp.entity';
 
 @Entity()
-export class Account extends BaseEntity {
-  @PrimaryGeneratedColumn('uuid')
+export class Branch extends BaseEntity {
+  @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ nullable: true })
-  email: string;
-
   @Column({ unique: true })
-  mobile: string;
+  DepartmentInfo_ID: string;
+
+  @Column({ default: 1 })
+  isActive: number;
+
+  @Column()
+  DepName: string;
+
+  @Column()
+  DepTel: string;
+
+  @Column()
+  DepAddress: string;
+
+  @Column()
+  long: string;
+
+  @Column()
+  lat: string;
 
   @Column(() => Datetime, { prefix: '' })
   datetime: Datetime;
 
   //? Relations
-  @OneToOne(() => Person, (person) => person.account)
-  person: Person;
 }

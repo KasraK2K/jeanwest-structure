@@ -6,14 +6,14 @@ import { PersonService } from '../service/person.service';
 
 import { CreatePersonDto, PersonResponseDto } from '../dto/person.dto';
 
-@Controller('api/v1/person')
+@Controller('person')
 export class PersonController {
   constructor(
     @Inject(PERSON_PERSON_SERVICE)
     private readonly personService: PersonService,
   ) {}
 
-  @Post('/createPerson')
+  @Post('createPerson')
   async createPerson(@Body() body: CreatePersonDto): Promise<CreatePersonDto> {
     try {
       return this.personService.getPerson(body);
@@ -22,7 +22,7 @@ export class PersonController {
     }
   }
 
-  @Get('/persons')
+  @Get('persons')
   async getPersons(
     @Body() body: CreatePersonDto,
   ): Promise<Array<PersonResponseDto>> {
@@ -33,7 +33,7 @@ export class PersonController {
     }
   }
 
-  @Post('/person')
+  @Post('person')
   async getPerson(@Body() body: CreatePersonDto): Promise<PersonResponseDto> {
     try {
       return this.personService.createPerson(body);

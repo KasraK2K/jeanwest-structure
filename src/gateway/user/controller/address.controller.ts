@@ -6,6 +6,7 @@ import {
   GetByIdDto,
   AddressResponseDto,
   UpdateAddressDto,
+  StaticGiftCardRsponseDto,
 } from 'src/user/address/dto/address.dto';
 import { DeleteResult } from 'typeorm';
 
@@ -19,7 +20,7 @@ export class AddressController {
   @Post('createAddress')
   async createAddress(
     @Body() body: CreateAddressDto,
-  ): Promise<CreateAddressDto> {
+  ): Promise<AddressResponseDto> {
     try {
       return this.addressService.createAddress(body);
     } catch (err) {
@@ -60,6 +61,15 @@ export class AddressController {
   async deleteAddress(@Body() body: GetByIdDto): Promise<DeleteResult> {
     try {
       return this.addressService.deleteAddress(body);
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  @Get('giftCardsInfo')
+  async getCardsInfo(): Promise<StaticGiftCardRsponseDto> {
+    try {
+      return this.addressService.getCardsInfo();
     } catch (err) {
       throw err;
     }

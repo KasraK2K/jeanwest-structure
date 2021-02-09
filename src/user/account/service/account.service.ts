@@ -1,8 +1,13 @@
 import { BadRequestException, CACHE_MANAGER } from '@nestjs/common';
 import { Inject, Injectable } from '@nestjs/common';
 import { ACCOUNT_REPO } from 'src/user/common/constant/repository.const';
-import { Account, LoginDto, LoginResponseDto } from '../dto/account.dto';
 import { IAccountSrevice } from '../interface/address-service.interface';
+
+import {
+  Account,
+  AuthenticateDto,
+  AuthenticateResponseDto,
+} from '../dto/account.dto';
 import { sign } from 'jsonwebtoken';
 import { Cache } from 'cache-manager';
 
@@ -32,7 +37,7 @@ export class AccountService implements IAccountSrevice {
     }
   }
 
-  async getAccountByMobile(body: LoginDto): Promise<Account> {
+  async getAccountByMobile(body: AuthenticateDto): Promise<Account> {
     try {
       const account = await this.repository.findOne({ mobile: body.mobile });
       return account;
@@ -41,7 +46,7 @@ export class AccountService implements IAccountSrevice {
     }
   }
 
-  async createAccount(body: LoginDto): Promise<Account> {
+  async createAccount(body: AuthenticateDto): Promise<Account> {
     try {
       return this.repository.create({ mobile: body.mobile });
     } catch (err) {
@@ -49,7 +54,11 @@ export class AccountService implements IAccountSrevice {
     }
   }
 
-  async authentication(body: LoginDto): Promise<LoginResponseDto> {
+  // Authentication
+  // changed after maytham's changes
+  async authentication(
+    body: AuthenticateDto,
+  ): Promise<AuthenticateResponseDto> {
     try {
       const mobile = `0${body.mobile.slice(-10)}`;
       const checkMobileInput = this.checkMobile(mobile);

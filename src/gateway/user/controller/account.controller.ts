@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Inject, Post } from '@nestjs/common';
+import { Body, Controller, Inject, Post } from '@nestjs/common';
 import { USER_ACCOUNT_SERVICE } from '../common/constant/user.const';
 
 @Controller('account')

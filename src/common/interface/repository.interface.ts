@@ -18,5 +18,10 @@ export interface IRepo<T> {
   ): Promise<T>;
   deleteById?(model: new () => T, data: string | number): Promise<DeleteResult>;
 
-  runQuery?(query: string): Promise<Array<Record<string, unknown>>>;
+  findAll?(
+    model: new () => T,
+    data: Record<string, unknown> | string,
+  ): Promise<T[]>;
+
+  runQuery(query: string): Promise<Array<Record<string, unknown>>>;
 }

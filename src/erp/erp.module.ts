@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 import { DatabaseModule } from 'src/database/database.module';
-import { ERP_BranchModule } from './branch/branch.module';
+import { ErpBranchModule } from './branch/branch.module';
 import { ErpProductModule } from './product/product.module';
-import { ERP_UserModule } from './user/user.module';
+import { ErpUserModule } from './user/user.module';
 
 @Module({
-  imports: [DatabaseModule, ERP_BranchModule, ErpProductModule, ERP_UserModule],
-  exports: [ERP_BranchModule, ErpProductModule, ERP_UserModule],
+  imports: [DatabaseModule, ErpBranchModule, ErpProductModule, ErpUserModule],
+  exports: [ErpBranchModule, ErpProductModule, ErpUserModule],
 })
 export class ERPModule {}

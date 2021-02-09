@@ -10,7 +10,7 @@ import {
 } from 'src/erp/product/dto/product.dto';
 import { ErpProductService } from 'src/erp/product/service/product.service';
 
-@Controller('api/v1/erp/product')
+@Controller('erp/product')
 export class ErpProductController {
   constructor(
     @Inject(ERP_PRODUCT_SERVICE)

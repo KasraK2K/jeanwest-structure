@@ -37,7 +37,7 @@ export default () => ({
     username: process.env.DATABASE_JW_USERNAME,
     password: process.env.DATABASE_JW_PASSWORD,
     database: process.env.DATABASE_JW_DBNAME,
-    synchronize: true, //process.env.TYPEORM_SYNC === 'true',
+    synchronize: process.env.TYPEORM_SYNC === 'true',
     migrationsRun: process.env.TYPEORM_RUN_MIGRATIONS === 'true',
     entities: TypeormConfig.jwEntities,
     migrations: TypeormConfig.migrations,

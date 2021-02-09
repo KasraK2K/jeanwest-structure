@@ -9,6 +9,7 @@ async function bootstrap() {
     logger: logger,
   };
   const app = await NestFactory.create(AppModule, nestAppOptions);
+  app.setGlobalPrefix('api/v1');
   const configs = app.get(ConfigService);
   const port: number = configs.get('mainPort');
 

@@ -7,4 +7,4 @@ import { erpUserProviders } from './provider/user.provider';
   providers: [...erpUserProviders],
   exports: [...erpUserProviders],
 })
-export class ERP_UserModule {}
+export class ErpUserModule {}

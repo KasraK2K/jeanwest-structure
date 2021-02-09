@@ -1,6 +1,5 @@
-import { DeleteResult } from 'typeorm';
-import { LoginDto, LoginResponseDto } from '../dto/account.dto';
+import { AuthenticateDto, AuthenticateResponseDto } from '../dto/account.dto';
 
 export interface IAccountSrevice {
-  authentication(body: LoginDto): Promise<LoginResponseDto>;
+  authentication(body: AuthenticateDto): Promise<AuthenticateResponseDto>;
 }
