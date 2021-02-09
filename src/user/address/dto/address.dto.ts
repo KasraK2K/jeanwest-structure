@@ -206,8 +206,20 @@ export class UpdateAddressDto {
   personId?: string;
 }
 
+export interface cardInfoInterface {
+  membership: string;
+  engtitle: string;
+  perTitle: string;
+  minPay: number;
+  maxPay: number;
+  receiptConditions: string;
+  subTitles: string[];
+  descriptions: string[];
+}
+
 export class StaticGiftCardRsponseDto {
-  blueCardInfo: string;
-  silverCardInfo: string;
-  goldCardInfo: string;
+  bluePlusCardInfo: cardInfoInterface;
+  blue2PlusCardInfo: cardInfoInterface;
+  silverCardInfo: cardInfoInterface;
+  goldCardInfo: cardInfoInterface;
 }

@@ -1,0 +1,2 @@
+export const SMS_SERVICE = 'SMS_SERVICE';
+export const SMS_TYPEORM_REPO = 'SMS_TYPEORM_REPO';

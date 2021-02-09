@@ -1,5 +1,5 @@
-import { authenticateDto, authenticateResponseDto } from '../dto/account.dto';
+import { AuthenticateDto, AuthenticateResponseDto } from '../dto/account.dto';
 
-export interface AccountSrevice {
-  authenticate(body: authenticateDto): Promise<authenticateResponseDto>;
+export interface IAccountSrevice {
+  authentication(body: AuthenticateDto): Promise<AuthenticateResponseDto>;
 }

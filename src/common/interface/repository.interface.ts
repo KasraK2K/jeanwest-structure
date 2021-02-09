@@ -1,9 +1,9 @@
 import { DeleteResult } from 'typeorm';
 
 export interface IRepo<T> {
-  save(model: new () => T, data: T): Promise<T>;
+  save?(model: new () => T, data: T): Promise<T>;
 
-  create(
+  create?(
     model: new () => T,
     data: Record<string, unknown> | string,
   ): Promise<T>;
@@ -12,17 +12,16 @@ export interface IRepo<T> {
 
   findById?(model: new () => T, data: string | number): Promise<T>;
 
-  findOne(
+  findOne?(
     model: new () => T,
     data: Record<string, unknown> | string,
   ): Promise<T>;
-
   deleteById?(model: new () => T, data: string | number): Promise<DeleteResult>;
-
-  runQuery(query: string): Promise<Array<Record<string, unknown>>>;
 
   findAll?(
     model: new () => T,
     data: Record<string, unknown> | string,
   ): Promise<T[]>;
+
+  runQuery(query: string): Promise<Array<Record<string, unknown>>>;
 }

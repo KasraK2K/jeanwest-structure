@@ -1,11 +1,14 @@
 import { IsString } from 'class-validator';
 
-export class authenticateDto {
+export class AuthenticateDto {
   @IsString()
   mobile: string;
+
+  @IsString()
+  pin: string;
 }
 
-export class authenticateResponseDto {
+export class AuthenticateResponseDto {
   account: Account;
   readonly token: string;
 }

@@ -1,4 +1,3 @@
-import { ErpProductDto } from '../dto/erp/erp.dto';
 import { RawErpProductDto } from '../dto/erp/raw-erp.dto';
 import { FilterDto } from '../dto/filter.dto';
 import { ProductDto } from '../dto/product.dto';

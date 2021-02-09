@@ -1,20 +1,22 @@
-import { BadRequestException } from '@nestjs/common';
+import { BadRequestException, CACHE_MANAGER } from '@nestjs/common';
 import { Inject, Injectable } from '@nestjs/common';
 import { ACCOUNT_REPO } from 'src/user/common/constant/repository.const';
+import { IAccountSrevice } from '../interface/address-service.interface';
+
 import {
   Account,
-  authenticateDto,
-  authenticateResponseDto,
+  AuthenticateDto,
+  AuthenticateResponseDto,
 } from '../dto/account.dto';
-import { AccountSrevice } from '../interface/address-service.interface';
-
 import { sign } from 'jsonwebtoken';
+import { Cache } from 'cache-manager';
 
 @Injectable()
-export class AccountService implements AccountSrevice {
+export class AccountService implements IAccountSrevice {
   constructor(
     @Inject(ACCOUNT_REPO)
     private readonly repository,
+    @Inject(CACHE_MANAGER) private cache: Cache,
   ) {}
 
   async getAccounts(): Promise<Account[]> {
@@ -35,7 +37,7 @@ export class AccountService implements AccountSrevice {
     }
   }
 
-  async getAccountByMobile(body: authenticateDto): Promise<Account> {
+  async getAccountByMobile(body: AuthenticateDto): Promise<Account> {
     try {
       const account = await this.repository.findOne({ mobile: body.mobile });
       return account;
@@ -44,7 +46,7 @@ export class AccountService implements AccountSrevice {
     }
   }
 
-  async createAccount(body: authenticateDto): Promise<Account> {
+  async createAccount(body: AuthenticateDto): Promise<Account> {
     try {
       return this.repository.create({ mobile: body.mobile });
     } catch (err) {
@@ -53,20 +55,23 @@ export class AccountService implements AccountSrevice {
   }
 
   // Authentication
-  async authenticate(body: authenticateDto): Promise<authenticateResponseDto> {
+  // changed after maytham's changes
+  async authentication(
+    body: AuthenticateDto,
+  ): Promise<AuthenticateResponseDto> {
     try {
       const mobile = `0${body.mobile.slice(-10)}`;
       const checkMobileInput = this.checkMobile(mobile);
       if (checkMobileInput.length === 0)
         throw new BadRequestException('Invalid phone Number');
-
-      let account = await this.getAccountByMobile(body);
-
-      if (!account) account = await this.createAccount(body);
-
-      const token = sign({ id: account.id }, process.env.TOKEN_SECRET);
-
-      return { account, token };
+      const currectPin: string = await this.cache.get(checkMobileInput[0]);
+      if (currectPin === body.pin) {
+        let account = await this.getAccountByMobile(body);
+        if (!account) account = await this.createAccount(body);
+        const token = sign({ id: account.id }, process.env.TOKEN_SECRET);
+        await this.cache.set(checkMobileInput[0], token, { ttl: 86400 });
+        return { account, token };
+      }
     } catch (err) {
       throw err;
     }
