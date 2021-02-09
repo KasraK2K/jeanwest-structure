@@ -16,7 +16,7 @@ export class AuthGuard implements CanActivate {
         token,
         this.configService.get<string>('tokenSecret'),
       );
-      request.body.id = decoded['id'];
+      request.body.userAccountId = decoded['id'];
       //todo raise error 401
       return request;
     }

@@ -3,7 +3,7 @@ import { AuthGuard } from 'src/gateway/common/guard/auth.guard';
 import { OTP_SERVICE } from '../common/constant/otp.const';
 
 @Controller('otp')
-@UseGuards(AuthGuard)
+// @UseGuards(AuthGuard)
 export class OtpController {
   constructor(
     @Inject(OTP_SERVICE)
