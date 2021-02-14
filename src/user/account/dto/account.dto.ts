@@ -2,7 +2,7 @@ import { IsString } from 'class-validator';
 
 export class AuthenticateDto {
   @IsString()
-  mobile: string;
+  phoneNumber: string;
 
   @IsString()
   pin: string;
