@@ -39,7 +39,7 @@ export class AccountService implements IAccountSrevice {
 
   async getAccountByMobile(body: AuthenticateDto): Promise<Account> {
     try {
-      const account = await this.repository.findOne({ mobile: body.mobile });
+      const account = await this.repository.findOne({ mobile: body.phoneNumber });
       return account;
     } catch (err) {
       throw err;
@@ -48,7 +48,7 @@ export class AccountService implements IAccountSrevice {
 
   async createAccount(body: AuthenticateDto): Promise<Account> {
     try {
-      return this.repository.create({ mobile: body.mobile });
+      return this.repository.create({ mobile: body.phoneNumber });
     } catch (err) {
       throw err;
     }
@@ -60,7 +60,7 @@ export class AccountService implements IAccountSrevice {
     body: AuthenticateDto,
   ): Promise<AuthenticateResponseDto> {
     try {
-      const mobile = `0${body.mobile.slice(-10)}`;
+      const mobile = `0${body.phoneNumber.slice(-10)}`;
       const checkMobileInput = this.checkMobile(mobile);
       if (checkMobileInput.length === 0)
         throw new BadRequestException('Invalid phone Number');
