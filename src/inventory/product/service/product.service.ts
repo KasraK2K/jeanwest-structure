@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { plainToClass } from 'class-transformer';
-import { PRODUCT_TYPEORM_REPO } from 'src/inventory/common/constant/repository.const';
+import { PRODUCT_TYPEORM_REPO } from '../constant/product.const';
 import { RawErpProductDto } from '../dto/erp/raw-erp.dto';
 import { FilterDto } from '../dto/filter.dto';
 import { ProductDto } from '../dto/product.dto';
