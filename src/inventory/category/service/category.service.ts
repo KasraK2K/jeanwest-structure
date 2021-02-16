@@ -11,43 +11,44 @@ export class CategoryService implements ICategorySrevice {
   ) {}
 
   public async list(): Promise<ICategory> {
-    const result: ICategory = null;
-    result.group = await this.group();
-    result.subGroup = await this.subGroup();
-    result.size = await this.size();
-    result.gender = await this.gender();
-    result.ageGroup = await this.ageGroup();
-    result.colorFamily = await this.colorFamily();
+    const result: ICategory = {
+      group: await this.group(),
+      subGroup: await this.subGroup(),
+      size: await this.size(),
+      gender: await this.gender(),
+      ageGroup: await this.ageGroup(),
+      colorFamily: await this.colorFamily(),
+    };
     return result;
   }
 
   private async size(): Promise<ISize> {
     const result = await this.repository.findOne({ name: 'size' });
-    return result;
+    return result.details;
   }
 
   private async gender(): Promise<string[]> {
     const result = await this.repository.findOne({ name: 'gender' });
-    return result;
+    return result.details;
   }
 
   private async ageGroup(): Promise<string[]> {
     const result = await this.repository.findOne({ name: 'ageGroup' });
-    return result;
+    return result.details;
   }
 
   private async colorFamily(): Promise<string[]> {
     const result = await this.repository.findOne({ name: 'colorFamily' });
-    return result;
+    return result.details;
   }
 
   private async group(): Promise<string[]> {
     const result = await this.repository.findOne({ name: 'group' });
-    return result;
+    return result.details;
   }
 
   private async subGroup(): Promise<ISubGroup> {
     const result = await this.repository.findOne({ name: 'subGroup' });
-    return result;
+    return result.details;
   }
 }

@@ -14,6 +14,7 @@ import { erpControllers } from './erp/controller/shared.controller';
 import { erpProviders } from './erp/provider/shared.provider';
 import { userControllers } from './user/controller/shared.controller';
 import { userProviders } from './user/provider/shared.provider';
+import { gatewayProviders } from './provider/gateway.provider';
 
 @Module({
   imports: [InventoryModule, UserModule, ERPModule, BranchModule, OtpModule],
@@ -25,6 +26,7 @@ import { userProviders } from './user/provider/shared.provider';
     ...otpControllers,
   ],
   providers: [
+    ...gatewayProviders,
     ...inventoryProviders,
     ...userProviders,
     ...erpProviders,

@@ -1,5 +1,6 @@
 import { Controller, Get, Inject } from '@nestjs/common';
 import { INVENTORY_CATEGORY_SERVICE } from '../common/constant/inventory.const';
+import { ResCategoryDto } from '../dto/response-category.dto';
 
 @Controller('category')
 export class CategoryController {
@@ -9,7 +10,7 @@ export class CategoryController {
   ) {}
 
   @Get('list')
-  async list(): Promise<any> {
+  async list(): Promise<ResCategoryDto> {
     return this.service.list();
   }
 }
