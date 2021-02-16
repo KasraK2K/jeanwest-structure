@@ -12,14 +12,12 @@ export class ProductRepository {
     @Inject(JW_TYPEORM_REPO) private baseRepository: IRepo<Product>,
     @Inject(JW_PG_REPO) private secondRepository: IRepo<Product>,
   ) {}
+
   create(data: Record<string, unknown>) {
     return this.baseRepository.create(Product, data);
   }
+
   findOne(data: Record<string, unknown>) {
-    // return this.secondRepository.findOne(
-    //   Product,
-    //   `SELECT * from product where barcode='61173101J-2730-S'`,
-    // );
     return this.baseRepository.findOne(Product, data);
   }
 }
