@@ -12,6 +12,7 @@ export class AuthenticateResponseDto {
   account: Account;
   readonly token: string;
 }
+
 export class Account {
   id: number;
   mobile: string;

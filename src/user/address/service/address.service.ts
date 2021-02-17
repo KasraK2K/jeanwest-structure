@@ -1,5 +1,14 @@
-import { BadRequestException, Inject, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Inject,
+  Injectable,
+  ForbiddenException,
+} from '@nestjs/common';
 import { ADDRESS_REPO } from 'src/user/common/constant/repository.const';
+import {
+  USER_ACCOUNT_SERVICE,
+  USER_PERSON_SERVICE,
+} from 'src/user/common/constant/service.const';
 import { DeleteResult } from 'typeorm';
 import {
   CreateAddressDto,
@@ -16,16 +25,43 @@ export class AddressService implements AddressSrevice {
   constructor(
     @Inject(ADDRESS_REPO)
     private readonly repository,
+
+    @Inject(USER_ACCOUNT_SERVICE)
+    private readonly accountService,
+
+    @Inject(USER_PERSON_SERVICE)
+    private readonly personService,
   ) {}
 
   async createAddress(body: CreateAddressDto): Promise<AddressResponseDto> {
     try {
+      if (!body.userAccountId)
+        throw new ForbiddenException('You are not logged in!');
+      const person = await this.personService.getPersonByAccountId(
+        body.userAccountId,
+      );
+      if (!person) throw new ForbiddenException('No Person found!');
+      body.person = person;
       return this.repository.create(body);
     } catch (err) {
       throw err;
     }
   }
 
+  async getMyAddress(body): Promise<AddressResponseDto> {
+    try {
+      if (!body.userAccountId)
+        throw new ForbiddenException('You are not logged in!');
+      const person = await this.personService.getPersonByAccountId(
+        body.userAccountId,
+      );
+      return this.repository.findMany({ where: { personId: person.id } });
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  //? For development purposes
   async getAddress(body: GetByIdDto): Promise<AddressResponseDto> {
     try {
       const { id }: { id: string | number } = body;
@@ -35,6 +71,7 @@ export class AddressService implements AddressSrevice {
     }
   }
 
+  //? For development purposes
   async getAddresses(): Promise<AddressResponseDto[]> {
     return this.repository.findMany();
   }
@@ -60,7 +97,7 @@ export class AddressService implements AddressSrevice {
       isUser,
     } = body;
 
-    if (!id)
+    if (!body.userAccoutnId)
       throw new BadRequestException(
         'It is not a valid address. It does not have an id!',
       );
