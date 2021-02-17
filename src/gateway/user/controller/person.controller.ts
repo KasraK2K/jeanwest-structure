@@ -6,6 +6,7 @@ import { PersonService } from '../../../user/person/service/person.service';
 
 import {
   CreatePersonDto,
+  GetMyPersonDto,
   PersonResponseDto,
 } from '../../../user/person/dto/person.dto';
 
@@ -26,9 +27,20 @@ export class PersonController {
     }
   }
 
+  // @UseGuards(AuthGuard)
+  @Get('myPerson')
+  async getMyPerson(@Body() body: GetMyPersonDto): Promise<PersonResponseDto> {
+    try {
+      return this.personService.getMyPerson(body);
+    } catch (err) {
+      return err;
+    }
+  }
+
+  //? Development purposes
   @Get('persons')
   async getPersons(
-    @Body() body: CreatePersonDto,
+    @Body() body: Record<string, never>,
   ): Promise<Array<PersonResponseDto>> {
     try {
       return this.personService.getPersons();
@@ -37,6 +49,7 @@ export class PersonController {
     }
   }
 
+  //? Development purposes
   @Post('person')
   async getPerson(@Body() body: CreatePersonDto): Promise<PersonResponseDto> {
     try {

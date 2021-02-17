@@ -1,6 +1,9 @@
 import { IsString, IsDate, IsBoolean } from 'class-validator';
 import { Address } from 'src/user/common/entity/typeorm/address.entity.jw';
 
+export class GetMyPersonDto {
+  userAccountId: string;
+}
 export class CreatePersonDto {
   @IsString()
   firstName: string;

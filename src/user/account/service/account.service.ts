@@ -1,10 +1,15 @@
-import { BadRequestException, CACHE_MANAGER } from '@nestjs/common';
+import {
+  BadRequestException,
+  CACHE_MANAGER,
+  ForbiddenException,
+} from '@nestjs/common';
 import { Inject, Injectable } from '@nestjs/common';
 import { ACCOUNT_REPO } from 'src/user/common/constant/repository.const';
 import { IAccountSrevice } from '../interface/address-service.interface';
 
 import {
-  Account,
+  AccountDto,
+  GetMyAccountDto,
   AuthenticateDto,
   AuthenticateResponseDto,
 } from '../dto/account.dto';
@@ -18,6 +23,16 @@ export class AccountService implements IAccountSrevice {
     private readonly repository,
     @Inject(CACHE_MANAGER) private cache: Cache,
   ) {}
+
+  async getMyAccount(body: GetMyAccountDto): Promise<Account> {
+    try {
+      if (!body.userAcccoutnId)
+        throw new ForbiddenException('You are not logged in!');
+      return this.getAccountById({ id: body.userAcccoutnId });
+    } catch (err) {
+      throw err;
+    }
+  }
 
   async getAccounts(): Promise<Account[]> {
     try {
