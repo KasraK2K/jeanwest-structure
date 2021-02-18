@@ -37,9 +37,9 @@ export class AddressService implements AddressSrevice {
     try {
       if (!body.userAccountId)
         throw new ForbiddenException('You are not logged in!');
-      const person = await this.personService.getPersonByAccountId(
-        body.userAccountId,
-      );
+      const person = await this.personService.getPersonByAccountId({
+        id: body.userAccountId,
+      });
       if (!person) throw new ForbiddenException('No Person found!');
       body.person = person;
       return this.repository.create(body);
@@ -52,9 +52,9 @@ export class AddressService implements AddressSrevice {
     try {
       if (!body.userAccountId)
         throw new ForbiddenException('You are not logged in!');
-      const person = await this.personService.getPersonByAccountId(
-        body.userAccountId,
-      );
+      const person = await this.personService.getPersonByAccountId({
+        id: body.userAccountId,
+      });
       return this.repository.findMany({ where: { personId: person.id } });
     } catch (err) {
       throw err;

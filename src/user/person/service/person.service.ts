@@ -19,7 +19,7 @@ export class PersonService implements PersonSrevice {
   async createPerson(body: CreatePersonDto): Promise<CreatePersonResponseDto> {
     try {
       if (!body.userAccountId)
-        body.userAccountId = '05bd2880-3604-471b-bff6-8eb11bb75d7f';
+        throw new ForbiddenException('You are not logged in!');
 
       body.accountId = body.userAccountId;
 

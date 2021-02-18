@@ -20,5 +20,5 @@ export class AccountDto {
 }
 
 export class GetMyAccountDto {
-  userAcccoutnId: string;
+  userAccountId: string;
 }

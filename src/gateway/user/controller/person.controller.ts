@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Inject, Post } from '@nestjs/common';
+import { Body, Controller, Get, Inject, Post, UseGuards } from '@nestjs/common';
 
 import { USER_PERSON_SERVICE } from 'src/user/common/constant/service.const';
 
@@ -9,6 +9,7 @@ import {
   GetMyPersonDto,
   PersonResponseDto,
 } from '../../../user/person/dto/person.dto';
+import { AuthGuard } from 'src/gateway/common/guard/auth.guard';
 
 @Controller('person')
 export class PersonController {
@@ -17,7 +18,7 @@ export class PersonController {
     private readonly personService: PersonService,
   ) {}
 
-  // @UseGuards(AuthGuard)
+  @UseGuards(AuthGuard)
   @Post('createPerson')
   async createPerson(@Body() body: CreatePersonDto): Promise<CreatePersonDto> {
     try {
@@ -27,7 +28,7 @@ export class PersonController {
     }
   }
 
-  // @UseGuards(AuthGuard)
+  @UseGuards(AuthGuard)
   @Get('myPerson')
   async getMyPerson(@Body() body: GetMyPersonDto): Promise<PersonResponseDto> {
     try {

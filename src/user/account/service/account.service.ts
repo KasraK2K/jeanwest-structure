@@ -26,9 +26,9 @@ export class AccountService implements IAccountSrevice {
 
   async getMyAccount(body: GetMyAccountDto): Promise<Account> {
     try {
-      if (!body.userAcccoutnId)
+      if (!body.userAccountId)
         throw new ForbiddenException('You are not logged in!');
-      return this.getAccountById({ id: body.userAcccoutnId });
+      return this.getAccountById({ id: body.userAccountId });
     } catch (err) {
       throw err;
     }
