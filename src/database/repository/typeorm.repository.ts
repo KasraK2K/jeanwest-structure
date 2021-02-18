@@ -2,6 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { IRepo } from '../../common/interface/repository.interface';
 import { DeleteResult, EntityManager, EntityRepository } from 'typeorm';
 import { plainToClass } from 'class-transformer';
+import { IPaginationOption } from 'src/common/interface/pagination-option.interface';
+import { IPaginate } from 'src/common/interface/pagination.interface';
+import { Pagination } from '../pagination/typeorm.pagination';
 
 @Injectable()
 @EntityRepository()
@@ -43,4 +46,29 @@ export class TypeormRepository<T> implements IRepo<T> {
   runQuery(query: string): Promise<Array<Record<string, unknown>>> {
     return this.manager.query(query);
   }
+
+  // async paginate(
+  //   model: new () => T,
+  //   data: Record<string, unknown>,
+  //   options: IPaginationOption,
+  // ): Promise<IPaginate<T>> {
+  //   options.page = options.page > 0 ? options.page - 1 : 0;
+  //   options.limit = options.limit > 0 ? options.limit : 5;
+  //   options.sort = options.sort ? options.sort : { eq: { created_at: 'DESC' } };
+  //   const [items, total] = await this.manager.findAndCount(model, {
+  //     where: data,
+  //     // sort: options.sort,
+  //     take: options.limit,
+  //     skip: options.page,
+  //   });
+  //   const paginateResult = plainToClass(model, items);
+  //   const result = new Pagination<T>({
+  //     result: paginateResult,
+  //     page: options.page,
+  //     total,
+  //     next: total > options.page * options.limit,
+  //     previous: options.page > 1,
+  //   });
+  //   return result;
+  // }
 }

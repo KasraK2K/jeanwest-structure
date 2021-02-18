@@ -21,7 +21,7 @@ export const banimodeProductTransformer = (context) => {
       size_chart_support: itm['size_chart_support'],
     };
     const transformed: BanimodeProductDto = {
-      BM_productCode: itm['product_id'],
+      banimodeCode: itm['product_id'],
       banimodeDetails: banimodeDatails,
     };
     finalData.push(transformed);

@@ -14,6 +14,7 @@ export const erpProductTransformer = (context) => {
       cutting: itm['ProductCutting'],
       gender: itm['SexTitle'],
       group: itm['ProductGroup'],
+      subGroup: itm['ProductCategory'],
       material: itm['MaterialTitle'],
       name: itm['ProductNameEN'],
       nameFA: itm['ProductName'],
@@ -26,12 +27,12 @@ export const erpProductTransformer = (context) => {
       mainCode: itm['BarcodeMain_ID'],
       styleCode: itm['Style'],
       barcode: itm['Barcode'],
-      SKU: itm['SKU'],
+      sku: itm['SKU'],
       basePrice: itm['OrgPrice'],
       salePrice: itm['SalePrice'],
       tsCode: itm['TSCodeID'],
       erpDetails: erpDatails,
-      barcodeList: itm['SearchCode'],
+      searchList: itm['SearchCode'],
     };
     finalData.push(transformed);
   });

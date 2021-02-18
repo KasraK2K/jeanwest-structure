@@ -3,6 +3,7 @@ export interface IErpDetails {
   nameFA: string;
   brand: string;
   group: string;
+  subGroup: string;
   styleFA: string;
   color: string;
   colorFamily: string;
