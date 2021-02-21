@@ -1,4 +1,4 @@
-enum operators {
+export enum operators {
   equal = 'eq',
   greaterThan = 'gt',
   lessThan = 'lt',
@@ -7,7 +7,10 @@ enum operators {
 }
 
 export interface IFilter {
-  [key: string]: {
+  [key: string]: TOperator 
+}
+
+export type TOperator = {
     [key in operators]:
       | string
       | number
@@ -15,5 +18,4 @@ export interface IFilter {
       | number[]
       | boolean
       | boolean[];
-  };
-}
+};

@@ -24,13 +24,11 @@ export class PgRepository<T> implements IRepo<T> {
     option: IPaginationOption,
   ): Promise<IPaginate<T>> {
     data  = await jsonbFilter(data);
-    console.log(data);
     option.page = option.page ? option.page['eq'] > 0 ? option.page['eq'] - 1 : 0 : 0;
     option.limit = option.limit ? option.limit['eq'] > 0 ? option.limit['eq'] * 1 : 5 : 5;
     option.sort = option.sort ? option.sort['eq'] ? option.sort['eq'] : "created_at" : "created_at";
     option.ascent = option.ascent ? option.ascent['eq'] ? option.ascent['eq'] * 1 : 1 : 1;
-    console.log(option);
-    const query = sql.select(
+    const query = await sql.select(
       ['*'],
       model.name.toLowerCase(),
       data,
@@ -40,7 +38,7 @@ export class PgRepository<T> implements IRepo<T> {
       option.page,
     );
     console.log(query);
-    const totalQuery = sql.select(
+    const totalQuery = await sql.select(
       ['count(*)'],
       model.name.toLowerCase(),
       data,
