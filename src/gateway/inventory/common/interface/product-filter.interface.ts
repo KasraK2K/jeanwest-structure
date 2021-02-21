@@ -4,6 +4,7 @@ enum operators {
   lessThan = 'lt',
   greaterThanEqual = 'gte',
   lessThanEqual = 'lte',
+  contain = 'ct'
 }
 
 export interface IFilter {

@@ -4,18 +4,19 @@ export enum operators {
   lessThan = 'lt',
   greaterThanEqual = 'gte',
   lessThanEqual = 'lte',
+  contain = 'ct'
 }
 
 export interface IFilter {
-  [key: string]: TOperator 
+  [key: string]: TOperator;
 }
 
 export type TOperator = {
-    [key in operators]:
-      | string
-      | number
-      | string[]
-      | number[]
-      | boolean
-      | boolean[];
-};
+  [key in operators]:
+    | string
+    | number
+    | string[]
+    | number[]
+    | boolean
+    | boolean[];
+  };

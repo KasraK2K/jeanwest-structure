@@ -15,11 +15,13 @@ class Sql {
       ['lte', '<='],
       ['in', 'in'],
       ['not', '<>'],
+      ['ct', '@>'],
     ]);
+    const jsonbOP = key == 'banimodeDetails->>size' ? '->' : '->>';
     const conditionKey: string[] = key.split('->>');
     key =
       conditionKey.length > 1
-        ? `"${conditionKey[0]}"->>'${conditionKey[1]}'`
+        ? `"${conditionKey[0]}"${jsonbOP}'${conditionKey[1]}'`
         : `"${conditionKey[0]}"`;
     const op = Object.keys(operator);
     const conditionValue = Object.entries(operator)[0][1];
@@ -30,6 +32,10 @@ class Sql {
     return `${key} ${currentOperator} ${value}`;
   }
 
+  async convertToJsonbArray(jsonbValue: string): Promise<string>{
+    return `[{"name":"${jsonbValue}"}]`;
+  };
+
   async convertWhere(condition: IFilter): Promise<string> {
     let where = '';
     for (const [key, values] of Object.entries(condition)) {
@@ -37,8 +43,9 @@ class Sql {
         if (Array.isArray(value)) {
           let or = '';
           for (const cv of value) {
+            const newCv = key == "banimodeDetails->>size" ? await this.convertToJsonbArray(String(cv)) : cv;
             const conditionValue: { [x: string]: unknown } = {
-              [subKey]: cv,
+              [subKey]: newCv,
             };
             or +=
               or != ''
@@ -48,8 +55,10 @@ class Sql {
           }
           where = where + or;
         } else {
+          const newValue = key == "banimodeDetails->>size" ? await this.convertToJsonbArray(String(value)) : value;
+
           const conditionValue: { [x: string]: unknown } = {
-            [subKey]: value,
+            [subKey]: newValue,
           };
           where = await this.manageWhere(where, key, conditionValue);
         }
