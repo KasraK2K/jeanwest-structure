@@ -7,11 +7,11 @@ import {
 } from 'typeorm';
 import { Entity, Column, OneToMany } from 'typeorm';
 import { Address } from './address.entity.jw';
-import { Person } from './person.entity.jw';
+import { User } from './user.entity.jw';
 import { Datetime } from './timestamp.entity';
 
 @Entity()
-export class Account extends BaseEntity {
+export class UserAuth extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: number;
 
@@ -25,6 +25,6 @@ export class Account extends BaseEntity {
   datetime: Datetime;
 
   //? Relations
-  @OneToOne(() => Person, (person) => person.account)
-  person: Person;
+  @OneToOne(() => User, (user) => user.userAuth)
+  user: User;
 }

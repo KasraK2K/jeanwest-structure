@@ -5,36 +5,36 @@ import {
 } from '@nestjs/common';
 import { Inject, Injectable } from '@nestjs/common';
 import { ACCOUNT_REPO } from 'src/user/common/constant/repository.const';
-import { IAccountSrevice } from '../interface/address-service.interface';
+import { IUserAuthSrevice } from '../interface/user-auth.interface';
 
 import {
-  AccountDto,
-  GetMyAccountDto,
+  GetMyUserAuthDto,
   AuthenticateDto,
   AuthenticateResponseDto,
-} from '../dto/account.dto';
+} from '../dto/user-auth.dto';
 import { sign } from 'jsonwebtoken';
 import { Cache } from 'cache-manager';
+import { UserAuth } from 'src/user/common/entity/typeorm/user-auth.entity.jw';
 
 @Injectable()
-export class AccountService implements IAccountSrevice {
+export class UserAuthService implements IUserAuthSrevice {
   constructor(
     @Inject(ACCOUNT_REPO)
     private readonly repository,
     @Inject(CACHE_MANAGER) private cache: Cache,
   ) {}
 
-  async getMyAccount(body: GetMyAccountDto): Promise<Account> {
+  async getMyUserAuth(body: GetMyUserAuthDto): Promise<UserAuth> {
     try {
       if (!body.userAccountId)
         throw new ForbiddenException('You are not logged in!');
-      return this.getAccountById({ id: body.userAccountId });
+      return this.getUserAuthById({ id: body.userAccountId });
     } catch (err) {
       throw err;
     }
   }
 
-  async getAccounts(): Promise<Account[]> {
+  async getUserAuths(): Promise<UserAuth[]> {
     try {
       return this.repository.findMany();
     } catch (err) {
@@ -42,7 +42,7 @@ export class AccountService implements IAccountSrevice {
     }
   }
 
-  async getAccountById(body: { id: string | number }): Promise<Account> {
+  async getUserAuthById(body: { id: string | number }): Promise<UserAuth> {
     try {
       const account = await this.repository.findById(body.id);
       return account;
@@ -51,7 +51,7 @@ export class AccountService implements IAccountSrevice {
     }
   }
 
-  async getAccountByMobile(body: AuthenticateDto): Promise<Account> {
+  async getUserAuthByMobile(body: AuthenticateDto): Promise<UserAuth> {
     try {
       const account = await this.repository.findOne({
         mobile: body.phoneNumber,
@@ -62,7 +62,7 @@ export class AccountService implements IAccountSrevice {
     }
   }
 
-  async createAccount(body: AuthenticateDto): Promise<Account> {
+  async createUserAuth(body: AuthenticateDto): Promise<UserAuth> {
     try {
       return this.repository.create({ mobile: body.phoneNumber });
     } catch (err) {
@@ -84,8 +84,8 @@ export class AccountService implements IAccountSrevice {
       console.log({ currectPin });
       console.log(body.pin);
       if (currectPin === body.pin) {
-        let account = await this.getAccountByMobile(body);
-        if (!account) account = await this.createAccount(body);
+        let account = await this.getUserAuthByMobile(body);
+        if (!account) account = await this.createUserAuth(body);
         const token = sign({ id: account.id }, process.env.TOKEN_SECRET);
         await this.cache.set(checkMobileInput[0], token, { ttl: 86400 });
         console.log({ token, account });

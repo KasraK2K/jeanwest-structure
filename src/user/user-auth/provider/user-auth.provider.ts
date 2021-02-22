@@ -1,13 +1,13 @@
 import { JW_TYPEORM_REPO } from 'src/common/constant/database.const';
 import { USER_ACCOUNT_SERVICE } from 'src/user/common/constant/service.const';
 import { ACCOUNT_REPO } from '../../common/constant/repository.const';
-import { accountRepository } from '../repository/account.repository';
-import { AccountService } from '../service/account.service';
+import { accountRepository } from '../repository/user-auth.repository';
+import { UserAuthService } from '../service/user-auth.service';
 
-export const accountProviders = [
+export const userAuthProviders = [
   {
     provide: USER_ACCOUNT_SERVICE,
-    useClass: AccountService,
+    useClass: UserAuthService,
   },
   {
     provide: ACCOUNT_REPO,

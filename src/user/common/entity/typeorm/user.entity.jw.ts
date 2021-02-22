@@ -7,12 +7,12 @@ import {
   Timestamp,
 } from 'typeorm';
 import { Entity, Column, OneToMany } from 'typeorm';
-import { Account } from './account.entity.jw';
+import { UserAuth } from './user-auth.entity.jw';
 import { Address } from './address.entity.jw';
 import { Datetime } from './timestamp.entity';
 
 @Entity()
-export class Person extends BaseEntity {
+export class User extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -37,12 +37,12 @@ export class Person extends BaseEntity {
 
   //? Relations
   @Column({ nullable: true })
-  accountId: string;
+  userAuthId: string;
 
-  @OneToMany(() => Address, (address) => address.person)
+  @OneToMany(() => Address, (address) => address.user)
   address: Address;
 
-  @OneToOne(() => Account, (account) => account.person)
+  @OneToOne(() => UserAuth, (userAuth) => userAuth.user)
   @JoinColumn()
-  account: Account;
+  userAuth: UserAuth;
 }

@@ -4,7 +4,7 @@ import {
   USER_SERVICE,
 } from 'src/otp/common/constant/otp.const';
 import { SmsService } from 'src/sms/service/sms.service';
-import { AccountService } from 'src/user/account/service/account.service';
+import { UserAuthService } from 'src/user/user-auth/service/user-auth.service';
 import { UserModule } from 'src/user/user.module';
 import { OtpService } from '../service/otp.service';
 
@@ -19,6 +19,6 @@ export const otpProviders = [
   },
   {
     provide: USER_SERVICE,
-    useClass: AccountService,
+    useClass: UserAuthService,
   },
 ];

@@ -1,10 +1,10 @@
 import { Body, Controller, Get, Inject, Post, UseGuards } from '@nestjs/common';
 import { AuthGuard } from 'src/gateway/common/guard/auth.guard';
-import { AccountDto } from 'src/user/account/dto/account.dto';
+import { UserAuth } from 'src/user/common/entity/typeorm/user-auth.entity.jw';
 import { USER_ACCOUNT_SERVICE } from '../common/constant/user.const';
 
 @Controller('account')
-export class AccountController {
+export class UserAuthController {
   constructor(
     @Inject(USER_ACCOUNT_SERVICE)
     private readonly accountService,
@@ -18,10 +18,10 @@ export class AccountController {
   }
 
   @UseGuards(AuthGuard)
-  @Get('myAccount')
-  async getMyAccount(@Body() body: Record<string, never>): Promise<Account> {
+  @Get('myUserAuth')
+  async getMyUserAuth(@Body() body: Record<string, never>): Promise<UserAuth> {
     try {
-      return this.accountService.getMyAccount(body);
+      return this.accountService.getMyUserAuth(body);
     } catch (err) {}
   }
 }

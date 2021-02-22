@@ -1,9 +1,9 @@
-import { AccountController } from './account.controller';
+import { UserAuthController } from './user-auth.controller';
 import { AddressController } from './address.controller';
-import { PersonController } from './person.controller';
+import { UserController } from './user.controller';
 
 export const userControllers = [
   AddressController,
-  AccountController,
-  PersonController,
+  UserAuthController,
+  UserController,
 ];

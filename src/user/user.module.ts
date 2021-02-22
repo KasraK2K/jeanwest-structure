@@ -1,16 +1,16 @@
 import { CacheModule, Module } from '@nestjs/common';
 import { DatabaseModule } from 'src/database/database.module';
-import { accountProviders } from './account/provider/account.provider';
+import { userAuthProviders } from './user-auth/provider/user-auth.provider';
 import { addressProviders } from './address/provider/address.provider';
-import { personProviders } from './person/provider/person.provider';
+import { userProviders } from './user/provider/user.provider';
 
 @Module({
   imports: [DatabaseModule, CacheModule.register()],
-  providers: [...accountProviders, ...addressProviders, ...personProviders],
+  providers: [...userAuthProviders, ...addressProviders, ...userProviders],
   exports: [
-    ...accountProviders,
+    ...userAuthProviders,
     ...addressProviders,
-    ...personProviders,
+    ...userProviders,
     CacheModule.register(),
   ],
 })

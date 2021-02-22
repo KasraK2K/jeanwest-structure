@@ -7,7 +7,7 @@ import {
 import { ADDRESS_REPO } from 'src/user/common/constant/repository.const';
 import {
   USER_ACCOUNT_SERVICE,
-  USER_PERSON_SERVICE,
+  USER_USER_SERVICE,
 } from 'src/user/common/constant/service.const';
 import { DeleteResult } from 'typeorm';
 import {
@@ -27,21 +27,21 @@ export class AddressService implements AddressSrevice {
     private readonly repository,
 
     @Inject(USER_ACCOUNT_SERVICE)
-    private readonly accountService,
+    private readonly userAuthService,
 
-    @Inject(USER_PERSON_SERVICE)
-    private readonly personService,
+    @Inject(USER_USER_SERVICE)
+    private readonly userService,
   ) {}
 
   async createAddress(body: CreateAddressDto): Promise<AddressResponseDto> {
     try {
       if (!body.userAccountId)
         throw new ForbiddenException('You are not logged in!');
-      const person = await this.personService.getPersonByAccountId({
+      const user = await this.userService.getUserByAccountId({
         id: body.userAccountId,
       });
-      if (!person) throw new ForbiddenException('No Person found!');
-      body.person = person;
+      if (!user) throw new ForbiddenException('No User found!');
+      body.user = user;
       return this.repository.create(body);
     } catch (err) {
       throw err;
@@ -52,10 +52,10 @@ export class AddressService implements AddressSrevice {
     try {
       if (!body.userAccountId)
         throw new ForbiddenException('You are not logged in!');
-      const person = await this.personService.getPersonByAccountId({
+      const user = await this.userService.getUserByAccountId({
         id: body.userAccountId,
       });
-      return this.repository.findMany({ where: { personId: person.id } });
+      return this.repository.findMany({ where: { userId: user.id } });
     } catch (err) {
       throw err;
     }

@@ -1,4 +1,5 @@
 import { IsString } from 'class-validator';
+import { UserAuth } from 'src/user/common/entity/typeorm/user-auth.entity.jw';
 
 export class AuthenticateDto {
   @IsString()
@@ -9,7 +10,7 @@ export class AuthenticateDto {
 }
 
 export class AuthenticateResponseDto {
-  account: Account;
+  account: UserAuth;
   readonly token: string;
 }
 
@@ -19,6 +20,6 @@ export class AccountDto {
   email?: string;
 }
 
-export class GetMyAccountDto {
+export class GetMyUserAuthDto {
   userAccountId: string;
 }

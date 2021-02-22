@@ -1,10 +1,11 @@
-import { IsString, IsDate, IsBoolean } from 'class-validator';
+import { IsString, IsBoolean } from 'class-validator';
 import { Address } from 'src/user/common/entity/typeorm/address.entity.jw';
+import { UserAuth } from 'src/user/common/entity/typeorm/user-auth.entity.jw';
 
-export class GetMyPersonDto {
+export class GetMyUserDto {
   userAccountId: string;
 }
-export class CreatePersonDto {
+export class CreateUserDto {
   @IsString()
   firstName: string;
 
@@ -18,11 +19,11 @@ export class CreatePersonDto {
   @IsBoolean()
   gender: boolean;
 
-  accountId?: string;
-  userAccountId?: string;
+  userAuthId?: string;
+  userAccountId?: any;
 }
 
-export class PersonResponseDto {
+export class UserResponseDto {
   readonly id: number;
 
   readonly firstName: string;
@@ -40,14 +41,14 @@ export class PersonResponseDto {
 
   readonly addressId?: string[];
 
-  readonly accountId: string;
+  readonly userAuthId: string;
 
   readonly address?: Address;
 
-  readonly account: Account;
+  readonly userAuth: UserAuth;
 }
 
-export class CreatePersonResponseDto {
+export class CreateUserResponseDto {
   id: number;
 
   firstName: string;
@@ -65,9 +66,9 @@ export class CreatePersonResponseDto {
 
   addressId?: string[];
 
-  accountId: string;
+  userAuthId: string;
 
   address?: Address;
 
-  account: Account;
+  userAuth: UserAuth;
 }

@@ -6,7 +6,7 @@ import {
   IsBoolean,
   IsNumberString,
 } from 'class-validator';
-import { Person } from 'src/user/common/entity/typeorm/person.entity.jw';
+import { User } from 'src/user/common/entity/typeorm/user.entity.jw';
 import { Timestamp } from 'typeorm';
 
 export class GetByIdDto {
@@ -68,7 +68,7 @@ export class CreateAddressDto {
 
   userAccountId?: string;
 
-  person?: Person;
+  user?: User;
 }
 
 export class AddressResponseDto {
@@ -135,7 +135,7 @@ export class AddressResponseDto {
   };
 
   @IsString()
-  personId?: string;
+  userId?: string;
 }
 
 export class UpdateAddressDto {
@@ -208,7 +208,7 @@ export class UpdateAddressDto {
 
   @IsOptional()
   @IsString()
-  personId?: string;
+  userId?: string;
   userAccoutnId: any;
 }
 
