@@ -3,7 +3,7 @@ import { AuthGuard } from 'src/gateway/common/guard/auth.guard';
 import { UserAuth } from 'src/user/common/entity/typeorm/user-auth.entity.jw';
 import { USER_ACCOUNT_SERVICE } from '../common/constant/user.const';
 
-@Controller('account')
+@Controller('userAuth')
 export class UserAuthController {
   constructor(
     @Inject(USER_ACCOUNT_SERVICE)
