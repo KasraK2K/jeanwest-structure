@@ -6,7 +6,7 @@ import { IBanimodeDetails } from '../../interface/banimode-details.interface';
 export class BanimodeProductDto {
   @IsNumber()
   @IsDefined()
-  BM_productCode: number;
+  banimodeCode: number;
 
   @ValidateNested()
   @IsDefined()

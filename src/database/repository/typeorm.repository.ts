@@ -2,6 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { IRepo } from '../../common/interface/repository.interface';
 import { DeleteResult, EntityManager, EntityRepository } from 'typeorm';
 import { plainToClass } from 'class-transformer';
+import { IPaginationOption } from 'src/common/interface/pagination-option.interface';
+import { IPaginate } from 'src/common/interface/pagination.interface';
+import { Pagination } from '../pagination/typeorm.pagination';
 
 @Injectable()
 @EntityRepository()
