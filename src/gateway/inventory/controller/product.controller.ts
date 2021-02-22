@@ -1,7 +1,10 @@
 import { Body, Controller, Get, Inject, Query } from '@nestjs/common';
+import { plainToClass } from 'class-transformer';
 import {  } from 'src/common/interface/pagination-option.interface';
+import { IPaginate } from 'src/common/interface/pagination.interface';
 import { INVENTORY_PRODUCT_SERVICE } from '../common/constant/inventory.const';
-import { ReqProductFilterDto } from '../dto/request-product-filter.dto';
+import { ReqProductFilterDto } from '../dto/req-product-filter.dto';
+import { ResProductFilterDto } from '../dto/res-product-filter.dto';
 @Controller('product')
 export class ProductController {
   constructor(
@@ -17,7 +20,9 @@ export class ProductController {
   @Get('list')
   async list(
     @Query() data: ReqProductFilterDto,
-  ): Promise<any> {
-    return this.service.paginateProducts(data.filter, data.option);
+  ): Promise<IPaginate<ResProductFilterDto>> {
+    const result = await this.service.paginateProducts(data.filter, data.option);
+    result.result = plainToClass(ResProductFilterDto, result.result);
+    return result;
   }
 }
