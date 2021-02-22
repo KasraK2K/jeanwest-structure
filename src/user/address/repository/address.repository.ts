@@ -13,8 +13,8 @@ export class addressRepository {
     return this.baseRepository.create(Address, data);
   }
 
-  findMany(): Promise<Array<Address>> {
-    return this.baseRepository.findMany(Address);
+  findMany(data?: Record<string, unknown>): Promise<Array<Address>> {
+    return this.baseRepository.findMany(Address, data);
   }
 
   findById(data: string | number): Promise<Address> {

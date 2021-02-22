@@ -19,8 +19,11 @@ export class TypeormRepository<T> implements IRepo<T> {
     return plainToClass(model, result);
   }
 
-  async findMany(model: new () => T): Promise<Array<T>> {
-    const result = await this.manager.find(model);
+  async findMany(
+    model: new () => T,
+    data?: Record<string, unknown>,
+  ): Promise<Array<T>> {
+    const result = await this.manager.find(model, data);
     return plainToClass(model, result);
   }
 

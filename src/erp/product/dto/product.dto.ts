@@ -5,6 +5,8 @@ export class GetProductsWithFilterDto {
 
   readonly PageNumber: number;
 
+  readonly TSCodeID?: number;
+
   OrderBy: number;
 }
 

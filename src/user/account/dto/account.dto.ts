@@ -12,8 +12,13 @@ export class AuthenticateResponseDto {
   account: Account;
   readonly token: string;
 }
-export class Account {
+
+export class AccountDto {
   id: number;
   mobile: string;
   email?: string;
+}
+
+export class GetMyAccountDto {
+  userAccountId: string;
 }

@@ -1,4 +1,5 @@
 export const getProductsWithtfilterQuery = ({
+  TSCodeID = 0,
   PageNumber,
   PerPage,
   OrderBy,
@@ -28,6 +29,7 @@ export const getProductsWithtfilterQuery = ({
     ProductCategory,
   },
 }) => `
+Declare @TSCodeID BigInt = ${TSCodeID}
 Declare @Page int = ${PageNumber}
 Declare @PerPage int = ${PerPage}
 Declare @BarcodeMain_ID nvarchar(30)  ${BarcodeMain_ID} --951
@@ -73,34 +75,35 @@ TotalCount = COUNT(*) OVER()
 ,PS.StyleTitleEN AS ProductStyletitle
 ,PS.StyleTitle AS ProductStyleTitleEN
 ,PM.MaterialTitle 
-,P.SexTitle
+,Case When REPLACE(P.SexTitle,'*','') IN ('Girls','Women') THEN 'Women' ELSE 
+Case When REPLACE(P.SexTitle,'*','') IN ('Boys','Men') THEN 'MEN' ELSE 
+'Unisex' END END AS SexTitle
 ,B.SeasonCode
-,P.SeasonCode2
+,Replace(P.SeasonCode2,'*','') AS SeasonCode2
 ,P.ProductAge
 ,P.ProductCutting
 ,PA.EndUserPrice AS OrgPrice
 ,PA.SalePrice
-,CB.Title AS Brand
-,CB0.Title AS ProductGroup
+,CB.BrandGroupName AS Brand
+,CD.GroupDepartmentName AS ProductGroup
 ,CD.Title2 AS ProductCategory
 ,Cast(B.TSCode AS bigint) TSCodeID
 ,Bs.SearchCode
-from Product.ProductMain AS P
-INNER JOIN Product.BarcodeMain AS B ON B.ProductMain_ID=P.ProductMain_ID
-LEFT JOIN Product.BarcodeMainInfo AS BI ON BI.BarcodeMain_ID=B.BarcodeMain_ID
-INNER JOIN Product.CodingBrand AS CB ON CB.CodingBrand_ID=P.CodingBrand_ID
-INNER JOIN Product.CodingBrand AS CB0 ON CB0.CodingBrand_ID=CB.CodingParentBrand_ID
-INNER JOIN Product.CodingDepartment AS CD ON CD.CodingDepartment_ID=P.CodingDepartment_ID
-INNER JOIN Product.AccountingInfo AS PA ON PA.ProductMain_ID=P.ProductMain_ID
-LEFT JOIN Product.Categories AS PC ON PC.Categories_ID=P.Categories_ID
-LEFT JOIN Product.Styles AS PS ON PS.Styles_ID=P.Styles_ID
-LEFT JOIN Product.Material AS PM ON PM.Material_ID=P.Material_ID
+from Product.ProductMain AS P with(nolock)
+INNER JOIN Product.BarcodeMain AS B with(nolock) ON B.ProductMain_ID=P.ProductMain_ID
+LEFT JOIN Product.BarcodeMainInfo AS BI with(nolock) ON BI.BarcodeMain_ID=B.BarcodeMain_ID
+INNER JOIN Product.CodingBrand AS CB with(nolock) ON CB.CodingBrand_ID=P.CodingBrand_ID
+INNER JOIN Product.CodingDepartment AS CD with(nolock) ON CD.CodingDepartment_ID=P.CodingDepartment_ID
+INNER JOIN Product.AccountingInfo AS PA with(nolock) ON PA.ProductMain_ID=P.ProductMain_ID
+LEFT JOIN Product.Categories AS PC with(nolock) ON PC.Categories_ID=P.Categories_ID
+LEFT JOIN Product.Styles AS PS with(nolock) ON PS.Styles_ID=P.Styles_ID
+LEFT JOIN Product.Material AS PM with(nolock) ON PM.Material_ID=P.Material_ID
 left JOIN 
         (select BarcodeMain_ID,STRING_AGG(cast(SearchCode AS varchar(max)),',') AS SearchCode 
-        from  Product.BarcodeExteraSearchInfo 
+        from  Product.BarcodeExteraSearchInfo  with(nolock)
         Group by BarcodeMain_ID) AS Bs 
 ON Bs.BarcodeMain_ID=B.BarcodeMain_ID
-where B.IsDeleted=0 and P.IsDeleted=0 and CB.CodingParentBrand_ID=9620
+where B.IsDeleted=0 and P.IsDeleted=0 and CB.CodingParentBrand_ID=9620  
 
 )
 
@@ -130,6 +133,7 @@ and (@SalePrice IS NULL OR SalePrice = @SalePrice)
 and (@Brand IS NULL OR Brand = @Brand)
 and (@ProductGroup IS NULL OR ProductGroup = @ProductGroup)
 and (@ProductCategory IS NULL OR ProductCategory = @ProductCategory)
+and (@TSCodeID IS NULL OR TSCodeID > @TSCodeID )
 
 ORDER BY (TSCodeID)
 

@@ -70,7 +70,7 @@ export class Address extends BaseEntity {
   datetime: Datetime;
 
   //? Relations
-  @Column({ nullable: true })
+  @Column()
   personId: string;
 
   @ManyToOne(() => Person, (person) => person.address)

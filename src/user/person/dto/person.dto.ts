@@ -1,23 +1,73 @@
-import { Type } from 'class-transformer';
-import { IsString, IsDate, IsNumber, IsBoolean } from 'class-validator';
+import { IsString, IsDate, IsBoolean } from 'class-validator';
+import { Address } from 'src/user/common/entity/typeorm/address.entity.jw';
 
+export class GetMyPersonDto {
+  userAccountId: string;
+}
 export class CreatePersonDto {
   @IsString()
-  readonly mobile: string;
+  firstName: string;
+
+  @IsString()
+  lastName: string;
+
+  @IsString()
+  birthDate: Date;
+
+  //! Man : true, Woman: false
+  @IsBoolean()
+  gender: boolean;
+
+  accountId?: string;
+  userAccountId?: string;
 }
 
 export class PersonResponseDto {
-  @IsString()
-  readonly id: string;
+  readonly id: number;
 
-  @IsString()
-  readonly mobile: string;
+  readonly firstName: string;
+
+  readonly lastName: string;
+
+  readonly birthDate: Date;
+
+  //! Man : true, Woman: false
+  readonly gender: boolean;
+
+  readonly datetime: Date;
+
+  //? Relations
+
+  readonly addressId?: string[];
+
+  readonly accountId: string;
+
+  readonly address?: Address;
+
+  readonly account: Account;
 }
 
 export class CreatePersonResponseDto {
-  @IsString()
-  readonly id: string;
+  id: number;
 
-  @IsString()
-  readonly mobile: string;
+  firstName: string;
+
+  lastName: string;
+
+  birthDate: Date;
+
+  //! Man : true, Woman: false
+  gender: boolean;
+
+  datetime: Date;
+
+  //? Relations
+
+  addressId?: string[];
+
+  accountId: string;
+
+  address?: Address;
+
+  account: Account;
 }

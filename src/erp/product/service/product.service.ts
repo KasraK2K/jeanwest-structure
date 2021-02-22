@@ -28,7 +28,12 @@ export class ErpProductService implements ERP_ProductSrevice {
   public async getProductsWithtfilter(
     body: GetProductsWithFilterDto,
   ): Promise<GetProductsResponseDto[]> {
-    const { FiltersArr = [], PerPage = 20, PageNumber = 1 } = body;
+    const {
+      FiltersArr = [],
+      PerPage = 20,
+      PageNumber = 1,
+      TSCodeID = 0,
+    } = body;
 
     if (
       (body.PageNumber < 1,
@@ -70,6 +75,7 @@ export class ErpProductService implements ERP_ProductSrevice {
     );
 
     const query = getProductsWithtfilterQuery({
+      TSCodeID,
       PageNumber,
       PerPage,
       OrderBy,

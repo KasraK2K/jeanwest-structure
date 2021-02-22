@@ -32,10 +32,10 @@ export class Person extends BaseEntity {
   @Column(() => Datetime, { prefix: '' })
   datetime: Datetime;
 
-  //? Relations
-  @Column({ type: 'text', array: true, default: {} })
-  addressId: string[];
+  @Column({ default: true })
+  active: boolean;
 
+  //? Relations
   @Column({ nullable: true })
   accountId: string;
 
