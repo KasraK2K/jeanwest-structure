@@ -1,4 +1,4 @@
-import { accountProviders } from 'src/gateway/user/provider/account.provider';
+import { userAuthProviders } from 'src/gateway/user/provider/user-auth.provider';
 import { addressProviders } from './address.provider';
 
-export const userProviders = [...addressProviders, ...accountProviders];
+export const userProviders = [...addressProviders, ...userAuthProviders];
