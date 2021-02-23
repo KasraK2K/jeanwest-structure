@@ -8,14 +8,14 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { USER_ADDRESS_SERVICE } from 'src/user/common/constant/service.const';
-import { AddressService } from 'src/user/address/service/address.service';
+import { AddressService } from 'src/user/user/address/service/address.service';
 import {
   CreateAddressDto,
   GetByIdDto,
   AddressResponseDto,
   UpdateAddressDto,
   StaticGiftCardRsponseDto,
-} from 'src/user/address/dto/address.dto';
+} from 'src/user/user/address/dto/address.dto';
 import { DeleteResult } from 'typeorm';
 import { AuthGuard } from 'src/gateway/common/guard/auth.guard';
 

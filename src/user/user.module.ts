@@ -1,7 +1,7 @@
 import { CacheModule, Module } from '@nestjs/common';
 import { DatabaseModule } from 'src/database/database.module';
 import { userAuthProviders } from './user-auth/provider/user-auth.provider';
-import { addressProviders } from './address/provider/address.provider';
+import { addressProviders } from './user/address/provider/address.provider';
 import { userProviders } from './user/provider/user.provider';
 
 @Module({

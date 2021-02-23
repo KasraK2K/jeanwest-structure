@@ -1,12 +1,12 @@
 import { Body, Controller, Get, Inject, Post, UseGuards } from '@nestjs/common';
 import { AuthGuard } from 'src/gateway/common/guard/auth.guard';
 import { UserAuth } from 'src/user/common/entity/typeorm/user-auth.entity.jw';
-import { USER_ACCOUNT_SERVICE } from '../common/constant/user.const';
+import { USER_USER_AUTH_SERVICE } from '../common/constant/user.const';
 
 @Controller('userAuth')
 export class UserAuthController {
   constructor(
-    @Inject(USER_ACCOUNT_SERVICE)
+    @Inject(USER_USER_AUTH_SERVICE)
     private readonly accountService,
   ) {}
 

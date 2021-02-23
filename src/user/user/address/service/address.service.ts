@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 import { ADDRESS_REPO } from 'src/user/common/constant/repository.const';
 import {
-  USER_ACCOUNT_SERVICE,
+  USER_USER_AUTH_SERVICE,
   USER_USER_SERVICE,
 } from 'src/user/common/constant/service.const';
 import { DeleteResult } from 'typeorm';
@@ -26,7 +26,7 @@ export class AddressService implements AddressSrevice {
     @Inject(ADDRESS_REPO)
     private readonly repository,
 
-    @Inject(USER_ACCOUNT_SERVICE)
+    @Inject(USER_USER_AUTH_SERVICE)
     private readonly userAuthService,
 
     @Inject(USER_USER_SERVICE)
