@@ -1,7 +1,10 @@
 import { CACHE_MANAGER, Inject, Injectable } from '@nestjs/common';
 import { Cache } from 'cache-manager';
 import { generateCode } from 'src/common/util/randomCode.util';
-import { SMS_SERVICE, USER_SERVICE } from '../common/constant/otp.const';
+import {
+  SMS_SERVICE,
+  USER_CUSTOMER_SERVICE,
+} from '../common/constant/otp.const';
 import { IOtpSrevice } from '../common/interface/otp-service.interface';
 
 @Injectable()
@@ -10,7 +13,7 @@ export class OtpService implements IOtpSrevice {
     @Inject(CACHE_MANAGER) private cache: Cache,
     @Inject(SMS_SERVICE)
     private readonly sms,
-    @Inject(USER_SERVICE)
+    @Inject(USER_CUSTOMER_SERVICE)
     private readonly user,
   ) {}
   public async requestPin(phoneNumber: string): Promise<any> {

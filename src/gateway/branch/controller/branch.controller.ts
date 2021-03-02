@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Inject, Post } from '@nestjs/common';
-import { BRANCH_BRANCH_SERVICE } from 'src/branch/common/constant/service.const';
+import { BRANCH_BRANCH_SERVICE } from '../common/constant/branch.const';
 import { BranchService } from 'src/branch/branch/service/branch.service';
 import { GetBranchesResponseDto } from 'src/branch/branch/dto/branch.dto';
 

@@ -7,7 +7,7 @@ import { inventoryControllers } from './inventory/controller/shared.controller';
 import { inventoryProviders } from './inventory/provider/shared.provider';
 import { otpControllers } from './otp/controller/shared.controller';
 import { otpProviders } from './otp/provider/otp.provider';
-import { UserModule } from 'src/user/user.module';
+import { CustomerModule } from 'src/user/user.module';
 import { branchControllers } from './branch/controller/shared.controller';
 import { branchProviders } from './branch/provider/shared.provider';
 import { erpControllers } from './erp/controller/shared.controller';
@@ -16,7 +16,13 @@ import { userControllers } from './user/controller/shared.controller';
 import { userProviders } from './user/provider/shared.provider';
 
 @Module({
-  imports: [InventoryModule, UserModule, ERPModule, BranchModule, OtpModule],
+  imports: [
+    InventoryModule,
+    CustomerModule,
+    ERPModule,
+    BranchModule,
+    OtpModule,
+  ],
   controllers: [
     ...inventoryControllers,
     ...userControllers,

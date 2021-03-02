@@ -7,7 +7,7 @@ import {
 } from 'typeorm';
 import { Entity, Column, OneToMany } from 'typeorm';
 import { Address } from './address.entity.jw';
-import { User } from './user.entity.jw';
+// import { User } from './customer.entity.jw';
 import { Datetime } from './timestamp.entity';
 
 @Entity()
@@ -24,7 +24,7 @@ export class UserAuth extends BaseEntity {
   @Column(() => Datetime, { prefix: '' })
   datetime: Datetime;
 
-  //? Relations
-  @OneToOne(() => User, (user) => user.userAuth)
-  user: User;
+  // //? Relations
+  // @OneToOne(() => User, (user) => user.userAuth)
+  // user: User;
 }
