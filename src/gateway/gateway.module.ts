@@ -15,10 +15,21 @@ import { erpProviders } from './erp/provider/shared.provider';
 import { userControllers } from './user/controller/shared.controller';
 import { userProviders } from './user/provider/shared.provider';
 import { gatewayProviders } from './provider/gateway.provider';
+import { AuthModule } from 'src/auth/auth.module';
+import { authProviders } from './auth/provider/shared.provider';
+import { authControllers } from './auth/controller/shared.controller';
 
 @Module({
-  imports: [InventoryModule, UserModule, ERPModule, BranchModule, OtpModule],
+  imports: [
+    AuthModule,
+    InventoryModule,
+    UserModule,
+    ERPModule,
+    BranchModule,
+    OtpModule,
+  ],
   controllers: [
+    ...authControllers,
     ...inventoryControllers,
     ...userControllers,
     ...erpControllers,
@@ -27,6 +38,7 @@ import { gatewayProviders } from './provider/gateway.provider';
   ],
   providers: [
     ...gatewayProviders,
+    ...authProviders,
     ...inventoryProviders,
     ...userProviders,
     ...erpProviders,

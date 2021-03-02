@@ -11,8 +11,10 @@ import { sharedProviders } from './shared/provider.shared';
     JwtModule.registerAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
-        secret: configService.get<string>('jwtSecret'),
-        signOptions: { expiresIn: configService.get<string>('jwtExpiresIn') },
+        // secret: configService.get('jwtSecret'),
+        // signOptions: { expiresIn: configService.get('jwtExpiresIn') },
+        secret: '123455',
+        signOptions: { expiresIn: '60s' },
       }),
     }),
   ],
