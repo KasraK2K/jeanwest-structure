@@ -71,8 +71,8 @@ export class Address extends BaseEntity {
 
   //? Relations
   @Column()
-  userId: string;
+  customerId: string;
 
-  @ManyToOne(() => Customer, (user) => user.address)
-  user: Customer;
+  @ManyToOne(() => Customer, (customer) => customer.address)
+  customer: Customer;
 }

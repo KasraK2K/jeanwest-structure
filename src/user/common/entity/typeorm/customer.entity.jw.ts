@@ -5,35 +5,28 @@ import { Address } from './address.entity.jw';
 @Entity({ name: 'Customer' })
 export class Customer extends AbstractEntity {
   @Column()
-  email: string;
-
-  @Column()
   phoneNumber: string;
 
-  @Column()
+  @Column({ nullable: true })
+  email: string;
+
+  @Column({ nullable: true })
   firstName: string;
 
-  @Column()
+  @Column({ nullable: true })
   lastName: string;
 
   //! Man : true, Woman: false
-  @Column()
+  @Column({ nullable: true })
   gender: boolean;
 
-  @Column({ type: 'timestamp' })
+  @Column({ type: 'timestamp', nullable: true })
   loggedinAt: Timestamp;
 
-  @Column({ type: 'timestamp' })
+  @Column({ type: 'timestamp', nullable: true })
   birthDate: Timestamp;
 
   //? Relations
-  // @Column({ nullable: true })
-  // userAuthId: string;
-
-  @OneToMany(() => Address, (address) => address.user)
+  @OneToMany(() => Address, (address) => address.customer)
   address: Address;
-
-  // @OneToOne(() => UserAuth, (userAuth) => userAuth.user)
-  // @JoinColumn()
-  // userAuth: UserAuth;
 }
