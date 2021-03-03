@@ -6,7 +6,7 @@ import {
   PrimaryGeneratedColumn,
   BaseEntity,
 } from 'typeorm';
-import { User } from './user.entity.jw';
+import { Customer } from './customer.entity.jw';
 
 @Entity()
 export class Address extends BaseEntity {
@@ -71,8 +71,8 @@ export class Address extends BaseEntity {
 
   //? Relations
   @Column()
-  userId: string;
+  customerId: string;
 
-  @ManyToOne(() => User, (user) => user.address)
-  user: User;
+  @ManyToOne(() => Customer, (customer) => customer.address)
+  customer: Customer;
 }

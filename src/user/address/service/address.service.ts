@@ -5,10 +5,7 @@ import {
   ForbiddenException,
 } from '@nestjs/common';
 import { ADDRESS_REPO } from 'src/user/common/constant/repository.const';
-import {
-  USER_USER_AUTH_SERVICE,
-  USER_USER_SERVICE,
-} from 'src/user/common/constant/service.const';
+import { USER_CUSTOMER_SERVICE } from 'src/user/common/constant/service.const';
 import { DeleteResult } from 'typeorm';
 import {
   CreateAddressDto,
@@ -26,18 +23,15 @@ export class AddressService implements AddressSrevice {
     @Inject(ADDRESS_REPO)
     private readonly repository,
 
-    @Inject(USER_USER_AUTH_SERVICE)
-    private readonly userAuthService,
-
-    @Inject(USER_USER_SERVICE)
-    private readonly userService,
+    @Inject(USER_CUSTOMER_SERVICE)
+    private readonly customerService,
   ) {}
 
   async createAddress(body: CreateAddressDto): Promise<AddressResponseDto> {
     try {
       if (!body.userAccountId)
         throw new ForbiddenException('You are not logged in!');
-      const user = await this.userService.getUserByAccountId({
+      const user = await this.customerService.getUserByAccountId({
         id: body.userAccountId,
       });
       if (!user) throw new ForbiddenException('No User found!');
@@ -52,7 +46,7 @@ export class AddressService implements AddressSrevice {
     try {
       if (!body.userAccountId)
         throw new ForbiddenException('You are not logged in!');
-      const user = await this.userService.getUserByAccountId({
+      const user = await this.customerService.getUserByAccountId({
         id: body.userAccountId,
       });
       return this.repository.findMany({ where: { userId: user.id } });

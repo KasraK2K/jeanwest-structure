@@ -1,11 +1,10 @@
 import { IsString, IsBoolean } from 'class-validator';
 import { Address } from 'src/user/common/entity/typeorm/address.entity.jw';
-import { UserAuth } from 'src/user/common/entity/typeorm/user-auth.entity.jw';
 
-export class GetMyUserDto {
+export class GetMyCustomerDto {
   userAccountId: string;
 }
-export class CreateUserDto {
+export class CreateCustomerDto {
   @IsString()
   firstName: string;
 
@@ -23,7 +22,7 @@ export class CreateUserDto {
   userAccountId?: any;
 }
 
-export class UserResponseDto {
+export class CustomerResponseDto {
   readonly id: number;
 
   readonly firstName: string;
@@ -44,11 +43,9 @@ export class UserResponseDto {
   readonly userAuthId: string;
 
   readonly address?: Address;
-
-  readonly userAuth: UserAuth;
 }
 
-export class CreateUserResponseDto {
+export class CreateCustomerResponseDto {
   id: number;
 
   firstName: string;
@@ -69,6 +66,8 @@ export class CreateUserResponseDto {
   userAuthId: string;
 
   address?: Address;
+}
 
-  userAuth: UserAuth;
+export class GetCustomerDto {
+  condition: Record<string, unknown>;
 }
