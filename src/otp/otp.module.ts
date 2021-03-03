@@ -7,6 +7,6 @@ import { otpProviders } from './provider/otp.provider';
 @Module({
   imports: [ConfigModule, CacheModule.register(), SmsModule, CustomerModule],
   providers: [...otpProviders],
-  exports: [...otpProviders, ConfigModule, CacheModule.register()],
+  exports: [...otpProviders, ConfigModule, CacheModule],
 })
 export class OtpModule {}
