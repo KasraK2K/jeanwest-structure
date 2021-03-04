@@ -1,3 +1,3 @@
 import { addressProviders } from './address.provider';
 
-export const userProviders = [...addressProviders];
+export const customerProviders = [...addressProviders];

@@ -13,7 +13,7 @@ import { branchProviders } from './branch/provider/shared.provider';
 import { erpControllers } from './erp/controller/shared.controller';
 import { erpProviders } from './erp/provider/shared.provider';
 import { userControllers } from './user/controller/shared.controller';
-import { userProviders } from './user/provider/shared.provider';
+import { customerProviders } from './user/provider/shared.provider';
 
 @Module({
   imports: [
@@ -32,7 +32,7 @@ import { userProviders } from './user/provider/shared.provider';
   ],
   providers: [
     ...inventoryProviders,
-    ...userProviders,
+    ...customerProviders,
     ...erpProviders,
     ...branchProviders,
     ...otpProviders,

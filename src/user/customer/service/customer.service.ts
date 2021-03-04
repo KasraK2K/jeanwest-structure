@@ -32,8 +32,9 @@ export class CustomerService implements CustomerServiceInterface {
         },
       });
       if (checkCustomer) {
-        console.error('This userAuth has already a user registered to it');
-        return null;
+        throw new ForbiddenException(
+          'This userAuth has already a user registered to it',
+        );
       }
       return this.repository.create(body);
     } catch (err) {
