@@ -4,7 +4,7 @@ import { CUSTOMER_REPO } from '../../common/constant/repository.const';
 import { CustomerRepository } from '../repository/customer.repository';
 import { CustomerService } from '../service/customer.service';
 
-export const userProviders = [
+export const customerProviders = [
   {
     provide: USER_CUSTOMER_SERVICE,
     useClass: CustomerService,

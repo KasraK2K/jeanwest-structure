@@ -39,8 +39,8 @@ import { authControllers } from './auth/controller/shared.controller';
   providers: [
     ...gatewayProviders,
     ...authProviders,
-    ...inventoryProviders,
     ...userProviders,
+    ...inventoryProviders,
     ...erpProviders,
     ...branchProviders,
     ...otpProviders,
