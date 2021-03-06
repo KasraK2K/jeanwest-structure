@@ -9,7 +9,7 @@ import { sharedProviders } from './shared/provider.shared';
 @Module({
   imports: [
     CustomerModule,
-    CacheModule.register(),
+    CacheModule.register({}),
     PassportModule,
     JwtModule.registerAsync(jwtConfig),
   ],

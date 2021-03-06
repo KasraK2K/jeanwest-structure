@@ -1,6 +1,6 @@
-import { Controller, Get, Inject } from '@nestjs/common';
+import { Controller, Get, HttpCode, Inject, UseFilters } from '@nestjs/common';
 import { plainToClass } from 'class-transformer';
-import { HttpResDto } from 'src/gateway/common/dto/http-res.dto';
+import { AllExceptionsFilter } from 'src/gateway/common/filter/exception.filter';
 import { INVENTORY_CATEGORY_SERVICE } from '../common/constant/inventory.const';
 import { ResCategoryDto } from '../dto/response-category.dto';
 
@@ -11,8 +11,10 @@ export class CategoryController {
     private readonly service,
   ) {}
 
+  @UseFilters(AllExceptionsFilter)
   @Get('list')
-  async list(): Promise<ResCategoryDto & HttpResDto> {
+  @HttpCode(200)
+  async list(): Promise<ResCategoryDto> {
     const result = await this.service.list();
     return plainToClass(ResCategoryDto, result);
   }
