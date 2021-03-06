@@ -19,15 +19,15 @@ export class OtpService implements IOtpSrevice {
   public async requestPin(phoneNumber: string): Promise<any> {
     const lastPin: string = await this.cache.get(phoneNumber);
     if (lastPin) {
-      if (parseInt(lastPin)) return { data: 'too many attempts' };
+      if (parseInt(lastPin)) return { resKey: '429' };
       else {
         await this.cache.del(phoneNumber);
       }
     }
     const pin: string = await generateCode(5, 5);
     console.log({ pin });
-    await this.cache.set(phoneNumber, pin, { ttl: 30 });
+    await this.cache.set(phoneNumber, pin, { ttl: 120 });
     await this.sms.patternSend(phoneNumber, 'otp', [pin]);
-    return { data: 'message sent' };
+    return { resKey: '201' };
   }
 }

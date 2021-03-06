@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 import { Customer } from './customer.entity.jw';
 
-@Entity()
+@Entity({name:'Address'})
 export class Address extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;

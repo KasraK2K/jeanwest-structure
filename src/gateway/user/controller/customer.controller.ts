@@ -15,7 +15,7 @@ import { AuthGuard } from 'src/gateway/common/guard/auth.guard';
 export class CustomerController {
   constructor(
     @Inject(USER_CUSTOMER_SERVICE)
-    private readonly customerService: CustomerService,
+    private readonly customerService,
   ) {}
 
   @UseGuards(AuthGuard)
@@ -23,11 +23,7 @@ export class CustomerController {
   async createCustomer(
     @Body() body: CreateCustomerDto,
   ): Promise<CreateCustomerDto> {
-    try {
-      return this.customerService.createCustomer(body);
-    } catch (err) {
-      return err;
-    }
+    return this.customerService.createCustomer(body);
   }
 
   @UseGuards(AuthGuard)
@@ -36,7 +32,7 @@ export class CustomerController {
     @Body() body: GetMyCustomerDto,
   ): Promise<CustomerResponseDto> {
     try {
-      return this.customerService.getMyCustomer(body);
+      return this.customerService.getCustomer(body);
     } catch (err) {
       return err;
     }

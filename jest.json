@@ -10,4 +10,4 @@
     "!**/vendor/**"
     ],
     "coverageReporters": ["json", "lcov"]
-   }
+}

@@ -11,7 +11,7 @@ import { IBanimodeDetails } from '../../../product/interface/banimode-details.in
 import { AbstractEntity } from './abstract.entity';
 import { BANIMODE_INDEX, ERP_INDEX } from '../../constant/database-index.const';
 
-@Entity()
+@Entity({name:'Product'})
 export class Product extends AbstractEntity {
   @Column({ default: 0 })
   @IsOptional()

@@ -68,7 +68,10 @@ export class EnvironmentVariables {
   @IsString()
   SMS_API_KEY: string;
 
-  //Token
+  //Jwt
   @IsString()
-  TOKEN_SECRET: string;
+  JWT_SECRET: string;
+
+  @IsString()
+  JWT_EXPIRES_IN: string;
 }
