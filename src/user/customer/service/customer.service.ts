@@ -6,10 +6,10 @@ import {
   CustomerResponseDto,
   FilterCustomerDto,
 } from '../dto/customer.dto';
-import { CustomerServiceInterface } from '../interface/customer.interface';
+import { ICustomerService } from '../interface/customer.interface';
 
 @Injectable()
-export class CustomerService implements CustomerServiceInterface {
+export class CustomerService implements ICustomerService {
   constructor(
     @Inject(CUSTOMER_REPO)
     private readonly repository,
@@ -21,7 +21,7 @@ export class CustomerService implements CustomerServiceInterface {
     return this.repository.create(body);
   }
 
-  async getCustomer(body: FilterCustomerDto): Promise<CustomerResponseDto> {
+  async findCustomer(body: FilterCustomerDto): Promise<CustomerResponseDto> {
     return this.repository.findOne(body);
   }
 }

@@ -1,6 +1,6 @@
-import { Exclude } from "class-transformer";
+import { Exclude, Expose } from "class-transformer";
 
 export abstract class AbstractDto {
-    @Exclude()
-    statusCode: number;
+    @Expose()
+    statusCode?: number;
  }
