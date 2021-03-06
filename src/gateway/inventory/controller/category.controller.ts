@@ -1,4 +1,5 @@
 import { Controller, Get, Inject } from '@nestjs/common';
+import { plainToClass } from 'class-transformer';
 import { INVENTORY_CATEGORY_SERVICE } from '../common/constant/inventory.const';
 import { ResCategoryDto } from '../dto/response-category.dto';
 
@@ -11,6 +12,7 @@ export class CategoryController {
 
   @Get('list')
   async list(): Promise<ResCategoryDto> {
-    return this.service.list();
+    const result = await this.service.list();
+    return plainToClass(ResCategoryDto, result);
   }
 }

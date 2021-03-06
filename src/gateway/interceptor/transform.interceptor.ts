@@ -6,28 +6,17 @@ import {
 } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { IHttpRes } from '../common/interface/http.interface';
+import { responseTransformer } from './response.transformer';
 
-export interface Response<T> {
-  data: T;
-}
 
 @Injectable()
 export class TransformInterceptor<T>
-  implements NestInterceptor<T, Response<T>> {
+  implements NestInterceptor<T, IHttpRes> {
   intercept(
     context: ExecutionContext,
     next: CallHandler,
-  ): Observable<Response<T>> {
-    console.log(context);
-    return next
-      .handle()
-      .pipe(
-        map((data) => ({
-          data,
-          statusCode: data.statusCode,
-          message: data.message,
-          desc: data.desc,
-        })),
-      );
+  ): Observable<IHttpRes> {
+    return next.handle().pipe(map((data) => responseTransformer(data)));
   }
 }
