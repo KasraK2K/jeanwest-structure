@@ -30,10 +30,8 @@ export class CustomerAuthService {
     return null;
   }
 
-  async authentication(user: any) {
-    console.log(user);
-    const payload = { username: user.username, sub: user.userId };
-    console.log(payload);
+  async authentication(userId: any) {
+    const payload = { secret: userId };
     return {
       access_token: this.jwtService.sign(payload),
     };
