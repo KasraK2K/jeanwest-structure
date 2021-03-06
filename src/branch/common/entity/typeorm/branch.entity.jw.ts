@@ -8,7 +8,7 @@ import {
 import { Entity, Column, OneToMany } from 'typeorm';
 import { Datetime } from './timestamp.entity';
 
-@Entity()
+@Entity({name:'Branch'})
 export class Branch extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
