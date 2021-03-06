@@ -1,6 +1,6 @@
 import { Expose } from "class-transformer";
 
-export abstract class AbstractDto {
+export abstract class HttpResDto {
   @Expose()
-  response?: string;
+  resKey?: string;
 }

@@ -4,6 +4,7 @@ import { CustomerLocalAuthGuard } from 'src/gateway/common/guard/customer-local-
 import { CustomerJwtAuthGuard } from 'src/gateway/common/guard/customer-jwt-auth.guard';
 import { CUSTOMER_AUTH_SERVICE } from '../common/constant/auth.const';
 import { ResCustomerAuthDto } from '../dto/res-customer-auth.dto';
+import { HttpResDto } from 'src/gateway/common/dto/http-res.dto';
 
 @Controller('customer')
 export class CustomerAuthController {
@@ -14,7 +15,7 @@ export class CustomerAuthController {
 
   @UseGuards(CustomerLocalAuthGuard)
   @Post('auth')
-  async authentication(@Request() req): Promise<ResCustomerAuthDto> {
+  async authentication(@Request() req): Promise<ResCustomerAuthDto & HttpResDto> {
     const result = await this.service.authentication(req.user);
     result.statusCode = 200;
     result.result = plainToClass(ResCustomerAuthDto, result);
@@ -23,7 +24,7 @@ export class CustomerAuthController {
 
   @UseGuards(CustomerJwtAuthGuard)
   @Get('test')
-  async test(@Request() req): Promise<any> {
+  async test(@Request() req): Promise<any & HttpResDto> {
     console.log(req);
   }
 }

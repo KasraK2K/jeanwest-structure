@@ -33,7 +33,7 @@ export class CustomerAuthService {
   async authentication(userId: any) {
     const payload = { secret: userId };
     return {
-      access_token: this.jwtService.sign(payload),
+      accessToken: this.jwtService.sign(payload),
     };
   }
 }

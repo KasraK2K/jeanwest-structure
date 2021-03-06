@@ -1,10 +1,9 @@
 import { Exclude, Expose } from 'class-transformer';
 import { IsArray, ValidateNested } from 'class-validator';
-import { AbstractDto } from 'src/gateway/common/dto/abstract.dto';
 import { ISize, ISubGroup } from '../common/interface/category.interface';
 
 @Exclude()
-export class ResCategoryDto extends AbstractDto {
+export class ResCategoryDto {
   @Expose()
   @IsArray()
   group: string[];

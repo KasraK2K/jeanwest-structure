@@ -1,7 +1,5 @@
 import { Exclude, Expose } from 'class-transformer';
 import { IsArray, IsDate, IsNumber, IsString, ValidateNested } from 'class-validator';
-import { IPaginationOption } from 'src/common/interface/pagination-option.interface';
-import { IFilter } from 'src/gateway/inventory/common/interface/product-filter.interface';
 import { IBanimodeDetails } from '../common/interface/banimode-details.interface';
 import { IErpDetails } from '../common/interface/erp-details.interface';
 
