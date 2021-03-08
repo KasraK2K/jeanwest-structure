@@ -53,6 +53,7 @@ describe('CustomerService', () => {
 
   it('createCustomer should work', async () => {
     const data = {
+      id: 1,
       userAccountId: 1,
       firstName: 'Jafar',
       lastName: 'Jafari',
@@ -60,10 +61,16 @@ describe('CustomerService', () => {
       gender: true,
     };
     customer.push(await customerService.createCustomer(data));
+    const repo = new customerRepo();
+    console.log({ repo });
+    const create = jest.spyOn(repo, 'create');
+    console.log({ create });
+    expect(create).toHaveBeenCalled();
     expect(customer[0].id).toBeDefined();
   });
 
   it('createCustomer should not register duplicate entry', async () => {
+    expect.assertions(1);
     try {
       const data = {
         userAccountId: 1,
