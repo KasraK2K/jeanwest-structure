@@ -4,7 +4,7 @@ import { Address } from './address.entity.jw';
 
 @Entity({ name: 'Customer' })
 export class Customer extends AbstractEntity {
-  @Column()
+  @Column({unique: true})
   phoneNumber: string;
 
   @Column({ nullable: true })

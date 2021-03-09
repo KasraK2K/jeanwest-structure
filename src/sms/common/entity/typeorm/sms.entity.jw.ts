@@ -2,7 +2,7 @@ import { Entity, Column } from 'typeorm';
 import { IsDefined, IsString } from 'class-validator';
 import { AbstractEntity } from './abstract.entity';
 
-@Entity()
+@Entity({name:'SmsPattern'})
 export class SmsPattern extends AbstractEntity {
   @Column({ unique: true })
   @IsString()

@@ -1,6 +1,5 @@
 import { Expose } from 'class-transformer';
 import { IsDefined, IsNumber, IsString, ValidateNested } from 'class-validator';
-import { IBarcodeList } from '../../interface/barcode-list.interface';
 import { IErpDetails } from '../../interface/erp-details.interface';
 
 @Expose()
@@ -15,7 +14,7 @@ export class ErpProductDto {
 
   @IsString()
   @IsDefined()
-  SKU: string;
+  sku: string;
 
   @IsString()
   @IsDefined()
@@ -39,5 +38,5 @@ export class ErpProductDto {
 
   @ValidateNested()
   @IsDefined()
-  barcodeList: IBarcodeList;
+  searchList: string[];
 }

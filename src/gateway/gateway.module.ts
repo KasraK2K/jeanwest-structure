@@ -13,17 +13,23 @@ import { branchProviders } from './branch/provider/shared.provider';
 import { erpControllers } from './erp/controller/shared.controller';
 import { erpProviders } from './erp/provider/shared.provider';
 import { userControllers } from './user/controller/shared.controller';
-import { customerProviders } from './user/provider/shared.provider';
+import { userProviders } from './user/provider/shared.provider';
+import { gatewayProviders } from './provider/gateway.provider';
+import { AuthModule } from 'src/auth/auth.module';
+import { authProviders } from './auth/provider/shared.provider';
+import { authControllers } from './auth/controller/shared.controller';
 
 @Module({
   imports: [
     InventoryModule,
+    AuthModule,
     CustomerModule,
     ERPModule,
     BranchModule,
     OtpModule,
   ],
   controllers: [
+    ...authControllers,
     ...inventoryControllers,
     ...userControllers,
     ...erpControllers,
@@ -31,8 +37,10 @@ import { customerProviders } from './user/provider/shared.provider';
     ...otpControllers,
   ],
   providers: [
+    ...gatewayProviders,
+    ...authProviders,
+    ...userProviders,
     ...inventoryProviders,
-    ...customerProviders,
     ...erpProviders,
     ...branchProviders,
     ...otpProviders,

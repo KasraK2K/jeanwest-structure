@@ -1,4 +1,6 @@
 import { DeleteResult } from 'typeorm';
+import { IPaginationOption } from './pagination-option.interface';
+import { IPaginate } from './pagination.interface';
 
 export interface IRepo<T> {
   save?(model: new () => T, data: T): Promise<T>;
@@ -26,5 +28,11 @@ export interface IRepo<T> {
     data: Record<string, unknown> | string,
   ): Promise<T[]>;
 
-  runQuery(query: string): Promise<Array<Record<string, unknown>>>;
+  runQuery?(query: string): Promise<Array<Record<string, unknown>>>;
+
+  paginate?(
+    model: new () => T,
+    data: Record<string, unknown>,
+    options: IPaginationOption,
+  ): Promise<IPaginate<T>>;
 }

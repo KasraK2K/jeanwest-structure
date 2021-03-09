@@ -6,17 +6,20 @@ export class GetMyCustomerDto {
 }
 export class CreateCustomerDto {
   @IsString()
-  firstName: string;
+  firstName?: string;
 
   @IsString()
-  lastName: string;
+  lastName?: string;
 
   @IsString()
-  birthDate: Date;
+  phoneNumber: string;
+
+  @IsString()
+  birthDate?: Date;
 
   //! Man : true, Woman: false
   @IsBoolean()
-  gender: boolean;
+  gender?: boolean;
 
   userAuthId?: string;
   userAccountId?: any;
@@ -68,6 +71,23 @@ export class CreateCustomerResponseDto {
   address?: Address;
 }
 
-export class GetCustomerDto {
-  condition: Record<string, unknown>;
+export class FilterCustomerDto {
+  @IsString()
+  firstName?: string;
+
+  @IsString()
+  lastName?: string;
+
+  @IsString()
+  phoneNumber?: string;
+
+  @IsString()
+  birthDate?: Date;
+
+  //! Man : true, Woman: false
+  @IsBoolean()
+  gender?: boolean;
+
+  userAuthId?: string;
+  userAccountId?: any;
 }

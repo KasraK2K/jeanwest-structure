@@ -1,7 +1,6 @@
 import { Exclude, Expose } from 'class-transformer';
 import { IsDefined, IsNumber, IsString, ValidateNested } from 'class-validator';
 import { IBanimodeDetails } from '../interface/banimode-details.interface';
-import { IBarcodeList } from '../interface/barcode-list.interface';
 import { IErpDetails } from '../interface/erp-details.interface';
 
 @Exclude()
@@ -24,7 +23,7 @@ export class ProductDto {
   @Expose()
   @IsString()
   @IsDefined()
-  SKU: string;
+  sku: string;
 
   @Expose()
   @IsString()
@@ -53,12 +52,12 @@ export class ProductDto {
   @Expose()
   @ValidateNested()
   @IsDefined()
-  barcodeList: IBarcodeList;
+  searchList: string[];
 
   @Expose()
   @IsNumber()
   @IsDefined()
-  BM_productCode: number;
+  banimodeCode: number;
 
   @Expose()
   @ValidateNested()

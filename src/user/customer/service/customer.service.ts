@@ -1,16 +1,15 @@
-import { ForbiddenException, Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { CUSTOMER_REPO } from 'src/user/common/constant/repository.const';
 import {
   CreateCustomerDto,
   CreateCustomerResponseDto,
-  GetMyCustomerDto,
   CustomerResponseDto,
-  GetCustomerDto,
+  FilterCustomerDto,
 } from '../dto/customer.dto';
-import { CustomerServiceInterface } from '../interface/customer.interface';
+import { ICustomerService } from '../interface/customer.interface';
 
 @Injectable()
-export class CustomerService implements CustomerServiceInterface {
+export class CustomerService implements ICustomerService {
   constructor(
     @Inject(CUSTOMER_REPO)
     private readonly repository,
@@ -20,43 +19,13 @@ export class CustomerService implements CustomerServiceInterface {
     body: CreateCustomerDto,
   ): Promise<CreateCustomerResponseDto> {
     try {
-      if (!body.userAccountId)
-        throw new ForbiddenException('You are not logged in!');
-
-      body.userAuthId = body.userAccountId;
-
-      //? Check duplicate Customer with userAuth
-      const checkCustomer = await this.getCustomer({
-        condition: {
-          id: body.userAuthId,
-        },
-      });
-      if (checkCustomer) {
-        throw new ForbiddenException(
-          'This userAuth has already a user registered to it',
-        );
-      }
       return this.repository.create(body);
     } catch (err) {
       throw err;
     }
   }
 
-  async getCustomer(body: GetCustomerDto): Promise<CustomerResponseDto> {
-    try {
-      return this.repository.findOne(body.condition);
-    } catch (err) {
-      throw err;
-    }
-  }
-
-  async getMyCustomer(body: GetMyCustomerDto): Promise<CustomerResponseDto> {
-    try {
-      if (!body.userAccountId)
-        throw new ForbiddenException('You are not logged in!');
-      return this.getCustomer({ condition: { id: body.userAccountId } });
-    } catch (err) {
-      throw err;
-    }
+  async findCustomer(body: FilterCustomerDto): Promise<CustomerResponseDto> {
+    return this.repository.findOne(body);
   }
 }
