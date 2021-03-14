@@ -2,8 +2,6 @@ import { Body, Controller, Get, Inject, Post, UseGuards } from '@nestjs/common';
 
 import { USER_CUSTOMER_SERVICE } from 'src/user/common/constant/service.const';
 
-import { CustomerService } from 'src/user/customer/service/customer.service';
-
 import {
   CreateCustomerDto,
   GetMyCustomerDto,
