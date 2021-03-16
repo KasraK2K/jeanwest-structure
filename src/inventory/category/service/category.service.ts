@@ -1,4 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
+import errorHandler from 'src/common/error/error.handler';
 import { CATEGORY_TYPEORM_REPO } from '../constant/category.const';
 import { ICategorySrevice } from '../interface/category-service.interface';
 import { ICategory, ISize, ISubGroup } from '../interface/category.interface';

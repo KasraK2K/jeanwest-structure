@@ -1,27 +1,30 @@
 import {
-    ExceptionFilter,
-    Catch,
-    ArgumentsHost,
-    HttpException,
-    HttpStatus,
-  } from '@nestjs/common';
-  
-  @Catch()
-  export class AllExceptionsFilter implements ExceptionFilter {
-    catch(exception: unknown, host: ArgumentsHost) {
-      const ctx = host.switchToHttp();
-      const response = ctx.getResponse();
-      const request = ctx.getRequest();
-  
-      const status =
-        exception instanceof HttpException
-          ? exception.getStatus()
-          : HttpStatus.INTERNAL_SERVER_ERROR;
-  
-      response.status(status).json({
-        statusCode: status,
-        timestamp: new Date().toISOString(),
-        path: request.url,
-      });
-    }
+  ExceptionFilter,
+  Catch,
+  ArgumentsHost,
+  HttpException,
+  HttpStatus,
+} from '@nestjs/common';
+import { IError } from 'src/common/interface/error.interface';
+import { httpMap } from 'src/common/util/http.map';
+
+@Catch()
+export class AllExceptionsFilter implements ExceptionFilter {
+  catch(exception: IError, host: ArgumentsHost) {
+    const ctx = host.switchToHttp();
+    const response = ctx.getResponse();
+    /* const request = ctx.getRequest(); */
+    const httpStatusCode = +exception.name > 399 ? +exception.name : 500; //TODO fix the number converter operation
+    const httpStatus = httpMap.get(httpStatusCode.toString());
+    const httpStatusMessage = exception.message || httpStatus.message;
+
+    const httpResponse = {
+      statusCode: httpStatusCode,
+      message: httpStatusMessage,
+      data: exception.data,
+    };
+
+    response.status(httpResponse.statusCode).json(httpResponse);
   }
+}
+
