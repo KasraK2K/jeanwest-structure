@@ -14,7 +14,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse();
     /* const request = ctx.getRequest(); */
-    const httpStatusCode = +exception.name > 399 ? +exception.name : 500; //TODO fix the number converter operation
+    const httpStatusCode = +exception.name > 399 ? +exception.name : 500;
     const httpStatus = httpMap.get(httpStatusCode.toString());
     const httpStatusMessage = exception.message || httpStatus.message;
 
@@ -27,4 +27,3 @@ export class AllExceptionsFilter implements ExceptionFilter {
     response.status(httpResponse.statusCode).json(httpResponse);
   }
 }
-

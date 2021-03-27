@@ -1,73 +1,73 @@
-import {IHttpRes} from '../interface/http.interface';
+import { IHttpRes } from '../interface/http.interface';
 
 // HTTP statusCode and response map
 export const httpMap: Map<string, IHttpRes> = new Map([
   // range 2XX
   [
-    '200',
+    'throwhttp200',
     {
       statusCode: 200,
       message: 'OK',
     },
   ],
   [
-    '201',
+    'throwhttp201',
     {
       statusCode: 201,
       message: 'Created',
     },
   ],
   [
-    '202',
+    'throwhttp202',
     {
       statusCode: 202,
       message: 'Accepted',
     },
   ],
   [
-    '203',
+    'throwhttp203',
     {
       statusCode: 203,
       message: 'Non-authoritative Information',
     },
   ],
   [
-    '204',
+    'throwhttp204',
     {
       statusCode: 204,
       message: 'No Content',
     },
   ],
   [
-    '205',
+    'throwhttp205',
     {
       statusCode: 205,
       message: 'Reset Content',
     },
   ],
   [
-    '206',
+    'throwhttp206',
     {
       statusCode: 206,
       message: 'Partial Content',
     },
   ],
   [
-    '207',
+    'throwhttp207',
     {
       statusCode: 207,
       message: 'Multi-Status',
     },
   ],
   [
-    '208',
+    'throwhttp208',
     {
       statusCode: 208,
       message: 'Already Reported',
     },
   ],
   [
-    '226',
+    'throwhttp226',
     {
       statusCode: 226,
       message: 'IM Used',
@@ -75,56 +75,56 @@ export const httpMap: Map<string, IHttpRes> = new Map([
   ],
   // range 3XX
   [
-    '300',
+    'throwhttp300',
     {
       statusCode: 300,
       message: 'Multiple Choices',
     },
   ],
   [
-    '301',
+    'throwhttp301',
     {
       statusCode: 301,
       message: 'Moved Permanently',
     },
   ],
   [
-    '302',
+    'throwhttp302',
     {
       statusCode: 302,
       message: 'Found',
     },
   ],
   [
-    '303',
+    'throwhttp303',
     {
       statusCode: 303,
       message: 'See Other',
     },
   ],
   [
-    '304',
+    'throwhttp304',
     {
       statusCode: 304,
       message: 'Not Modified',
     },
   ],
   [
-    '305',
+    'throwhttp305',
     {
       statusCode: 305,
       message: 'Use Proxy',
     },
   ],
   [
-    '307',
+    'throwhttp307',
     {
       statusCode: 307,
       message: 'Temporary Redirect',
     },
   ],
   [
-    '308',
+    'throwhttp308',
     {
       statusCode: 308,
       message: 'Permanent Redirect',
@@ -132,210 +132,210 @@ export const httpMap: Map<string, IHttpRes> = new Map([
   ],
   // range 4XX
   [
-    '400',
+    'throwhttp400',
     {
       statusCode: 400,
       message: 'Bad Request',
     },
   ],
   [
-    '401',
+    'throwhttp401',
     {
       statusCode: 401,
       message: 'Unauthorized',
     },
   ],
   [
-    '402',
+    'throwhttp402',
     {
       statusCode: 402,
       message: 'Payment Required',
     },
   ],
   [
-    '403',
+    'throwhttp403',
     {
       statusCode: 403,
       message: 'Forbidden',
     },
   ],
   [
-    '404',
+    'throwhttp404',
     {
       statusCode: 404,
       message: 'Not Found',
     },
   ],
   [
-    '405',
+    'throwhttp405',
     {
       statusCode: 405,
       message: 'Method Not Allowed',
     },
   ],
   [
-    '406',
+    'throwhttp406',
     {
       statusCode: 406,
       message: 'Not Acceptable',
     },
   ],
   [
-    '407',
+    'throwhttp407',
     {
       statusCode: 407,
       message: 'Proxy Authentication Required',
     },
   ],
   [
-    '408',
+    'throwhttp408',
     {
       statusCode: 408,
       message: 'Request Timeout',
     },
   ],
   [
-    '409',
+    'throwhttp409',
     {
       statusCode: 409,
       message: 'Conflict',
     },
   ],
   [
-    '410',
+    'throwhttp410',
     {
       statusCode: 410,
       message: 'Gone',
     },
   ],
   [
-    '411',
+    'throwhttp411',
     {
       statusCode: 411,
-      message: 'Length Required'
+      message: 'Length Required',
     },
   ],
   [
-    '412',
+    'throwhttp412',
     {
       statusCode: 412,
       message: 'Precondition Failed',
     },
   ],
   [
-    '413',
+    'throwhttp413',
     {
       statusCode: 413,
       message: 'Payload Too Large',
     },
   ],
   [
-    '414',
+    'throwhttp414',
     {
       statusCode: 414,
       message: 'Request-URI Too Long',
     },
   ],
   [
-    '415',
+    'throwhttp415',
     {
       statusCode: 415,
       message: 'Unsupported Media Type',
     },
   ],
   [
-    '416',
+    'throwhttp416',
     {
       statusCode: 416,
       message: 'Requested Range Not Satisfiable',
     },
   ],
   [
-    '417',
+    'throwhttp417',
     {
       statusCode: 417,
       message: 'Expectation Failed',
     },
   ],
   [
-    '418',
+    'throwhttp418',
     {
       statusCode: 418,
       message: "I'm a teapot",
     },
   ],
   [
-    '421',
+    'throwhttp421',
     {
       statusCode: 421,
       message: 'Misdirected Request',
     },
   ],
   [
-    '422',
+    'throwhttp422',
     {
       statusCode: 422,
       message: 'Unprocessable Entity',
     },
   ],
   [
-    '423',
+    'throwhttp423',
     {
       statusCode: 423,
       message: 'Locked',
     },
   ],
   [
-    '424',
+    'throwhttp424',
     {
       statusCode: 424,
       message: 'Failed Dependency',
     },
   ],
   [
-    '426',
+    'throwhttp426',
     {
       statusCode: 426,
       message: 'Upgrade Required',
     },
   ],
   [
-    '428',
+    'throwhttp428',
     {
       statusCode: 428,
       message: 'Precondition Required',
     },
   ],
   [
-    '429',
+    'throwhttp429',
     {
       statusCode: 429,
       message: 'Too Many Requests',
     },
   ],
   [
-    '431',
+    'throwhttp431',
     {
       statusCode: 431,
       message: 'Request Header Fields Too Large',
     },
   ],
   [
-    '444',
+    'throwhttp444',
     {
       statusCode: 444,
       message: 'Connection Closed Without Response',
     },
   ],
   [
-    '451',
+    'throwhttp451',
     {
       statusCode: 451,
       message: 'Unavailable For Legal Reasons',
     },
   ],
   [
-    '499',
+    'throwhttp499',
     {
       statusCode: 499,
       message: 'Client Closed Request',
@@ -343,84 +343,84 @@ export const httpMap: Map<string, IHttpRes> = new Map([
   ],
   // range 5XX
   [
-    '500',
+    'throwhttp500',
     {
       statusCode: 500,
       message: 'Internal Server Error',
     },
   ],
   [
-    '501',
+    'throwhttp501',
     {
       statusCode: 501,
       message: 'Not Implemented',
     },
   ],
   [
-    '502',
+    'throwhttp502',
     {
       statusCode: 502,
       message: 'Bad Gateway',
     },
   ],
   [
-    '503',
+    'throwhttp503',
     {
       statusCode: 503,
       message: 'Service Unavailable',
     },
   ],
   [
-    '504',
+    'throwhttp504',
     {
       statusCode: 504,
       message: 'Gateway Timeout',
     },
   ],
   [
-    '505',
+    'throwhttp505',
     {
       statusCode: 505,
       message: 'HTTP Version Not Supported',
     },
   ],
   [
-    '506',
+    'throwhttp506',
     {
       statusCode: 506,
       message: 'Variant Also Negotiates',
     },
   ],
   [
-    '507',
+    'throwhttp507',
     {
       statusCode: 507,
       message: 'Insufficient Storage',
     },
   ],
   [
-    '508',
+    'throwhttp508',
     {
       statusCode: 508,
       message: 'Loop Detected',
     },
   ],
   [
-    '510',
+    'throwhttp510',
     {
       statusCode: 510,
       message: 'Not Extended',
     },
   ],
   [
-    '511',
+    'throwhttp511',
     {
       statusCode: 511,
       message: 'Network Authentication Required',
     },
   ],
   [
-    '599',
+    'throwhttp599',
     {
       statusCode: 599,
       message: 'Network Connect Timeout Error',
