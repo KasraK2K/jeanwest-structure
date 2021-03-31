@@ -1,17 +1,11 @@
+import { clientSideError } from '../constant/http.map.const';
 import errorHandler from './error.handler';
 
 it('should throw an error object', () => {
   const errorArgs = {
-    name: '400',
+    name: clientSideError.HTTP_EQUIVALENT_STATUSCODE_400,
     message: 'ooops!',
-    data: [{ foo: 'fooBar' }, { foo: 'fooBar' }],
+    data: ['foo', { fooBar: 'fooBar' }],
   };
-  const errorObjectThrown = {
-    name: 400,
-    message: 'oooops!',
-    data: [{ foo: 'fooBar' }, { foo: 'fooBar' }],
-  };
-  expect(errorHandler(errorArgs)).toThrow(errorObjectThrown);
-  console.log('yo!');
-  console.log('log this', errorHandler(errorArgs));
+  expect(errorHandler(errorArgs)).toThrow(Error());
 });

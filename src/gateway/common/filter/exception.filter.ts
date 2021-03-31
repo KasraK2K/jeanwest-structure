@@ -5,25 +5,24 @@ import {
   HttpException,
   HttpStatus,
 } from '@nestjs/common';
-import { IError } from 'src/common/interface/error.interface';
+import { IErrorThrown } from 'src/common/interface/error.interface';
 import { httpMap } from 'src/common/util/http.map';
 
 @Catch()
 export class AllExceptionsFilter implements ExceptionFilter {
-  catch(exception: IError, host: ArgumentsHost) {
+  catch(exception: IErrorThrown, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse();
     /* const request = ctx.getRequest(); */
-    const httpStatusCode = +exception.name > 399 ? +exception.name : 500;
-    const httpStatus = httpMap.get(httpStatusCode.toString());
-    const httpStatusMessage = exception.message || httpStatus.message;
+    console.log(exception.statusCode);
+    if (exception.statusCode) {
+      const httpResponse = {
+        statusCode: exception.statusCode,
+        message: exception.message,
+        data: exception.data,
+      };
 
-    const httpResponse = {
-      statusCode: httpStatusCode,
-      message: httpStatusMessage,
-      data: exception.data,
-    };
-
-    response.status(httpResponse.statusCode).json(httpResponse);
+      response.status(httpResponse.statusCode).json(httpResponse);
+    }
   }
 }
