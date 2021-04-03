@@ -1,13 +1,8 @@
 import { clientSideError, serverSideError } from '../constant/http.map.const';
-import { IErrorArgs, IErrorThrown } from '../interface/error.interface';
+import { IErrorArgs } from '../interface/error.interface';
 import { httpMap } from '../util/http.map';
 
-export default function errorHandler({
-  name,
-  message,
-  data,
-}: IErrorArgs): IErrorThrown | any {
-  console.log(name);
+export default function errorHandler({ name, message, data }: IErrorArgs) {
   const arrayContainingServerSideErrors = Object.values(serverSideError);
   const arrayContainingClientSideErrors = Object.values(clientSideError);
   const arrayContainingAllErrors = [
@@ -15,13 +10,18 @@ export default function errorHandler({
     ...arrayContainingServerSideErrors,
   ];
   if (arrayContainingAllErrors.includes(name)) {
-    const errorObject = {
+    const errorObject: any = {
       statusCode: httpMap.get(name).statusCode,
       message: message || httpMap.get(name).message,
-      data: data,
     };
-    throw errorObject;
+    if (data) {
+      errorObject.data = data;
+    }
+    throw JSON.stringify(errorObject);
   } else {
-    throw Error('Invalid HTTP Expectation Thrown');
+    throw JSON.stringify({
+      statusCode: 500,
+      message: 'Invalid HTTP Exception',
+    });
   }
 }
