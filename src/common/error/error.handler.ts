@@ -17,11 +17,11 @@ export default function errorHandler({ name, message, data }: IErrorArgs) {
     if (data) {
       errorObject.data = data;
     }
-    throw JSON.stringify(errorObject);
+    throw errorObject;
   } else {
-    throw JSON.stringify({
+    throw {
       statusCode: 500,
       message: 'Invalid HTTP Exception',
-    });
+    };
   }
 }
