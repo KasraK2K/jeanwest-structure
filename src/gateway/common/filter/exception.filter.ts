@@ -1,27 +1,28 @@
 import {
-    ExceptionFilter,
-    Catch,
-    ArgumentsHost,
-    HttpException,
-    HttpStatus,
-  } from '@nestjs/common';
-  
-  @Catch()
-  export class AllExceptionsFilter implements ExceptionFilter {
-    catch(exception: unknown, host: ArgumentsHost) {
-      const ctx = host.switchToHttp();
-      const response = ctx.getResponse();
-      const request = ctx.getRequest();
-  
-      const status =
-        exception instanceof HttpException
-          ? exception.getStatus()
-          : HttpStatus.INTERNAL_SERVER_ERROR;
-  
-      response.status(status).json({
-        statusCode: status,
-        timestamp: new Date().toISOString(),
-        path: request.url,
-      });
-    }
+  ExceptionFilter,
+  Catch,
+  ArgumentsHost,
+  HttpException,
+  HttpStatus,
+} from '@nestjs/common';
+import { WinstonLogger } from 'nest-winston';
+import { IErrorThrown } from 'src/common/interface/error.interface';
+import { logger } from 'src/common/log/app.log';
+import { httpMap } from 'src/common/util/http.map';
+
+@Catch()
+export class AllExceptionsFilter implements ExceptionFilter {
+  catch(exception: IErrorThrown, host: ArgumentsHost) {
+    const ctx = host.switchToHttp();
+    const response = ctx.getResponse();
+    const httpResponse = {
+      statusCode: exception.statusCode || 500,
+      message: exception.message,
+      data: exception.data,
+    };
+
+    logger.error(`😠😠😠: ${exception.message}`);
+    if (exception.data) logger.error(exception.data);
+    response.status(httpResponse.statusCode).json(httpResponse);
   }
+}
