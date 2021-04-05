@@ -17,7 +17,7 @@ develop_staging:
     name: develop
   script:
     - ssh -tt gitlab@JWApp-Dev-0-1.AVAKATAN.ir "pm2 ls"
-    - ssh -tt gitlab@JWApp-Dev-0-1.AVAKATAN.ir "pm2 delete backend-jeanswest > /dev/null 2>&1 || FAILED=true"
+    - ssh -tt gitlab@JWApp-Dev-0-1.AVAKATAN.ir "pm2 delete jeanswest-club > /dev/null 2>&1 || FAILED=true"
     - ssh -tt gitlab@JWApp-Dev-0-1.AVAKATAN.ir "rm -rf * /home/gitlab/jeanswest-club/"
     - ssh -tt gitlab@JWApp-Dev-0-1.AVAKATAN.ir "mkdir -p /home/gitlab/jeanswest-club/"
 
