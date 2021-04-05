@@ -12,11 +12,11 @@ import { httpMap } from 'src/common/util/http.map';
 
 @Catch()
 export class AllExceptionsFilter implements ExceptionFilter {
-  catch(exception: IErrorThrown, host: ArgumentsHost) {
+  catch(exception: any, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse();
     const httpResponse = {
-      statusCode: exception.statusCode || 500,
+      statusCode: exception.statusCode || exception.status || 500,
       message: exception.message,
       data: exception.data,
     };
