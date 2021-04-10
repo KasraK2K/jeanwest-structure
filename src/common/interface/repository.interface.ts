@@ -21,6 +21,7 @@ export interface IRepo<T> {
     model: new () => T,
     data: Record<string, unknown> | string,
   ): Promise<T>;
+
   deleteById?(model: new () => T, data: string | number): Promise<DeleteResult>;
 
   findAll?(
@@ -35,4 +36,6 @@ export interface IRepo<T> {
     data: Record<string, unknown>,
     options: IPaginationOption,
   ): Promise<IPaginate<T>>;
+
+  erase?(model: new () => T, id: string): Promise<DeleteResult>;
 }

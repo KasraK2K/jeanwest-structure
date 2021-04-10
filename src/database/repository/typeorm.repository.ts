@@ -49,4 +49,8 @@ export class TypeormRepository<T> implements IRepo<T> {
   runQuery(query: string): Promise<Array<Record<string, unknown>>> {
     return this.manager.query(query);
   }
+
+  erase?(model: new () => T, id: string): Promise<DeleteResult> {
+    return this.manager.delete(model, id);
+  }
 }
