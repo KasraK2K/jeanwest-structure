@@ -18,6 +18,9 @@ import { gatewayProviders } from './provider/gateway.provider';
 import { AuthModule } from 'src/auth/auth.module';
 import { authProviders } from './auth/provider/shared.provider';
 import { authControllers } from './auth/controller/shared.controller';
+import { HelloModule } from 'src/hello/hello.module';
+import { helloController } from './hello/controller/shared.controller';
+import { helloProvider } from './hello/provider/hello.provider';
 
 @Module({
   imports: [
@@ -27,6 +30,7 @@ import { authControllers } from './auth/controller/shared.controller';
     ERPModule,
     BranchModule,
     OtpModule,
+    HelloModule,
   ],
   controllers: [
     ...authControllers,
@@ -35,6 +39,7 @@ import { authControllers } from './auth/controller/shared.controller';
     ...erpControllers,
     ...branchControllers,
     ...otpControllers,
+    ...helloController,
   ],
   providers: [
     ...gatewayProviders,
@@ -44,6 +49,7 @@ import { authControllers } from './auth/controller/shared.controller';
     ...erpProviders,
     ...branchProviders,
     ...otpProviders,
+    ...helloProvider,
   ],
 })
 export class GatewayModule {}
