@@ -4,7 +4,7 @@ import { Datetime } from './timestamp.entity';
 /** @class Base representing an abstract of main model. */
 export abstract class AbstractEntity {
   @PrimaryGeneratedColumn('uuid')
-  id: number;
+  id: string;
 
   @Column({ default: true })
   active: boolean;
